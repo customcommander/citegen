@@ -1,0 +1,54 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Clean everything",
+      "type": "shell",
+      "command": "make clean",
+      "group": "build",
+      "presentation": {
+        "reveal": "never",
+        "panel": "dedicated"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Run unit tests",
+      "type": "shell",
+      "command": "make unit-test",
+      "group": "test",
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "tape",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^\\s+at:.+\\((.+):(\\d+):(\\d+)\\)$",
+          "file": 1,
+          "line": 2,
+          "column": 3
+        }
+      }
+    },
+    {
+      "label": "Run integration tests",
+      "type": "shell",
+      "command": "make integration-test",
+      "group": "test",
+      "presentation": {
+        "panel": "dedicated"
+      },
+      "problemMatcher": {
+        "owner": "tape",
+        "fileLocation": "absolute",
+        "pattern": {
+          "regexp": "^\\s+at:.+\\((.+):(\\d+):(\\d+)\\)$",
+          "file": 1,
+          "line": 2,
+          "column": 3
+        }
+      }
+    }
+  ]
+}
