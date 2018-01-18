@@ -29,6 +29,8 @@
     "rollup": "^0.53.3",
     "rollup-plugin-babel": "^3.0.3",
     "rollup-plugin-node-resolve": "^3.0.0",
-    "tape": "^4.8.0"
-  }
+    "tape": "^4.8.0",
+    "testdouble": "^3.3.2"
+  },
+  "dependencies": {}
 }

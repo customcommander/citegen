@@ -6,13 +6,13 @@ nyc = ./node_modules/.bin/nyc
 nyc_args = --reporter html
 
 
-lib_files = $(shell find src/js -type f -name "csl-*.js" -not -name "*.test.js")
+lib_files = $(shell find src/js -type f -name "*.js" -not -name "*.test.js")
 csl_files = $(shell find test/styles -type f -name "*.csl")
 
 js_src = $(shell find src/js -type f -name "*.js")
 xsl_src = $(shell find src/xsl -type f -name "*.xsl")
 
-build_lib = $(patsubst src/js/csl-%.js,build/lib/%.js,$(lib_files))
+build_lib = $(patsubst src/js/%.js,build/lib/%.js,$(lib_files))
 build_modules = $(patsubst test/styles/%.csl,build/%.js,$(csl_files))
 
 build: $(build_lib) $(build_modules)
@@ -25,7 +25,7 @@ clean:
 	rm -rfv build
 	rm -rfv tmp/unit-test
 
-build/lib/%.js: src/js/csl-%.js
+build/lib/%.js: src/js/%.js
 	mkdir -p $(dir $@)
 	cp $< $@
 

@@ -9,7 +9,7 @@
   <xsl:output method="text" />
 
   <xsl:template match="csl:style">
-    import citation from './lib/citation';
+    import citation from './lib/csl-citation';
 
     <xsl:apply-templates select="csl:citation"/>
   </xsl:template>
