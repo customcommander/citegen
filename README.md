@@ -4,8 +4,9 @@
 
 ### Development
 
-Make                    | Description                | NPM Script
-------------------------|----------------------------|------------------------------------
-`make clean`            | Cleans all build artefacts | `npm run clean`
-`make unit-test`        | Runs all unit tests        | `npm run unit-test` (alias: `npm test`)
-`make integration-test` | Runs all integration tests | `npm run integration-test`
+Make                    | Description
+------------------------|----------------------------------------------------------------
+`make build-docker`     | Builds the Docker image
+`make start-docker`     | Runs a Docker container
+`make stop-docker`      | Stops the Docker container
+`make test`             | Runs unit tests across packages

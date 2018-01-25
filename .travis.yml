@@ -11,8 +11,12 @@ node_js:
   - "8"
 
 install:
-  docker build -t citegen:latest .
+  - make build-docker
+  - make start-docker
+  - docker exec citegen-dev-box yarn
 
 script:
-  - docker run -it --rm citegen:latest make unit-test
-  - docker run -it --rm citegen:latest make integration-test
+  - make test
+
+after_script:
+  - make stop-docker

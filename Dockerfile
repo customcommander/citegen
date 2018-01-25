@@ -1,11 +1,9 @@
 FROM node:8-alpine
 
-WORKDIR /var/citegen
+RUN apk update && \
+  apk add make && \
+  apk add libxslt && \
+  apk add parallel && \
+  (printf "will cite" | parallel --citation)
 
-COPY . .
-
-RUN apk update \
-  && apk add make \
-  && apk add libxslt \
-  && npm install
-
+CMD ["sh"]

@@ -1,4 +1,6 @@
-build/
-tmp/
-coverage/
 .nyc_output/
+coverage/
+dist/
+styles/
+tmp/
+yarn-error.log
