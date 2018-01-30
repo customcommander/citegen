@@ -1,0 +1,9 @@
+{
+  "name": "@customcommander/csl-generator",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": "./bin.sh",
+  "files": [
+    "lib"
+  ]
+}

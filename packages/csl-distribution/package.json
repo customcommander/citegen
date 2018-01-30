@@ -1,0 +1,16 @@
+{
+  "name": "@customcommander/csl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "files": [
+    "styles"
+  ],
+  "dependencies": {
+    "@customcommander/csl-lib": "^1.0.0",
+    "@customcommander/csl-locales": "^1.0.0"
+  },
+  "devDependencies": {
+    "@customcommander/csl-generator": "^1.0.0"
+  }
+}

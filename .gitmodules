@@ -1,0 +1,9 @@
+[submodule "vendor/styles-distribution"]
+	path = vendor/styles-distribution
+	url = https://github.com/citation-style-language/styles-distribution.git
+[submodule "vendor/locales"]
+	path = vendor/locales
+	url = https://github.com/citation-style-language/locales.git
+[submodule "vendor/test-suite"]
+	path = vendor/test-suite
+	url = https://github.com/citation-style-language/test-suite.git
