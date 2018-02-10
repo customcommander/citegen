@@ -20,6 +20,8 @@ stop-docker:
 test:
 ifdef CI
 	docker exec $(docker_container_name) sh -c 'make -C packages/csl-lib test'
+	docker exec $(docker_container_name) sh -c 'make -C packages/csl-locales test'
 else
 	make -C packages/csl-lib test
+	make -C packages/csl-locales test
 endif
