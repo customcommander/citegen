@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "files": [
-    "styles"
+    "dist"
   ],
   "dependencies": {
     "@customcommander/csl-lib": "^1.0.0",

@@ -2,6 +2,5 @@
 coverage/
 dist/
 packages/csl-locales/lib/*.json
-styles/
 tmp/
 yarn-error.log
