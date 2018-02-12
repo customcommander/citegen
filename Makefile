@@ -7,7 +7,8 @@ build-docker:
 
 start-docker:
 	docker run \
-		$(if $(CI),-it -d,-it) \
+		-it \
+		-d \
 		--rm \
 		--mount type=bind,src=$$PWD,dst=$(docker_working_dir) \
 		-w $(docker_working_dir) \
@@ -17,11 +18,12 @@ start-docker:
 stop-docker:
 	docker kill $(docker_container_name)
 
-test:
-ifdef CI
-	docker exec $(docker_container_name) sh -c 'make -C packages/csl-lib test'
-	docker exec $(docker_container_name) sh -c 'make -C packages/csl-locales test'
-else
-	make -C packages/csl-lib test
-	make -C packages/csl-locales test
-endif
+test: csl-lib-test csl-locales-test csl-generator-test
+csl-lib-test: tmp/csl-lib.test
+csl-locales-test: tmp/csl-locales.test
+csl-generator-test: tmp/csl-generator.test
+
+tmp/%.test:
+	docker exec $(docker_container_name) bash -c 'make -C packages/$* test'
+
+clean:; rm -rfv tmp

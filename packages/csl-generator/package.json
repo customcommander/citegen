@@ -5,5 +5,11 @@
   "bin": "./bin.sh",
   "files": [
     "lib"
-  ]
+  ],
+  "devDependencies": {
+    "@customcommander/csl-lib": "^1.0.0",
+    "@customcommander/csl-locales": "^1.0.0",
+    "cucumber": "^4.0.0",
+    "uuid": "^3.2.1"
+  }
 }

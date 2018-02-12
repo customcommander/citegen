@@ -13,8 +13,8 @@
     var csl_lib = require('@customcommander/csl-lib');
 
     module.exports = {
-      citation: function () {
-        return csl_lib.citation();
+      citation: function (refs, locale) {
+        return csl_lib.citation(refs, locale);
       }
     };
   </xsl:template>
@@ -24,8 +24,8 @@
     var parent = require('./<xsl:value-of select="$parent-path"/>');
 
     module.exports = {
-      citation: function () {
-        return parent.citation();
+      citation: function (refs, locale) {
+        return parent.citation(refs, locale);
       }
     };
   </xsl:template>

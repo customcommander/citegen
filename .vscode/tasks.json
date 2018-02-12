@@ -4,7 +4,7 @@
     {
       "label": "csl-lib: run tests",
       "type": "shell",
-      "command": "make -C packages/csl-lib test",
+      "command": "make csl-lib-test",
       "group": "test",
       "presentation": {
         "reveal": "always",
@@ -20,6 +20,17 @@
           "column": 3
         }
       }
+    },
+    {
+      "label": "csl-generator: run tests",
+      "type": "shell",
+      "command": "make csl-generator-test",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
     }
   ]
 }
