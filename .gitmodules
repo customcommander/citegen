@@ -7,3 +7,6 @@
 [submodule "vendor/test-suite"]
 	path = vendor/test-suite
 	url = https://github.com/citation-style-language/test-suite.git
+[submodule "vendor/schema"]
+	path = vendor/schema
+	url = https://github.com/citation-style-language/schema.git
