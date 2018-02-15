@@ -7,8 +7,7 @@ build-docker:
 
 start-docker:
 	docker run \
-		-it \
-		-d \
+		$(if $(CI),-it -d,-it) \
 		--rm \
 		--mount type=bind,src=$$PWD,dst=$(docker_working_dir) \
 		-w $(docker_working_dir) \
