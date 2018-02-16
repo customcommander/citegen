@@ -10,16 +10,7 @@
         "reveal": "always",
         "panel": "shared"
       },
-      "problemMatcher": {
-        "owner": "tape",
-        "fileLocation": "absolute",
-        "pattern": {
-          "regexp": "^\\s+at:.+\\((.+):(\\d+):(\\d+)\\)$",
-          "file": 1,
-          "line": 2,
-          "column": 3
-        }
-      }
+      "problemMatcher": []
     },
     {
       "label": "csl-generator: run tests",

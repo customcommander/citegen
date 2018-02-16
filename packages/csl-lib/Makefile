@@ -1,5 +1,8 @@
-tape = ./node_modules/.bin/tape
-nyc = ./node_modules/.bin/nyc
+tap = ./node_modules/.bin/tap
 
 test:
-	$(nyc) --reporter html $(tape) ./lib/*.test.js
+	$(tap) \
+		--cov \
+		--100 \
+		$(if $(CI),,--coverage-report=html --reporter=spec --no-browser) \
+		-- lib/*.test.js

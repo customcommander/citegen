@@ -11,8 +11,6 @@
     "test": "make test"
   },
   "devDependencies": {
-    "nyc": "^11.4.1",
-    "tape": "^4.8.0",
-    "testdouble": "^3.3.3"
+    "tap": "^11.1.0"
   }
 }
