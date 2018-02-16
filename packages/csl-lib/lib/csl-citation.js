@@ -1,8 +1,11 @@
-function citation (refs, locales) {
-  if (typeof locales === 'undefined') {
-    throw new Error('no locales');
-  }
-  return 'this is a citation';
+var constants = require('./constants');
+var assertChildren = require('./assert-children');
+
+function citation (refs, children) {
+  return children[0](refs);
 };
 
-module.exports = citation;
+module.exports = function (refs, children) {
+  assertChildren(children, [constants.CSL_NODE_LAYOUT]);
+  return citation(refs, children);
+};
