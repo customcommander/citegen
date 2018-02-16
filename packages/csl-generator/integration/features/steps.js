@@ -4,12 +4,21 @@ const generateModule = require('../helpers/generate-module');
 
 defineStep(/^the following citation style$/, function (csl) {
   return generateModule(csl).then((modulePath) => {
-    const style = require(modulePath);
-    assert(style.citation([], {}) === 'this is a citation',
-      `Module at '${modulePath}' failed to produce the correct citation`);
+    this.modulePath = modulePath;
+    this.style = require(modulePath);
   });
 });
 
-defineStep(/^nothing$/, function () {
-  console.log('noop');
+defineStep(/^the following documents?$/, function (json) {
+  this.docs = JSON.parse(json);
+});
+
+defineStep(/^I expect the following citation$/, function (citation) {
+  try {
+    var out = this.style.citation(this.docs);
+  } catch (e) {
+    console.error(`Error thrown in generated CSL module at ${this.modulePath}`);
+    throw e;
+  }
+  assert.equal(out, citation);
 });

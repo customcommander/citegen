@@ -1,0 +1,4 @@
+module.exports = {
+  CSL_NODE_LAYOUT: 'CSL_NODE_LAYOUT',
+  CSL_NODE_TEXT: 'CSL_NODE_TEXT'
+};

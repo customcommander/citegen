@@ -1,6 +1,6 @@
 Feature: <citation>
 
-Scenario: citation1
+Scenario: A very simple citation style
   Given the following citation style
     """
     <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
@@ -10,29 +10,18 @@ Scenario: citation1
         <updated>2008-10-29T21:01:24+00:00</updated>
       </info>
       <citation>
-        <layout>
-            <text variable="title"/>
+        <layout prefix="(" delimiter="," suffix=")">
+            <text value="a"/>
         </layout>
       </citation>
     </style>
+    """
+  And the following document
+    """
+    [{},{}]
+    """
+  Then I expect the following citation
+    """
+    (a,a)
     """
 
-Scenario: citation2
-  Given the following citation style
-    """
-    <style 
-      xmlns="http://purl.org/net/xbiblio/csl"
-      class="note"
-      version="1.0">
-      <info>
-        <id />
-        <title />
-        <updated>2009-08-10T04:49:00+09:00</updated>
-      </info>
-      <citation>
-        <layout>
-          <text variable="title"/>
-        </layout>
-      </citation>
-    </style>
-    """

@@ -1,12 +1,22 @@
+var td = require('testdouble');
 var tap = require('tap');
-var citation = require('./csl-citation');
+var constants = require('./constants');
+var assertChildren = td.replace('./assert-children', td.function());
+var citation = require('./csl-citation'); // Subject Under Test
 
-tap.test('it should return a citation', t => {
-  t.is(citation({}, {}), 'this is a citationx');
+tap.test('validates its children', t => {
+  var children = [td.function()];
+  citation([], children);
+  td.verify(assertChildren(children, [constants.CSL_NODE_LAYOUT]));
   t.end();
 });
 
-tap.test('it should throw if there are no locales', t => {
-  t.throws(() => citation({}));
+tap.test('invoke children with `refs`', t => {
+  var refs = [];
+  var child = td.function();
+  citation(refs, [child]);
+  td.verify(child(refs));
   t.end();
 });
+
+td.reset();

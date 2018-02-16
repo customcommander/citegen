@@ -1,5 +1,5 @@
-var citation = require('./lib/csl-citation');
-
 module.exports = {
-  citation: citation
+  citation: require('./lib/csl-citation'),
+  layout: require('./lib/csl-layout'),
+  text: require('./lib/csl-text')
 };

@@ -8,13 +8,33 @@
 
   <xsl:output method="text" />
 
+  <xsl:template match="csl:text">
+    csl_lib.text({
+      value: '<xsl:value-of select="@value"/>'
+    })
+  </xsl:template>
+
+  <xsl:template match="csl:layout">
+    csl_lib.layout([
+      <xsl:for-each select="*">
+        <xsl:apply-templates select="."/>
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    ], {
+      <xsl:for-each select="@*">
+        '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    })
+  </xsl:template>
+
   <xsl:template match="csl:style">
     var csl_locales = require('@customcommander/csl-locales');
     var csl_lib = require('@customcommander/csl-lib');
 
     module.exports = {
-      citation: function (refs, locale) {
-        return csl_lib.citation(refs, locale);
+      citation: function (refs) {
+        return csl_lib.citation(refs, [<xsl:apply-templates select="csl:citation/csl:layout"/>]);
       }
     };
   </xsl:template>
@@ -24,8 +44,8 @@
     var parent = require('./<xsl:value-of select="$parent-path"/>');
 
     module.exports = {
-      citation: function (refs, locale) {
-        return parent.citation(refs, locale);
+      citation: function (refs) {
+        return parent.citation(refs);
       }
     };
   </xsl:template>
