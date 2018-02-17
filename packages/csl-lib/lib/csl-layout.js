@@ -1,6 +1,12 @@
 var assertChildren = require('./assert-children');
 var constants = require('./constants');
 
+function applyAffixes(affixes, out) {
+  var prefix = typeof affixes.prefix === 'undefined' ? '' : affixes.prefix;
+  var suffix = typeof affixes.suffix === 'undefined' ? '' : affixes.suffix;
+  return prefix + out + suffix;
+}
+
 function layout(opts, children, refs) {
   var out = refs.map(function (ref) {
     return children.map(function (child) {
@@ -8,19 +14,14 @@ function layout(opts, children, refs) {
     });
   });
   out = out.reduce(function (acc, res) {
-    var str = res.filter(function (s) {
-      return s !== '';
-    });
-    str = str.join('');
+    var str = res.join('');
     if (str) {
       acc.push(str);
     }
     return acc;
   }, []);
   out = out.join(opts.delimiter || '');
-  var prefix = typeof opts.prefix === 'undefined' ? '' : opts.prefix;
-  var suffix = typeof opts.suffix === 'undefined' ? '' : opts.suffix;
-  return prefix + out + suffix;
+  return applyAffixes(opts, out);
 };
 
 module.exports = function (children, opts) {
