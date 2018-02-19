@@ -13,5 +13,8 @@
   "devDependencies": {
     "tap": "^11.1.0",
     "testdouble": "^3.5.0"
+  },
+  "dependencies": {
+    "ramda": "^0.25.0"
   }
 }
