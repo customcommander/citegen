@@ -5,6 +5,14 @@ var formattingAttr = require('./csl-attr-formatting');
 var affixesAttr = require('./csl-attr-affixes');
 var delimiterAttr = require('./csl-attr-delimiter');
 
+function applyAttributes(attrs, out) {
+  return R.pipe(
+    delimiterAttr(attrs),
+    formattingAttr(attrs),
+    affixesAttr(attrs)
+  )(out);
+};
+
 function layout(attrs, children, refs) {
   var out = refs.map(function (ref) {
     return children.map(function (child) {
@@ -19,11 +27,7 @@ function layout(attrs, children, refs) {
     return acc;
   }, []);
 
-  return R.pipe(
-    delimiterAttr(attrs),
-    formattingAttr(attrs),
-    affixesAttr(attrs)
-  )(out);
+  return applyAttributes(attrs, out);
 };
 
 module.exports = function (children, attrs) {
