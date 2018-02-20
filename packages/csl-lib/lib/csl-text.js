@@ -1,7 +1,9 @@
-function text(opts) {
-  return opts.value;
+var R = require('ramda');
+
+function text(attrs, ref) {
+  return R.prop('value', attrs);
 }
 
-module.exports = function (opts) {
-  return text.bind(null, opts);
-};
+module.exports = R.curry(function (attrs, children, ref) {
+  return text(attrs, ref);
+});
