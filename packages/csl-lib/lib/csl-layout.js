@@ -3,7 +3,7 @@ var formattingAttr = require('./csl-attr-formatting');
 var affixesAttr = require('./csl-attr-affixes');
 var delimiterAttr = require('./csl-attr-delimiter');
 
-function layout(attrs, children, refs) {
+module.exports = R.curry(function (locales, attrs, children, refs) {
   return R.pipe(
     R.map(R.of),
     R.map(R.ap(children)),
@@ -13,8 +13,4 @@ function layout(attrs, children, refs) {
     formattingAttr(attrs),
     affixesAttr(attrs)
   )(refs);
-};
-
-module.exports = R.curry(function (attrs, children, refs) {
-  return layout(attrs, children, refs);
 });

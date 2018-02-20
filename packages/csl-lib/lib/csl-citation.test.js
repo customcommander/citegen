@@ -6,7 +6,7 @@ tap.test('invoke children with `refs`', t => {
   var refs = [];
   var foo = td.function();
 
-  citation({}, [foo], refs);
+  citation([], {}, [foo], refs);
 
   td.verify(foo(refs));
 

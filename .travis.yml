@@ -16,6 +16,7 @@ install:
   - docker exec citegen-dev-box yarn
 
 script:
+  - make build
   - make test
 
 after_script:
