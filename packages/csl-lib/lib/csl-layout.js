@@ -15,6 +15,6 @@ function layout(attrs, children, refs) {
   )(refs);
 };
 
-module.exports = function (children, attrs) {
-  return layout.bind(null, attrs || {}, children);
-};
+module.exports = R.curry(function (attrs, children, refs) {
+  return layout(attrs, children, refs);
+});

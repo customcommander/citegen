@@ -11,21 +11,21 @@
   <xsl:template match="csl:text">
     csl_lib.text({
       value: '<xsl:value-of select="@value"/>'
-    })
+    }, [])
   </xsl:template>
 
   <xsl:template match="csl:layout">
-    csl_lib.layout([
-      <xsl:for-each select="*">
-        <xsl:apply-templates select="."/>
-        <xsl:if test="position() != last()">,</xsl:if>
-      </xsl:for-each>
-    ], {
+    csl_lib.layout({
       <xsl:for-each select="@*">
         '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
         <xsl:if test="position() != last()">,</xsl:if>
       </xsl:for-each>
-    })
+    }, [
+      <xsl:for-each select="*">
+        <xsl:apply-templates select="."/>
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    ])
   </xsl:template>
 
   <xsl:template match="csl:style">
@@ -34,7 +34,7 @@
 
     module.exports = {
       citation: function (refs) {
-        return csl_lib.citation(refs, [<xsl:apply-templates select="csl:citation/csl:layout"/>]);
+        return csl_lib.citation({}, [<xsl:apply-templates select="csl:citation/csl:layout"/>], refs);
       }
     };
   </xsl:template>
