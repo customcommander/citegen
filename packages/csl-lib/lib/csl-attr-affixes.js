@@ -5,11 +5,9 @@ function applyAffixes(attrs, str) {
 }
 
 module.exports = R.curry(function (attrs, str) {
-  return R.pipe(
-    R.applySpec({
-      prefix: R.propOr('', 'prefix'),
-      suffix: R.propOr('', 'suffix')
-    }),
-    R.partialRight(applyAffixes, [str])
-  )(attrs);
+  var affixes = R.applySpec({
+    prefix: R.propOr('', 'prefix'),
+    suffix: R.propOr('', 'suffix')
+  })(attrs);
+  return applyAffixes(affixes, str);
 });

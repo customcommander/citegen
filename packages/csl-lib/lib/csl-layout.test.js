@@ -1,16 +1,6 @@
 var td = require('testdouble');
 var tap = require('tap');
-var constants = require('./constants');
-var assertChildren = td.replace('./assert-children', td.function());
 var layout = require('./csl-layout'); // Subject Under Test
-
-tap.test('layout(children): should validate its children', t => {
-  layout([]);
-  td.verify(assertChildren([], [constants.CSL_NODE_TEXT]));
-  t.end();
-});
-
-tap.type(layout(), 'function', 'layout(children): should return a function');
 
 tap.test('layout(children)(refs): should invoke each item in `children` for each item in `refs`', t => {
   var foo = td.function();
@@ -80,5 +70,3 @@ tap.test('layout(children, opts)(refs): should support a delimiter attribute', t
 
   t.end();
 });
-
-td.reset();
