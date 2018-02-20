@@ -17,12 +17,17 @@ start-docker:
 stop-docker:
 	docker kill $(docker_container_name)
 
-test: csl-lib-test csl-locales-test csl-generator-test
+build: csl-locales-build
+csl-locales-build: tmp/csl-locales.build
+
+test: csl-lib-test csl-generator-test
 csl-lib-test: tmp/csl-lib.test
-csl-locales-test: tmp/csl-locales.test
 csl-generator-test: tmp/csl-generator.test
 
 tmp/%.test:
 	docker exec $(docker_container_name) bash -c 'make -C packages/$* test'
+
+tmp/%.build:
+	docker exec $(docker_container_name) bash -c 'make -C packages/$* build'
 
 clean:; rm -rfv tmp

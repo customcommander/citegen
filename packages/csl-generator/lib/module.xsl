@@ -9,13 +9,13 @@
   <xsl:output method="text" />
 
   <xsl:template match="csl:text">
-    csl_lib.text({
+    csl_lib.text(locales, {
       value: '<xsl:value-of select="@value"/>'
     }, [])
   </xsl:template>
 
   <xsl:template match="csl:layout">
-    csl_lib.layout({
+    csl_lib.layout(locales, {
       <xsl:for-each select="@*">
         '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
         <xsl:if test="position() != last()">,</xsl:if>
@@ -29,12 +29,15 @@
   </xsl:template>
 
   <xsl:template match="csl:style">
-    var csl_locales = require('@customcommander/csl-locales');
     var csl_lib = require('@customcommander/csl-lib');
+
+    var locales = [
+      require('@customcommander/csl-locales/lib/locales-en-US.json')
+    ];
 
     module.exports = {
       citation: function (refs) {
-        return csl_lib.citation({}, [<xsl:apply-templates select="csl:citation/csl:layout"/>], refs);
+        return csl_lib.citation(locales, {}, [<xsl:apply-templates select="csl:citation/csl:layout"/>], refs);
       }
     };
   </xsl:template>

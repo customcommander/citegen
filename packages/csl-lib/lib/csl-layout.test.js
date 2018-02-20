@@ -6,7 +6,7 @@ tap.test('layout(children)(refs): should invoke each item in `children` for each
   var foo = td.function();
   var bar = td.function();
 
-  layout({}, [foo, bar], ['1', '2']);
+  layout([], {}, [foo, bar], ['1', '2']);
 
   td.verify(foo('1'));
   td.verify(foo('2'));
@@ -27,7 +27,7 @@ tap.test('layout(children)(refs): should ignore empty strings returned by childr
   td.when(bar('1')).thenReturn('11');
   td.when(bar('2')).thenReturn('');
 
-  var out = layout({}, [foo, bar], ['1', '2']);
+  var out = layout([], {}, [foo, bar], ['1', '2']);
   t.is(out, '1011');
 
   t.end();
@@ -39,16 +39,16 @@ tap.test('layout(children, opts)(refs): should support affixes attributes', t =>
 
   td.when(foo(1)).thenReturn('10');
 
-  out = layout({}, [foo], [1]);
+  out = layout([], {}, [foo], [1]);
   t.is(out, '10', 'default affixes should be empty strings');
 
-  out = layout({prefix: '('}, [foo], [1]);
+  out = layout([], {prefix: '('}, [foo], [1]);
   t.is(out, '(10', 'should be able to render a `prefix` attribute');
 
-  out = layout({suffix: ')'}, [foo], [1]);
+  out = layout([], {suffix: ')'}, [foo], [1]);
   t.is(out, '10)', 'should be able to render a `suffix` attribute');
 
-  out = layout({prefix: '(', suffix: ')'}, [foo], [1]);
+  out = layout([], {prefix: '(', suffix: ')'}, [foo], [1]);
   t.is(out, '(10)', 'should be able to render both `prefix` and `suffix` attributes');
 
   t.end();
@@ -62,10 +62,10 @@ tap.test('layout(children, opts)(refs): should support a delimiter attribute', t
   td.when(foo(1)).thenReturn('10');
   td.when(bar(1)).thenReturn('11');
 
-  out = layout({}, [foo, bar], [1, 1]);
+  out = layout([], {}, [foo, bar], [1, 1]);
   t.is(out, '10111011', 'default delimiter should be an empty string');
 
-  out = layout({delimiter: '/'}, [foo, bar], [1, 1]);
+  out = layout([], {delimiter: '/'}, [foo, bar], [1, 1]);
   t.is(out, '1011/1011', 'should be able to render a delimiter attribute');
 
   t.end();

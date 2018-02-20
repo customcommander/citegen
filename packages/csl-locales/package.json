@@ -2,12 +2,9 @@
   "name": "@customcommander/csl-locales",
   "version": "1.0.0",
   "files": [
-    "lib",
-    "!lib/*.test.js"
+    "lib"
   ],
-  "main": "lib/localehero.js",
   "scripts": {
-    "test": "make test"
   },
   "license": "MIT",
   "dependencies": {},
