@@ -13,6 +13,17 @@
       "problemMatcher": []
     },
     {
+      "label": "csl-locales: build",
+      "type": "shell",
+      "command": "make csl-locales-build",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "csl-generator: run tests",
       "type": "shell",
       "command": "make csl-generator-test",

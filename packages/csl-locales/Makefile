@@ -6,7 +6,7 @@ build: lib
 
 lib: $(patsubst $(locales_dir)/%.xml,lib/%.json,$(locales_xml))
 
-lib/%.json: $(locales_dir)/%.xml
+lib/%.json: $(locales_dir)/%.xml lib/xml2json.xsl
 	xsltproc ./lib/xml2json.xsl $< | echo 'JSON.stringify(' $$(cat) ', null, 2)' | node -p - >$@
 
 clean:
