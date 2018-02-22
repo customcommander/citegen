@@ -30,3 +30,6 @@ tap.equal(l10nTextWithLocales({term: 'developer', form: 'short'}), 'dev',
 
 tap.equal(l10nTextWithLocales({term: 'developer', form: 'short', plural: 'true'}), 'devs',
   'should return the short plural version when requested');
+
+tap.equal(l10nTextWithLocales({term: 'ninjaneer'}), '',
+  'should return an empty string when a term does not exist in the `locales` object');
