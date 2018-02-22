@@ -112,7 +112,7 @@
         <xsl:when test="text()">
           <xsl:text>,</xsl:text>
           <xsl:call-template name="string-property-json-line">
-            <xsl:with-param name="name" select="'value'"/>
+            <xsl:with-param name="name" select="'single'"/>
             <xsl:with-param name="value" select="string(.)"/>
           </xsl:call-template>
         </xsl:when>
