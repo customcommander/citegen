@@ -5,9 +5,7 @@ var delimiterAttr = require('./csl-attr-delimiter');
 
 module.exports = R.curry(function (locales, attrs, children, refs) {
   return R.pipe(
-    R.map(R.of),
-    R.map(R.ap(children)),
-    R.map(R.join('')),
+    R.map(R.pipe(R.of, R.ap(children), R.join(''))),
     R.filter(R.complement(R.isEmpty)),
     delimiterAttr(attrs),
     formattingAttr(attrs),
