@@ -24,7 +24,9 @@ var filterTerm = function (attrs) {
 module.exports = R.curry(function (locales, attrs) {
   return R.pipe(
     R.path(['terms', R.prop('term', attrs)]),
-    R.find(filterTerm(attrs)),
-    R.ifElse(R.isNil, R.always(''), R.prop(getL10nPluralKey(attrs)))
+    R.ifElse(R.isNil, R.always(''), R.pipe(
+      R.find(filterTerm(attrs)),
+      R.propOr('', getL10nPluralKey(attrs))
+    ))
   )(locales);
 });
