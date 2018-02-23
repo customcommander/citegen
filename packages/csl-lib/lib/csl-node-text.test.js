@@ -1,6 +1,6 @@
 var tap = require('tap');
 var td = require('testdouble');
-var textFn = require('./csl-text'); // Subject Under Test
+var textFn = require('./csl-node-text'); // Subject Under Test
 
 tap.test('should support a "value" attribute', t => {
   var text = textFn({}, {});

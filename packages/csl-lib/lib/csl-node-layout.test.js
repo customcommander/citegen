@@ -1,6 +1,6 @@
 var td = require('testdouble');
 var tap = require('tap');
-var layoutFn = require('./csl-layout'); // Subject Under Test
+var layoutFn = require('./csl-node-layout'); // Subject Under Test
 
 tap.test('layout(children)(refs): should invoke each item in `children` for each item in `refs`', t => {
   var foo = td.function();
