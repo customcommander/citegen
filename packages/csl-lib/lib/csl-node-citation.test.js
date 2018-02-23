@@ -1,6 +1,6 @@
 var td = require('testdouble');
 var tap = require('tap');
-var citationFn = require('./csl-citation'); // Subject Under Test
+var citationFn = require('./csl-node-citation'); // Subject Under Test
 
 var citation = citationFn({} /*locales*/, {} /* macros */, {} /* attributes */);
 
