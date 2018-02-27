@@ -33,6 +33,16 @@
         "panel": "shared"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "csl-generator: clean",
+      "type": "shell",
+      "command": "make -C packages/csl-generator clean",
+      "group": "build",
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
     }
   ]
 }
