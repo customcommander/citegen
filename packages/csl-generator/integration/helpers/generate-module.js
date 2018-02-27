@@ -14,8 +14,12 @@ module.exports = function generateModule(csl) {
       reject(new Error('cannot generate module for given csl'));
     });
 
-    proc.on('exit', function () {
-      resolve(modulePath);
+    proc.on('exit', function (code) {
+      if (!code) {
+        resolve(modulePath);
+      } else {
+        reject(new Error('an error has occured while transforming csl'));
+      }
     });
 
     proc.stdin.write(csl);
