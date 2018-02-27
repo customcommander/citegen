@@ -8,28 +8,34 @@
 
   <xsl:output method="text" />
 
-  <xsl:template match="csl:text">
-    csl_lib.text(locales, macros, {
-      value: '<xsl:value-of select="@value"/>'
-    }, [])
+  <xsl:template match="csl:*" mode="param-attrs">
+    {<xsl:for-each select="@*">
+      '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
+      <xsl:if test="position() != last()">,</xsl:if>
+    </xsl:for-each>}
   </xsl:template>
 
-  <xsl:template match="csl:layout">
-    csl_lib.layout(locales, macros, {
-      <xsl:for-each select="@*">
-        '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
-        <xsl:if test="position() != last()">,</xsl:if>
-      </xsl:for-each>
-    }, [
-      <xsl:for-each select="*">
-        <xsl:apply-templates select="."/>
-        <xsl:if test="position() != last()">,</xsl:if>
-      </xsl:for-each>
-    ])
+  <xsl:template match="csl:*" mode="param-children">
+    [<xsl:for-each select="csl:*">
+      <xsl:apply-templates select="." mode="function-call"/>
+      <xsl:if test="position() != last()">,</xsl:if>
+    </xsl:for-each>]
+  </xsl:template>
+
+  <xsl:template match="csl:*" mode="function-call">
+    <xsl:variable name="fnName">
+      <xsl:choose>
+        <xsl:when test="name() = 'if'">ifFn</xsl:when>
+        <xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
+      </xsl:choose>
+    </xsl:variable>
+    lib.<xsl:value-of select="$fnName"/>(locales, macros,
+      <xsl:apply-templates select="self::node()" mode="param-attrs"/>,
+      <xsl:apply-templates select="self::node()" mode="param-children"/>)
   </xsl:template>
 
   <xsl:template match="csl:style">
-    var csl_lib = require('@customcommander/csl-lib');
+    var lib = require('@customcommander/csl-lib');
 
     var locales = [
       require('@customcommander/csl-locales/lib/locales-en-US.json')
@@ -39,7 +45,8 @@
 
     module.exports = {
       citation: function (refs) {
-        return csl_lib.citation(locales, macros, {}, [<xsl:apply-templates select="csl:citation/csl:layout"/>], refs);
+        return lib.citation(locales, macros, {},
+          <xsl:apply-templates select="csl:citation" mode="param-children"/>, refs);
       }
     };
   </xsl:template>
