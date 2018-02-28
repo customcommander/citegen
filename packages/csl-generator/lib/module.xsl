@@ -38,7 +38,7 @@
     var lib = require('@customcommander/csl-lib');
 
     var locales = [
-      require('@customcommander/csl-locales/lib/locales-en-US.json')
+      require('@customcommander/csl-locales')['en-US']
     ];
 
     var macros = {};

@@ -24,6 +24,17 @@
       "problemMatcher": []
     },
     {
+      "label": "csl-locales: clean",
+      "type": "shell",
+      "command": "make -C packages/csl-locales clean",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "csl-generator: run tests",
       "type": "shell",
       "command": "make csl-generator-test",
