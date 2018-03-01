@@ -6,8 +6,9 @@ BEGIN {
 
 {
   key = $0
-  sub(/locales-/, "", key)
-  print "'" key "'" ": " "require('./lib/" $0 ".json'),"
+  sub(/.\/lib\/locales-/, "", key)
+  sub(/.json/, "", key)
+  print "  '" key "'" ": " "require('" $0 "'),"
 }
 
 END {

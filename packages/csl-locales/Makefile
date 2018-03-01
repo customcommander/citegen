@@ -10,7 +10,7 @@ lib/%.json: $(locales_dir)/%.xml lib/xml2json.xsl
 	xsltproc ./lib/xml2json.xsl $< | echo 'JSON.stringify(' $$(cat) ', null, 2)' | node -p - >$@
 
 index.js: lib index.js.awk
-	ls lib/*.json | awk -F '/' '{print $$2}' | awk -F '.' '{print $$1} ' | awk -f index.js.awk >$@
+	find ./lib -type f -name "*.json" | awk -f index.js.awk >$@
 
 clean:
 	rm -rfv lib/*.json
