@@ -1,0 +1,1954 @@
+<!-- <if variable="title-short"> -->
+<!-- le "choose" qui suit permet d'éviter l'affichage du DOI pour les ressources imprimées (de même que l'interface de Zotero permet de choisir d'afficher ou non l'URL pour les articles qui contiennent une indication de pages). Pour toujours afficher le DOI quand il est disponible, supprimer <choose><if variable="page" match="none">, les balises fermantes correspondantes, ainsi que l'alternative -->
+<else-if is-numeric="edition">
+<else-if is-numeric="issue">
+<else-if is-numeric="locator">
+<else-if is-numeric="number-of-volumes">
+<else-if is-numeric="page" match="none">
+<else-if is-numeric="page">
+<else-if is-numeric="volume">
+<else-if locator="folio">
+<else-if locator="note">
+<else-if locator="page" type="article-journal legal_case" match="all">
+<else-if locator="paragraph">
+<else-if locator="sub-verbo" match="any">
+<else-if locator="sub-verbo">
+<else-if match="all" position="ibid" locator="page">
+<else-if match="all" position="ibid-with-locator">
+<else-if match="all" type="webpage post-weblog">
+<else-if match="all" variable="DOI">
+<else-if match="all" variable="issued">
+<else-if match="all" variable="publisher-place">
+<else-if match="all" variable="reviewed-author">
+<else-if match="all" variable="title">
+<else-if match="all" variable="translator">
+<else-if match="any" is-numeric="edition">
+<else-if match="any" locator="page">
+<else-if match="any" locator="paragraph">
+<else-if match="any" locator="volume">
+<else-if match="any" position="ibid">
+<else-if match="any" position="ibid-with-locator">
+<else-if match="any" position="subsequent">
+<else-if match="any" type="article-journal article article-magazine">
+<else-if match="any" type="article-journal article-magazine article-newspaper">
+<else-if match="any" type="bill book graphic legal_case legislation motion_picture report song">
+<else-if match="any" type="book chapter">
+<else-if match="any" type="broadcast">
+<else-if match="any" type="chapter paper-conference">
+<else-if match="any" type="chapter">
+<else-if match="any" type="webpage post-weblog">
+<else-if match="any" variable="DOI">
+<else-if match="any" variable="ISBN">
+<else-if match="any" variable="PMID">
+<else-if match="any" variable="URL"/>
+<else-if match="any" variable="URL">
+<else-if match="any" variable="accessed">
+<else-if match="any" variable="archive">
+<else-if match="any" variable="author editor">
+<else-if match="any" variable="author">
+<else-if match="any" variable="collection-title">
+<else-if match="any" variable="container-title">
+<else-if match="any" variable="edition">
+<else-if match="any" variable="editor">
+<else-if match="any" variable="issue">
+<else-if match="any" variable="issued">
+<else-if match="any" variable="page">
+<else-if match="any" variable="title">
+<else-if match="any" variable="translator">
+<else-if match="any" variable="volume">
+<else-if match="none" variable="DOI issue">
+<else-if match="none" variable="DOI" is-numeric="issue">
+<else-if match="none" variable="author editor">
+<else-if match="none" variable="author translator">
+<else-if match="none" variable="container-title">
+<else-if match="none" variable="locator">
+<else-if match="none" variable="publisher container-title">
+<else-if match="none" variable="publisher-place">
+<else-if match="none" variable="volume issue">
+<else-if match="none" variable="volume">
+<else-if position="ibid">
+<else-if position="ibid-with-locator">
+<else-if position="subsequent" type="legal_case" match="any">
+<else-if position="subsequent"/>
+<else-if position="subsequent">
+<else-if type=" article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<else-if type=" article-newspaper post-weblog" match="any">
+<else-if type=" article-newspaper" match="any">
+<else-if type=" bill book chapter graphic legal_case legislation motion_picture paper-conference song thesis" match="any">
+<else-if type=" bill book graphic legal_case legislation motion_picture paper-conference song thesis" match="any">
+<else-if type=" manuscript" match="any">
+<else-if type=" speech" match="any">
+<else-if type="article article-journal article-magazine article-newspaper chapter paper-conference" match="any">
+<else-if type="article article-journal article-magazine article-newspaper review" match="none">
+<else-if type="article article-journal article-magazine article-newspaper" match="any"/>
+<else-if type="article article-journal article-magazine article-newspaper" match="any">
+<else-if type="article article-journal article-magazine" match="any">
+<else-if type="article article-journal article-newspaper" match="any">
+<else-if type="article article-journal review" match="any">
+<else-if type="article article-journal" match="any">
+<else-if type="article article-magazine article-journal article-newspaper bill" match="any">
+<else-if type="article article-magazine article-newspaper article-journal bill book chapter legislation manuscript motion_picture musical_score pamphlet paper-conference post post-weblog review review-book song thesis webpage" match="any">
+<else-if type="article article-magazine article-newspaper article-journal entry entry-dictionary entry-encyclopedia report chapter paper-conference post post-weblog webpage song broadcast" match="any">
+<else-if type="article article-magazine article-newspaper article-journal" match="any">
+<else-if type="article manuscript" match="any">
+<else-if type="article report" match="any">
+<else-if type="article webpage" match="any">
+<else-if type="article" match="any"/>
+<else-if type="article" match="any">
+<else-if type="article">
+<else-if type="article-journal article article-magazine article-newspaper" match="any">
+<else-if type="article-journal article article-magazine" match="any">
+<else-if type="article-journal article" match="any">
+<else-if type="article-journal article-magazine article review review-book" match="any">
+<else-if type="article-journal article-magazine article" match="any">
+<else-if type="article-journal article-magazine article-newspaper article" match="any">
+<else-if type="article-journal article-magazine article-newspaper bill book chapter entry-dictionary entry-encyclopedia graphic legal_case legislation manuscript motion_picture paper-conference personal_communication report song" match="none">
+<else-if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis webpage" match="none">
+<else-if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="none">
+<else-if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis article webpage" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage motion_picture" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech webpage" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview manuscript personal_communication speech thesis" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast interview map patent personal_communication song speech" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast personal_communication entry-dictionary entry-encyclopedia" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast personal_communication thesis entry-dictionary entry-encyclopedia" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast personal_communication thesis webpage" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast personal_communication thesis" match="any">
+<else-if type="article-journal article-magazine article-newspaper broadcast personal_communication" match="any">
+<else-if type="article-journal article-magazine article-newspaper chapter article" match="any">
+<else-if type="article-journal article-magazine article-newspaper chapter entry-encyclopedia entry entry-dictionary paper-conference post-weblog" match="any">
+<else-if type="article-journal article-magazine article-newspaper chapter entry-encyclopedia entry entry-dictionary paper-conference" match="any">
+<else-if type="article-journal article-magazine article-newspaper chapter" match="any">
+<else-if type="article-journal article-magazine article-newspaper interview manuscript map personal_communication speech" match="any">
+<else-if type="article-journal article-magazine article-newspaper interview map patent personal_communication song speech" match="any">
+<else-if type="article-journal article-magazine article-newspaper interview personal_communication speech" match="any">
+<else-if type="article-journal article-magazine article-newspaper interview webpage post-weblog" match="any">
+<else-if type="article-journal article-magazine article-newspaper post-weblog" match="any">
+<else-if type="article-journal article-magazine article-newspaper post-weblog">
+<else-if type="article-journal article-magazine article-newspaper report chapter webpage" match="any">
+<else-if type="article-journal article-magazine article-newspaper song speech" match="any">
+<else-if type="article-journal article-magazine article-newspaper webpage post post-weblog" match="any">
+<else-if type="article-journal article-magazine article-newspaper webpage post-weblog" match="any">
+<else-if type="article-journal article-magazine article-newspaper" match="all">
+<else-if type="article-journal article-magazine article-newspaper" match="any">
+<else-if type="article-journal article-magazine article-newspaper" match="none">
+<else-if type="article-journal article-magazine article-newspaper">
+<else-if type="article-journal article-magazine broadcast manuscript map patent personal_communication thesis article post-weblog" match="any">
+<else-if type="article-journal article-magazine chapter paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="none">
+<else-if type="article-journal article-magazine" match="any"/>
+<else-if type="article-journal article-magazine" match="any">
+<else-if type="article-journal article-magazine" match="none">
+<else-if type="article-journal article-magazine">
+<else-if type="article-journal article-newspaper article-magazine bill chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
+<else-if type="article-journal article-newspaper article-magazine entry-encyclopedia" match="any">
+<else-if type="article-journal article-newspaper article-magazine graphic entry-encyclopedia entry-dictionary report speech interview manuscript personal_communication" match="any">
+<else-if type="article-journal article-newspaper article-magazine interview" match="any">
+<else-if type="article-journal article-newspaper article-magazine paper-conference" match="any">
+<else-if type="article-journal article-newspaper article-magazine webpage post-weblog" match="any">
+<else-if type="article-journal article-newspaper article-magazine" match="any">
+<else-if type="article-journal article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+<else-if type="article-journal article-newspaper broadcast personal_communication thesis webpage" match="any">
+<else-if type="article-journal article-newspaper broadcast personal_communication thesis" match="any">
+<else-if type="article-journal article-newspaper post post-weblog webpage entry entry-dictionary entry-encyclopedia">
+<else-if type="article-journal article-newspaper thesis webpage" match="any">broadcast personal_communication
+<else-if type="article-journal article-newspaper" match="any">
+<else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song dataset article-newspaper" match="none">
+<else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song dataset webpage entry-encyclopedia thesis interview" match="none">
+<else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song dataset" match="none">
+<else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="any">
+<else-if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<else-if type="article-journal bill book chapter graphic legal_case motion_picture paper-conference report song dataset" match="none">
+<else-if type="article-journal bill book chapter legal_case legislation motion_picture paper-conference" match="none">
+<else-if type="article-journal bill book graphic legal_case legislation motion_picture song" match="any">
+<else-if type="article-journal broadcast map patent personal_communication" match="any">
+<else-if type="article-journal broadcast personal_communication thesis webpage" match="any">
+<else-if type="article-journal chapter article-newspaper article-magazine" match="any">
+<else-if type="article-journal chapter article-newspaper" match="any">
+<else-if type="article-journal chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
+<else-if type="article-journal chapter" match="any">
+<else-if type="article-journal entry-encyclopedia" match="any">
+<else-if type="article-journal review" match="any">
+<else-if type="article-journal speech article-magazine article-newspaper post-weblog post">
+<else-if type="article-journal webpage" match="any">
+<else-if type="article-journal" match="any">
+<else-if type="article-journal" match="none">
+<else-if type="article-journal" variable="DOI" match="all">
+<else-if type="article-journal" variable="DOI" match="none">
+<else-if type="article-journal"/>
+<else-if type="article-journal">
+<else-if type="article-magazine article-journal article-newspaper" match="any">
+<else-if type="article-magazine article-journal personal_communication interview graphic webpage" match="any"/>
+<else-if type="article-magazine article-newspaper article bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis entry-dictionary entry-encyclopedia" match="none">
+<else-if type="article-magazine article-newspaper article" match="any">
+<else-if type="article-magazine article-newspaper article-journal article" match="any">
+<else-if type="article-magazine article-newspaper article-journal" match="any">
+<else-if type="article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="none">
+<else-if type="article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="any">
+<else-if type="article-magazine article-newspaper broadcast interview manuscript map personal_communication song speech thesis webpage motion_picture" match="any">
+<else-if type="article-magazine article-newspaper broadcast manuscript" match="any">
+<else-if type="article-magazine article-newspaper review review-book" match="any">
+<else-if type="article-magazine article-newspaper" match="any">
+<else-if type="article-magazine article-newspaper" match="none">
+<else-if type="article-magazine article-newspaper">
+<else-if type="article-magazine chapter paper-conference article-newspaper" match="any">
+<else-if type="article-magazine" match="all" variable="volume">
+<else-if type="article-magazine" match="any">
+<else-if type="article-magazine">
+<else-if type="article-newspaper article-magazine article-journal" match="any">
+<else-if type="article-newspaper article-magazine entry-encyclopedia entry-dictionary broadcast" match="any">
+<else-if type="article-newspaper article-magazine interview broadcast" match="any">
+<else-if type="article-newspaper article-magazine interview manuscript personal_communication" match="any">
+<else-if type="article-newspaper article-magazine personal_communication article" match="any">
+<else-if type="article-newspaper article-magazine personal_communication" match="any">
+<else-if type="article-newspaper article-magazine post post-weblog report broadcast entry-encyclopedia entry-dictionary speech" match="any">
+<else-if type="article-newspaper article-magazine post-weblog speech" match="any">
+<else-if type="article-newspaper article-magazine thesis" match="any">
+<else-if type="article-newspaper article-magazine webpage post post-weblog report broadcast entry-encyclopedia entry-dictionary speech" match="any">
+<else-if type="article-newspaper article-magazine" match="any">
+<else-if type="article-newspaper article-magazine" match="none">
+<else-if type="article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song webpage" match="any">
+<else-if type="article-newspaper broadcast" match="any">
+<else-if type="article-newspaper chapter paper-conference" match="any">
+<else-if type="article-newspaper interview" match="any">
+<else-if type="article-newspaper personal_communication thesis webpage" match="any">
+<else-if type="article-newspaper post-weblog article-magazine interview" match="any">
+<else-if type="article-newspaper post-weblog webpage song" match="any">
+<else-if type="article-newspaper post-weblog" match="any">
+<else-if type="article-newspaper speech paper-conference report entry-dictionary entry-encyclopedia chapter" match="any">
+<else-if type="article-newspaper speech paper-conference" match="any">
+<else-if type="article-newspaper webpage post post-weblog" match="any">
+<else-if type="article-newspaper webpage" match="any">
+<else-if type="article-newspaper" match="all" variable="issued">
+<else-if type="article-newspaper" match="all">
+<else-if type="article-newspaper" match="any">
+<else-if type="article-newspaper" match="none">
+<else-if type="article-newspaper"/>
+<else-if type="article-newspaper">
+<else-if type="bill article-journal article-newspaper interview book graphic legal_case motion_picture paper-conference report song webpage post-weblog speech" match="any">
+<else-if type="bill book broadcast chapter entry-dictionary entry-encyclopedia map motion_picture patent report song" match="any">
+<else-if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case legislation motion_picture paper-conference report song" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis article-journal" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture report song speech" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture report song thesis" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture report song" match="any">
+<else-if type="bill book chapter graphic legal_case legislation motion_picture report thesis song" match="any">
+<else-if type="bill book chapter graphic legal_case legislation paper-conference motion_picture report song thesis" match="any">
+<else-if type="bill book graphic legal_case legislation manuscript motion_picture personal_communication report song" match="any">
+<else-if type="bill book graphic legal_case legislation manuscript motion_picture report song speech thesis" match="any">
+<else-if type="bill book graphic legal_case legislation manuscript motion_picture report song speech webpage thesis" match="any">
+<else-if type="bill book graphic legal_case legislation manuscript motion_picture report song speech" match="any">
+<else-if type="bill book graphic legal_case legislation map motion_picture report song thesis" match="any">
+<else-if type="bill book graphic legal_case legislation map motion_picture report song" match="any">
+<else-if type="bill book graphic legal_case legislation map report song speech webpage" match="any">
+<else-if type="bill book graphic legal_case legislation map report song speech" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song article-magazine chapter webpage" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song chapter entry-dictionary entry-encyclopedia" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song manuscript" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song speech" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song thesis" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture song chapter paper-conference" match="any">
+<else-if type="bill book graphic legal_case legislation motion_picture song" match="any">
+<else-if type="bill book graphic legal_case legislation report song speech webpage" match="any">
+<else-if type="bill book graphic legal_case legislation report song speech" match="any">
+<else-if type="bill book graphic legal_case legislation song" match="any">
+<else-if type="bill book graphic legal_case motion_picture report post-weblog song" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song article-journal article-magazine article-newspaper thesis chapter paper-conference entry-encyclopedia entry-dictionary" match="none">
+<else-if type="bill book graphic legal_case motion_picture report song article-journal article-magazine article-newspaper thesis chapter paper-conference" match="none">
+<else-if type="bill book graphic legal_case motion_picture report song chapter paper-conference article" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song chapter paper-conference" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song chapter" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song manuscript speech" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song speech" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song thesis chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song thesis chapter paper-conference" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song thesis webpage" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song thesis" match="any">
+<else-if type="bill book graphic legal_case motion_picture report song" match="any">
+<else-if type="bill book graphic legal_case motion_picture song" match="any">
+<else-if type="bill book graphic legal_case report" match="any">
+<else-if type="bill book graphic legal_case thesis legislation motion_picture musical_score" match="any">
+<else-if type="bill book graphic legislation map motion_picture report song webpage" match="any">
+<else-if type="bill book graphic legislation map report song speech webpage" match="any">
+<else-if type="bill book graphic legislation motion_picture report song thesis" match="any">
+<else-if type="bill book graphic legislation motion_picture report song" match="any">
+<else-if type="bill book graphic legislation motion_picture song thesis" match="any">
+<else-if type="bill book graphic legislation motion_picture song" match="any">
+<else-if type="bill book graphic thesis legal_case legislation motion_picture report song" match="any">
+<else-if type="bill book legal_case song" match="any">
+<else-if type="bill book thesis graphic legal_case legislation motion_picture song speech" match="any">
+<else-if type="bill broadcast legislation report patent song" match="any">
+<else-if type="bill chapter article-journal article-newspaper interview book graphic legal_case motion_picture paper-conference report song thesis webpage post-weblog" match="any">
+<else-if type="bill chapter article-journal article-newspaper interview book graphic legal_case motion_picture paper-conference report song webpage post-weblog speech" match="any">
+<else-if type="bill chapter graphic legal_case legislation motion_picture song" match="any">
+<else-if type="bill graphic legal_case legislation manuscript motion_picture report song thesis" match="any">
+<else-if type="bill graphic legal_case legislation manuscript motion_picture report thesis song speech" match="any">
+<else-if type="bill graphic legal_case legislation motion_picture report musical_score" match="any">
+<else-if type="bill graphic legal_case legislation motion_picture report song book" match="any">
+<else-if type="bill graphic legal_case legislation motion_picture report song" match="any">
+<else-if type="bill legal_case legislation motion_picture" match="any">
+<else-if type="bill legal_case legislation personal_communication report speech thesis" match="none">
+<else-if type="bill legal_case legislation" match="any">
+<else-if type="bill legal_case legislation" match="none">
+<else-if type="bill legislation legal_case interview patent" match="any">
+<else-if type="bill legislation legal_case" match="any">
+<else-if type="bill legislation legal_case" match="none">
+<else-if type="bill legislation motion_picture" match="any">
+<else-if type="bill legislation report treaty" match="any">
+<else-if type="bill legislation report" match="any">
+<else-if type="bill legislation treaty" match="any">
+<else-if type="bill legislation webpage" match="any"/>
+<else-if type="bill legislation webpage" match="any">
+<else-if type="bill legislation" match="any"/>
+<else-if type="bill legislation" match="any">
+<else-if type="bill legislation">
+<else-if type="bill" match="all">
+<else-if type="bill" match="any">
+<else-if type="bill"/>
+<else-if type="bill">
+<else-if type="book bill chapter graphic legislation motion_picture paper-conference report song thesis" match="any">
+<else-if type="book chapter graphic legal_case motion_picture paper-conference report song thesis" match="any">
+<else-if type="book chapter graphic motion_picture paper-conference report song" match="any">
+<else-if type="book chapter motion_picture report entry-dictionary entry-encyclopedia map" match="any">
+<else-if type="book chapter paper-conference entry-dictionary entry-encyclopedia motion_picture report manuscript article bill map song" match="any">
+<else-if type="book chapter paper-conference manuscript entry-dictionary entry-encyclopedia thesis motion_picture song report" match="any">
+<else-if type="book chapter thesis paper-conference" match="any">
+<else-if type="book chapter thesis" match="any">
+<else-if type="book chapter thesis">
+<else-if type="book chapter webpage" variable="container-title volume page" match="none">
+<else-if type="book chapter webpage" variable="volume page" match="none">
+<else-if type="book chapter" match="any">
+<else-if type="book entry-encyclopedia entry-dictionary map graphic manuscript legislation interview review-book" match="any">
+<else-if type="book entry-encyclopedia entry-dictionary map graphic report manuscript legislation interview review-book" match="any">
+<else-if type="book graphic legal_case motion_picture report song" match="any">
+<else-if type="book graphic legal_case report" match="any">
+<else-if type="book graphic map motion_picture song" match="any">
+<else-if type="book graphic motion_picture report manuscript speech webpage song" match="any">
+<else-if type="book graphic motion_picture report song chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<else-if type="book graphic motion_picture report song chapter paper-conference speech" match="any">
+<else-if type="book graphic motion_picture report song chapter paper-conference" match="any">
+<else-if type="book graphic motion_picture report song chapter" match="any">
+<else-if type="book graphic motion_picture report song manuscript speech thesis webpage" match="any">
+<else-if type="book graphic motion_picture report song manuscript speech" match="any">
+<else-if type="book graphic motion_picture report song paper-conference entry-encyclopedia entry-dictionary webpage post-weblog" match="any">
+<else-if type="book graphic motion_picture report song paper-conference entry-encyclopedia entry-dictionary" match="any">
+<else-if type="book graphic motion_picture report song" match="any">
+<else-if type="book graphic motion_picture song chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<else-if type="book graphic motion_picture song legal_case legislation bill report" match="any">
+<else-if type="book graphic motion_picture song manuscript thesis" match="any">
+<else-if type="book graphic motion_picture song report" match="any">
+<else-if type="book graphic motion_picture song thesis manuscript" match="any">
+<else-if type="book graphic motion_picture song webpage" match="any">
+<else-if type="book graphic motion_picture song" match="any">
+<else-if type="book graphic report" match="any">
+<else-if type="book graphic" match="any">
+<else-if type="book manuscript thesis" match="any">
+<else-if type="book motion_picture song" match="any">
+<else-if type="book report bill graphic legal_case legislation motion_picture song" match="any">
+<else-if type="book report chapter paper-conference" match="any">
+<else-if type="book report" match="any">
+<else-if type="book thesis chapter article-journal article-newspaper article-magazine" match="none">
+<else-if type="book thesis chapter article-newspaper article-magazine" match="none">
+<else-if type="book thesis chapter paper-conference" match="any">
+<else-if type="book thesis entry-dictionary" match="any">
+<else-if type="book thesis graphic motion_picture song broadcast" match="any">
+<else-if type="book thesis report" match="any">
+<else-if type="book thesis" match="any">
+<else-if type="book" match="all" variable="collection-title">
+<else-if type="book" match="all">
+<else-if type="book" match="any">
+<else-if type="book" match="none">
+<else-if type="book" variable="author editor" match="all">
+<else-if type="book" variable="number-of-volumes" match="all">
+<else-if type="book" variable="publisher">
+<else-if type="book">
+<else-if type="broadcast book motion_picture" match="any">
+<else-if type="broadcast interview manuscript map patent personal_communication speech thesis webpage" match="any">
+<else-if type="broadcast interview motion_picture song speech">
+<else-if type="broadcast interview" match="any">
+<else-if type="broadcast motion_picture article" match="any">
+<else-if type="broadcast motion_picture song" match="any">
+<else-if type="broadcast motion_picture" match="any"/>
+<else-if type="broadcast motion_picture" match="any">
+<else-if type="broadcast motion_picture">
+<else-if type="broadcast personal_communication manuscript" match="any">
+<else-if type="broadcast personal_communication treaty" match="any">
+<else-if type="broadcast webpage" match="any">
+<else-if type="broadcast" match="all">
+<else-if type="broadcast" match="any">
+<else-if type="broadcast"/>
+<else-if type="broadcast">
+<else-if type="chapter article-journal article-magazine article-newspaper post-weblog" match="any">
+<else-if type="chapter article-journal article-magazine" match="any">
+<else-if type="chapter article-journal article-newspaper" match="any">
+<else-if type="chapter article-journal entry-encyclopedia" match="any">
+<else-if type="chapter article-journal" match="any">
+<else-if type="chapter book" match="any">
+<else-if type="chapter entry entry-dictionary entry-encyclopedia paper-conference" match="any">
+<else-if type="chapter entry entry-dictionary entry-encyclopedia" match="any">
+<else-if type="chapter entry-dictionary entry-encyclopedia article-magazine" match="any">
+<else-if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
+<else-if type="chapter entry-dictionary entry-encyclopedia" match="any">
+<else-if type="chapter entry-dictionary" match="any">
+<else-if type="chapter entry-encyclopedia entry entry-dictionary" match="any">
+<else-if type="chapter paper-conference article" match="any">
+<else-if type="chapter paper-conference article-journal article-magazine broadcast interview manuscript map personal_communication speech thesis map post post-weblog" match="none">
+<else-if type="chapter paper-conference article-journal" match="any">
+<else-if type="chapter paper-conference article-magazine article-newspaper" match="any">
+<else-if type="chapter paper-conference article-newspaper entry-dictionary entry-encyclopedia" match="any">
+<else-if type="chapter paper-conference article-newspaper" match="any">
+<else-if type="chapter paper-conference bill book graphic legal_case legislation motion_picture report song thesis" match="any">
+<else-if type="chapter paper-conference book" match="any">
+<else-if type="chapter paper-conference broadcast entry-dictionary entry-encyclopedia" match="any">
+<else-if type="chapter paper-conference entry-dictionary entry-encyclopedia book report thesis graphic song personal_communication manuscript motion_picture interview map post-weblog post broadcast webpage speech" match="any">
+<else-if type="chapter paper-conference entry-dictionary entry-encyclopedia" match="any">
+<else-if type="chapter paper-conference entry-encyclopedia entry-dictionary speech" match="any">
+<else-if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<else-if type="chapter paper-conference entry-encyclopedia thesis" match="any">
+<else-if type="chapter paper-conference entry-encyclopedia" match="any">
+<else-if type="chapter paper-conference report" match="any">
+<else-if type="chapter paper-conference webpage" match="any">
+<else-if type="chapter paper-conference" match="any">
+<else-if type="chapter paper-conference" match="none">
+<else-if type="chapter paper-conference" variable="container-title">
+<else-if type="chapter report webpage manuscript" match="any">
+<else-if type="chapter report" match="any">
+<else-if type="chapter" match="all">
+<else-if type="chapter" match="any"/>
+<else-if type="chapter" match="any">
+<else-if type="chapter" variable="collection-title" match="all">
+<else-if type="chapter" variable="collection-title" position="subsequent" match="all">
+<else-if type="chapter" variable="container-title" match="all">
+<else-if type="chapter">
+<else-if type="dataset" match="any">
+<else-if type="entry entry-dictionary entry-encyclopedia broadcast">
+<else-if type="entry entry-dictionary entry-encyclopedia" match="any">
+<else-if type="entry entry-dictionary entry-encyclopedia">
+<else-if type="entry-dictionary chapter entry-encyclopedia paper-conference report" match="any">
+<else-if type="entry-dictionary entry-encyclopedia article-newspaper chapter broadcast motion_picture" match="any">
+<else-if type="entry-dictionary entry-encyclopedia interview" match="none">
+<else-if type="entry-dictionary entry-encyclopedia paper-conference chapter" match="any">
+<else-if type="entry-dictionary entry-encyclopedia" match="any">
+<else-if type="entry-dictionary entry-encyclopedia">
+<else-if type="entry-dictionary post-weblog" match="any">
+<else-if type="entry-dictionary webpage post-weblog" match="any">
+<else-if type="entry-dictionary"/>
+<else-if type="entry-dictionary">
+<else-if type="entry-encyclopedia chapter book graphic legal_case motion_picture paper-conference report song thesis" match="any">
+<else-if type="entry-encyclopedia chapter interview book graphic legal_case motion_picture paper-conference report song thesis" match="any">
+<else-if type="entry-encyclopedia chapter" match="any">
+<else-if type="entry-encyclopedia entry-dictionary" match="any">
+<else-if type="entry-encyclopedia" match="any">
+<else-if type="entry-encyclopedia" match="none">
+<else-if type="entry-encyclopedia" variable="author" match="all">
+<else-if type="entry-encyclopedia" variable="author">
+<else-if type="entry-encyclopedia">
+<else-if type="entry-encylopedia entry-dicitonary" match="any">
+<else-if type="figure graphic musical_score" match="any">
+<else-if type="figure graphic" match="any">
+<else-if type="figure map graphic entry-encyclopedia interview article-newspaper" match="any">
+<else-if type="figure" match="any">
+<else-if type="graphic manuscript song personal_communication post-weblog post" match="any">
+<else-if type="graphic map" match="none">
+<else-if type="graphic motion_picture report song paper-conference" match="any">
+<else-if type="graphic motion_picture song chapter paper-conference" match="any">
+<else-if type="graphic personal_communication interview article-journal article-magazine" match="any"/>
+<else-if type="graphic personal_communication interview webpage" match="any"/>
+<else-if type="graphic personal_communication interview" match="any"/>
+<else-if type="graphic personal_communication interview" match="any">
+<else-if type="graphic personal_communication" match="any">
+<else-if type="graphic report article-newspaper" match="any">
+<else-if type="graphic" match="any">
+<else-if type="graphic" variable="medium" match="all">
+<else-if type="graphic">
+<else-if type="interview broadcast personal_communication" match="any">
+<else-if type="interview broadcast" match="any">
+<else-if type="interview manuscript personal_communication" match="any">
+<else-if type="interview personal_communication" match="any">
+<else-if type="interview" match="all" variable="interviewer container-title">
+<else-if type="interview" match="any"/>
+<else-if type="interview" match="any">
+<else-if type="interview">
+<else-if type="legal_case article" match="any">
+<else-if type="legal_case bill legislation" match="any">
+<else-if type="legal_case interview patent" match="any">
+<else-if type="legal_case interview" match="any">
+<else-if type="legal_case legislation" match="any"/>
+<else-if type="legal_case legislation" match="any">
+<else-if type="legal_case" match="all">
+<else-if type="legal_case" match="any">
+<else-if type="legal_case" match="none">
+<else-if type="legal_case" variable="title-short" match="all">
+<else-if type="legal_case"/>
+<else-if type="legal_case">
+<else-if type="legislation article-journal article-magazine" match="any">
+<else-if type="legislation article-magazine" match="any">
+<else-if type="legislation bill" locator="section" match="all">
+<else-if type="legislation bill" match="any"/>
+<else-if type="legislation bill" match="any">
+<else-if type="legislation bill" match="none">
+<else-if type="legislation book article-journal article-magazine" match="none">
+<else-if type="legislation legal_case bill broadcast webpage entry-encyclopedia" match="none">
+<else-if type="legislation legal_case">
+<else-if type="legislation webpage" match="any">
+<else-if type="legislation" match="any"/>
+<else-if type="legislation" match="any">
+<else-if type="legislation" position="first">
+<else-if type="legislation" position="subsequent">
+<else-if type="legislation"/>
+<else-if type="legislation">
+<else-if type="manuscript personal_communication interview report webpage" match="any">
+<else-if type="manuscript personal_communication" match="any">
+<else-if type="manuscript report" match="none">
+<else-if type="manuscript song post-weblog post" match="any">
+<else-if type="manuscript speech" match="any">
+<else-if type="manuscript thesis motion_picture broadcast" match="any">
+<else-if type="manuscript thesis report" match="any">
+<else-if type="manuscript thesis speech" match="any"/>
+<else-if type="manuscript thesis speech" match="any">
+<else-if type="manuscript" match="any"/>
+<else-if type="manuscript" match="any">
+<else-if type="manuscript"/>
+<else-if type="manuscript">
+<else-if type="map manuscript motion_picture broadcast" match="any">
+<else-if type="map manuscript thesis motion_picture broadcast" match="any">
+<else-if type="map webpage" match="any">
+<else-if type="map" match="any">
+<else-if type="map">
+<else-if type="motion_picture article" match="any"/>
+<else-if type="motion_picture broadcast legal_case" match="any"/>
+<else-if type="motion_picture broadcast" match="any"/>
+<else-if type="motion_picture broadcast" match="any">
+<else-if type="motion_picture graphic broadcast song interview" match="any">
+<else-if type="motion_picture song broadcast" match="any">
+<else-if type="motion_picture" match="any">
+<else-if type="motion_picture" variable="URL" match="all">
+<else-if type="motion_picture">
+<else-if type="musical_score" match="any">
+<else-if type="pamphlet">
+<else-if type="paper-conference article-newspaper article-magazine article-journal" match="any">
+<else-if type="paper-conference chapter article-journal article-magazine article-newspaper webpage" match="any">
+<else-if type="paper-conference chapter entry entry-dictionary entry-encyclopedia" match="any">
+<else-if type="paper-conference chapter entry-dictionary entry-encyclopedia" match="any">
+<else-if type="paper-conference chapter entry-encyclopedia entry-dictionary entry">
+<else-if type="paper-conference chapter speech" match="any">
+<else-if type="paper-conference chapter" match="any">
+<else-if type="paper-conference personal_communication thesis" match="any">
+<else-if type="paper-conference speech chapter article-journal article-magazine article-newspaper entry entry-dictionary entry-encyclopedia post-weblog post webpage broadcast" match="any">
+<else-if type="paper-conference speech chapter article-journal article-magazine article-newspaper post-weblog post webpage broadcast entry-dictionary entry-encyclopedia report" match="any">
+<else-if type="paper-conference speech chapter article-journal article-magazine article-newspaper post-weblog post webpage broadcast" match="any">
+<else-if type="paper-conference speech chapter post broadcast" match="any">
+<else-if type="paper-conference speech chapter post" match="any">
+<else-if type="paper-conference speech" match="any">
+<else-if type="paper-conference" match="all" variable="container-title">
+<else-if type="paper-conference" match="all" variable="event">
+<else-if type="paper-conference" match="all">
+<else-if type="paper-conference" match="any">
+<else-if type="paper-conference" match="none">
+<else-if type="paper-conference">
+<else-if type="patent interview thesis report" match="any">
+<else-if type="patent interview" match="any">
+<else-if type="patent report webpage" match="any">
+<else-if type="patent thesis">
+<else-if type="patent webpage book" match="any">
+<else-if type="patent" match="all" variable="number">
+<else-if type="patent" match="any">
+<else-if type="patent">
+<else-if type="personal_communication interview" match="any">
+<else-if type="personal_communication manuscript" match="any">
+<else-if type="personal_communication" match="all">
+<else-if type="personal_communication" match="any">
+<else-if type="personal_communication" match="none">
+<else-if type="personal_communication">
+<else-if type="post post-weblog" match="any">
+<else-if type="post webpage post-weblog" match="any">
+<else-if type="post" match="any">
+<else-if type="post-weblog post webpage report" match="any">
+<else-if type="post-weblog post webpage" match="any">
+<else-if type="post-weblog post" match="any">
+<else-if type="post-weblog webpage" match="any">
+<else-if type="post-weblog webpage" match="none">
+<else-if type="post-weblog webpage">
+<else-if type="post-weblog" match="any">
+<else-if type="post-weblog" match="none">
+<else-if type="post-weblog">
+<else-if type="report " match="any">
+<else-if type="report entry-dictionary entry-encyclopedia chapter" match="any">
+<else-if type="report entry-dictionary entry-encyclopedia motion_picture chapter speech song paper-conference article-journal book" match="all" variable="URL">
+<else-if type="report figure graphic musical_score article" match="any">
+<else-if type="report figure graphic musical_score" match="any">
+<else-if type="report interview" match="any">
+<else-if type="report motion_picture broadcast song" match="any">
+<else-if type="report patent book thesis manuscript" match="any">
+<else-if type="report patent" match="any">
+<else-if type="report song broadcast motion_picture webpage post post-weblog" match="any">
+<else-if type="report song broadcast" match="any">
+<else-if type="report song" match="any">
+<else-if type="report thesis" match="any">
+<else-if type="report webpage" match="any">
+<else-if type="report" match="all">
+<else-if type="report" match="any"/>
+<else-if type="report" match="any">
+<else-if type="report"/>
+<else-if type="report">
+<else-if type="review review-book" match="any">
+<else-if type="song graphic" match="any">
+<else-if type="song motion_picture article" match="any">
+<else-if type="song motion_picture broadcast musical_score graphic" match="any">
+<else-if type="song motion_picture" match="any">
+<else-if type="song motion_picture" match="none">
+<else-if type="song" match="any">
+<else-if type="song" match="none">
+<else-if type="song" variable="composer">
+<else-if type="song">
+<else-if type="speech " match="any">
+<else-if type="speech interview" match="none">
+<else-if type="speech manuscript thesis broadcast" match="any">
+<else-if type="speech paper-conference" match="any">
+<else-if type="speech paper-conference">
+<else-if type="speech personal_communication" match="any">
+<else-if type="speech report paper-conference " match="any">
+<else-if type="speech" match="any"/>
+<else-if type="speech" match="any">
+<else-if type="speech" match="none">
+<else-if type="speech"/>
+<else-if type="speech">
+<else-if type="thesis article manuscript" match="any">
+<else-if type="thesis broadcast" match="any"/>
+<else-if type="thesis broadcast" match="any">
+<else-if type="thesis graphic motion_picture broadcast report song entry-dictionary entry-encyclopedia" match="any">
+<else-if type="thesis patent" match="any">
+<else-if type="thesis personal_communication speech" match="any"/>
+<else-if type="thesis personal_communication" match="any"/>
+<else-if type="thesis report manuscript" match="any">
+<else-if type="thesis report" match="any">
+<else-if type="thesis speech article">
+<else-if type="thesis speech" match="any"/>
+<else-if type="thesis speech" match="any">
+<else-if type="thesis" match="all">
+<else-if type="thesis" match="any">
+<else-if type="thesis" variable="genre">
+<else-if type="thesis"/>
+<else-if type="thesis">
+<else-if type="treaty legislation" match="any">
+<else-if type="treaty">
+<else-if type="webpage article-journal article-magazine article-newspaper broadcast personal_communication thesis" match="any">
+<else-if type="webpage article-journal article-magazine article-newspaper broadcast personal_communication" match="any">
+<else-if type="webpage article-newspaper" match="any">
+<else-if type="webpage chapter paper-conference article-journal article-magazine article-newspaper" match="any">
+<else-if type="webpage figure graphic" match="any">
+<else-if type="webpage manuscript patent report personal_communication" match="any">
+<else-if type="webpage manuscript report patent personal_communication" match="any">
+<else-if type="webpage manuscript" match="any">
+<else-if type="webpage personal_communication" match="any">
+<else-if type="webpage post post-weblog " match="any">
+<else-if type="webpage post post-weblog" match="any">
+<else-if type="webpage post" match="any">
+<else-if type="webpage post-weblog post" match="any">
+<else-if type="webpage post-weblog report manuscript" match="any">
+<else-if type="webpage post-weblog" match="any"/>
+<else-if type="webpage post-weblog" match="any">
+<else-if type="webpage post-weblog" match="none">
+<else-if type="webpage post-weblog">
+<else-if type="webpage report entry-dictionary entry-encyclopedia thesis" match="any">
+<else-if type="webpage" match="all">
+<else-if type="webpage" match="any">
+<else-if type="webpage" match="none">
+<else-if type="webpage" variable="URL" match="all">
+<else-if type="webpage"/>
+<else-if type="webpage">
+<else-if variable="DOI" match="any">
+<else-if variable="DOI">
+<else-if variable="URL DOI" match="any">
+<else-if variable="URL accessed" match="all">
+<else-if variable="URL" match="all">
+<else-if variable="URL" match="any">
+<else-if variable="URL" type="webpage" match="all">
+<else-if variable="URL">
+<else-if variable="accessed URL" match="all"/>
+<else-if variable="accessed URL" match="any">
+<else-if variable="accessed" type="webpage" match="any">
+<else-if variable="accessed">
+<else-if variable="archive" match="any">
+<else-if variable="author editor composer" match="any">
+<else-if variable="author editor translator collection-editor" match="any">
+<else-if variable="author editor" match="all">
+<else-if variable="author editor" match="any">
+<else-if variable="author interviewer">
+<else-if variable="author" match="none">
+<else-if variable="author">
+<else-if variable="authority number" match="all">
+<else-if variable="authority">
+<else-if variable="call-number">
+<else-if variable="collection-editor">
+<else-if variable="collection-number">
+<else-if variable="collection-title collection-number" match="any">
+<else-if variable="collection-title" match="none">
+<else-if variable="collection-title">
+<else-if variable="container-author" match="any">
+<else-if variable="container-author">
+<else-if variable="container-title volume number" match="any">
+<else-if variable="container-title" match="none">
+<else-if variable="container-title">
+<else-if variable="dimensions">
+<else-if variable="edition">
+<else-if variable="editor" match="any">
+<else-if variable="editor">
+<else-if variable="editorial-director">
+<else-if variable="event" match="none">
+<else-if variable="event">
+<else-if variable="event-date">
+<else-if variable="genre medium" match="any">
+<else-if variable="genre">
+<else-if variable="issue volume" match="any">
+<else-if variable="issue">
+<else-if variable="issued accessed" match="none">
+<else-if variable="issued" match="any">
+<else-if variable="issued">
+<else-if variable="locator page" match="none">
+<else-if variable="locator" match="none">
+<else-if variable="locator">
+<else-if variable="medium">
+<else-if variable="note">
+<else-if variable="number container-title volume page" match="all"/>
+<else-if variable="number container-title volume page" match="all">
+<else-if variable="number" match="none">
+<else-if variable="number" type="patent" match="all"/>
+<else-if variable="number">
+<else-if variable="number-of-pages">
+<else-if variable="number-of-volumes" match="all">
+<else-if variable="original-date">
+<else-if variable="page volume" match="any">
+<else-if variable="page volume" match="none">
+<else-if variable="page" match="any">
+<else-if variable="page" match="none">
+<else-if variable="page" type="article-journal" match="all">
+<else-if variable="page" type="article-magazine" match="all">
+<else-if variable="page" type="article-newspaper" match="all">
+<else-if variable="page"/>
+<else-if variable="page">
+<else-if variable="publisher" match="any">
+<else-if variable="publisher">
+<else-if variable="publisher-place event-place publisher genre" match="any">
+<else-if variable="publisher-place event-place publisher" match="any">
+<else-if variable="publisher-place issued note collection-title collection-number" match="any">
+<else-if variable="publisher-place note collection-title collection-number issued volume number-of-volumes" match="none">
+<else-if variable="publisher-place publisher" match="any">
+<else-if variable="publisher-place" match="any">
+<else-if variable="publisher-place">
+<else-if variable="recipient">
+<else-if variable="reviewed-author">
+<else-if variable="source accessed" match="all">
+<else-if variable="status">
+<else-if variable="title" match="none">
+<else-if variable="title" type="legal_case" match="any">
+<else-if variable="title">
+<else-if variable="title-short" match="any">
+<else-if variable="translator">
+<else-if variable="version" type="book" match="all">
+<else-if variable="version">
+<else-if variable="volume container-title" match="all">
+<else-if variable="volume issue" match="none">
+<else-if variable="volume" match="all">
+<else-if variable="volume" match="any">
+<else-if variable="volume" match="none">
+<else-if variable="volume">
+<if disambiguate="true">
+<if is-numeric="chapter-number">
+<if is-numeric="collection-number">
+<if is-numeric="edition" type="book article"/>
+<if is-numeric="edition"/>
+<if is-numeric="edition">
+<if is-numeric="issue"/>
+<if is-numeric="issue">
+<if is-numeric="locator">
+<if is-numeric="number">
+<if is-numeric="number-of-pages">
+<if is-numeric="number-of-volumes">
+<if is-numeric="page" match="all">
+<if is-numeric="page" match="none">
+<if is-numeric="page">
+<if is-numeric="section">
+<if is-numeric="version">
+<if is-numeric="volume number-of-volumes" match="any">
+<if is-numeric="volume">
+<if is-uncertain-date="issued">
+<if locator="chapter">
+<if locator="figure" match="any">
+<if locator="folio">
+<if locator="page chapter" match="none">
+<if locator="page paragraph" match="any">
+<if locator="page" match="any">
+<if locator="page" match="none">
+<if locator="page" type="chapter article-magazine article-newspaper" match="all">
+<if locator="page">
+<if locator="paragraph" match="none">
+<if locator="paragraph">
+<if locator="volume">
+<if match="all" is-numeric="edition">
+<if match="all" is-numeric="number-of-pages">
+<if match="all" is-uncertain-date="issued accessed original-date container">
+<if match="all" locator="page">
+<if match="all" position="first">
+<if match="all" variable="URL">
+<if match="all" variable="accessed">
+<if match="all" variable="archive archive_location">
+<if match="all" variable="author collection-title">
+<if match="all" variable="author editor">
+<if match="all" variable="author">
+<if match="all" variable="collection-title collection-number page">
+<if match="all" variable="container-title">
+<if match="all" variable="edition" is-numeric="edition">
+<if match="all" variable="edition">
+<if match="all" variable="editor">
+<if match="all" variable="genre">
+<if match="all" variable="issued">
+<if match="all" variable="locator" locator="page">
+<if match="all" variable="number">
+<if match="all" variable="translator">
+<if match="all" variable="volume">
+<if match="any" disambiguate="true">
+<if match="any" is-numeric="edition"/>
+<if match="any" is-numeric="edition">
+<if match="any" is-numeric="issue">
+<if match="any" is-numeric="number">
+<if match="any" is-numeric="number-of-volumes">
+<if match="any" is-numeric="page">
+<if match="any" is-numeric="title">
+<if match="any" is-numeric="volume">
+<if match="any" locator="page chapter">
+<if match="any" locator="page paragraph">
+<if match="any" locator="page">
+<if match="any" locator="paragraph">
+<if match="any" position="first">
+<if match="any" position="ibid">
+<if match="any" position="ibid-with-locator">
+<if match="any" position="near-note">
+<if match="any" position="subsequent ibid ibid-with-locator">
+<if match="any" position="subsequent">
+<if match="any" type="article-journal">
+<if match="any" type="article-newspaper article-magazine">
+<if match="any" type="bill book graphic legal_case legislation motion_picture report song">
+<if match="any" type="webpage post-weblog">
+<if match="any" variable="DOI URL">
+<if match="any" variable="DOI">
+<if match="any" variable="URL DOI">
+<if match="any" variable="URL">
+<if match="any" variable="abstract">
+<if match="any" variable="accessed">
+<if match="any" variable="archive_location">
+<if match="any" variable="author">
+<if match="any" variable="chapter-number">
+<if match="any" variable="collection-editor">
+<if match="any" variable="collection-number">
+<if match="any" variable="collection-title container-title">
+<if match="any" variable="collection-title">
+<if match="any" variable="container-author event">
+<if match="any" variable="container-author">
+<if match="any" variable="container-title" type="webpage">
+<if match="any" variable="container-title">
+<if match="any" variable="container-title-short">
+<if match="any" variable="edition publisher-place">
+<if match="any" variable="edition">
+<if match="any" variable="editor">
+<if match="any" variable="genre">
+<if match="any" variable="interviewer">
+<if match="any" variable="issue volume">
+<if match="any" variable="issue">
+<if match="any" variable="issued accessed">
+<if match="any" variable="issued">
+<if match="any" variable="locator">
+<if match="any" variable="medium genre">
+<if match="any" variable="medium">
+<if match="any" variable="number">
+<if match="any" variable="number-of-pages publisher">
+<if match="any" variable="number-of-pages">
+<if match="any" variable="number-of-volumes">
+<if match="any" variable="original-date">
+<if match="any" variable="page number-of-pages">
+<if match="any" variable="page volume">
+<if match="any" variable="page">
+<if match="any" variable="publisher" type="article article-journal thesis webpage">
+<if match="any" variable="publisher">
+<if match="any" variable="publisher-place publisher">
+<if match="any" variable="publisher-place" type="article article-journal thesis webpage">
+<if match="any" variable="publisher-place">
+<if match="any" variable="recipient">
+<if match="any" variable="title">
+<if match="any" variable="title-short">
+<if match="any" variable="translator">
+<if match="any" variable="version">
+<if match="any" variable="volume issue page">
+<if match="any" variable="volume issue">
+<if match="any" variable="volume page">
+<if match="any" variable="volume">
+<if match="none" is-numeric="collection-number">
+<if match="none" is-numeric="edition">
+<if match="none" is-uncertain-date="accessed">
+<if match="none" is-uncertain-date="issued">
+<if match="none" locator="page">
+<if match="none" locator="verse">
+<if match="none" position="first">
+<if match="none" position="subsequent">
+<if match="none" type="article-journal book">
+<if match="none" type="article-journal">
+<if match="none" type="legal_case">
+<if match="none" type="webpage post-weblog">
+<if match="none" variable="DOI PMID">
+<if match="none" variable="DOI URL">
+<if match="none" variable="DOI">
+<if match="none" variable="accessed">
+<if match="none" variable="archive" type="manuscript">
+<if match="none" variable="author editor translator">
+<if match="none" variable="author editor">
+<if match="none" variable="author">
+<if match="none" variable="collection-title">
+<if match="none" variable="container-title">
+<if match="none" variable="edition" type="legal_case">
+<if match="none" variable="genre">
+<if match="none" variable="issue">
+<if match="none" variable="issued">
+<if match="none" variable="locator">
+<if match="none" variable="page issue">
+<if match="none" variable="page volume">
+<if match="none" variable="page">
+<if match="none" variable="publisher-place issued">
+<if match="none" variable="publisher-place">
+<if match="none" variable="reviewed-title">
+<if match="none" variable="title"/>
+<if match="none" variable="title">
+<if match="none" variable="volume issue page">
+<if match="none" variable="volume page">
+<if match="none" variable="volume">
+<if position="first" variable="volume" match="all">
+<if position="first">
+<if position="ibid ibid-with-locator" match="any">
+<if position="ibid">
+<if position="ibid-with-locator ibid" match="any">
+<if position="ibid-with-locator">
+<if position="near-note">
+<if position="subsequent ibid ibid-with-locator" match="any">
+<if position="subsequent" match="none">
+<if position="subsequent">
+<if type=" bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
+<if type="article article-journal article-magazine article-newspaper broadcast interview post-weblog webpage" match="none">
+<if type="article article-journal article-magazine article-newspaper chapter entry entry-dictionary entry-encyclopedia paper-conference" match="any">
+<if type="article article-journal article-magazine article-newspaper chapter entry-encyclopedia entry-dictionary entry webpage paper-conference" match="any">
+<if type="article article-journal article-magazine article-newspaper chapter" match="any">
+<if type="article article-journal article-magazine article-newspaper entry entry-dictionary entry-encyclopedia chapter paper-conference webpage" match="any">
+<if type="article article-journal article-magazine article-newspaper review" match="any">
+<if type="article article-journal article-magazine article-newspaper" match="any">
+<if type="article article-journal article-magazine article-newspaper" match="none">
+<if type="article article-journal book chapter paper-conference" match="any">
+<if type="article article-journal" match="any">
+<if type="article article-magazine article-journal article-newspaper" match="any">
+<if type="article article-magazine article-newspaper article-journal book chapter paper-conference report review review-book thesis" match="any">
+<if type="article article-magazine article-newspaper article-journal entry entry-dictionary entry-encyclopedia chapter paper-conference post post-weblog" match="any">
+<if type="article article-magazine article-newspaper article-journal entry entry-dictionary entry-encyclopedia chapter" match="any">
+<if type="article article-magazine article-newspaper article-journal paper-conference" match="any"/>
+<if type="article article-magazine article-newspaper article-journal post-weblog" match="any">
+<if type="article article-magazine article-newspaper article-journal review" match="any">
+<if type="article book chapter" match="none"/>
+<if type="article book report thesis" match="any">
+<if type="article graphic personal_communication" match="any">
+<if type="article report speech thesis" match="any">
+<if type="article" match="any">
+<if type="article" match="none"/>
+<if type="article" match="none">
+<if type="article-journal article" match="any">
+<if type="article-journal article-magazine article article-newspaper book report review-book" match="none">
+<if type="article-journal article-magazine article-newspaper " match="any">
+<if type="article-journal article-magazine article-newspaper " match="none">
+<if type="article-journal article-magazine article-newspaper article review review-book" match="any">
+<if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis webpage" match="none">
+<if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="none">
+<if type="article-journal article-magazine article-newspaper bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<if type="article-journal article-magazine article-newspaper bill book graphic legal_case legislation motion_picture report song" match="any">
+<if type="article-journal article-magazine article-newspaper bill chapter entry-dictionary entry-encyclopedia legislation paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper book chapter paper-conference patent speech report thesis webpage" match="any">
+<if type="article-journal article-magazine article-newspaper book chapter" match="any">
+<if type="article-journal article-magazine article-newspaper book" match="any">
+<if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis article webpage chapter paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage legal_case" match="any">
+<if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="any">
+<if type="article-journal article-magazine article-newspaper broadcast interview manuscript map patent personal_communication song speech thesis webpage" match="none">
+<if type="article-journal article-magazine article-newspaper broadcast thesis webpage chapter paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper chapter entry entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-magazine article-newspaper chapter paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper chapter" match="any">
+<if type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia chapter paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-magazine article-newspaper legal_case" match="any">
+<if type="article-journal article-magazine article-newspaper paper-conference webpage" match="any">
+<if type="article-journal article-magazine article-newspaper paper-conference" match="any">
+<if type="article-journal article-magazine article-newspaper post-weblog" match="any">
+<if type="article-journal article-magazine article-newspaper review review-book" match="any">
+<if type="article-journal article-magazine article-newspaper review review-book" match="none">
+<if type="article-journal article-magazine article-newspaper webpage broadcast" match="any">
+<if type="article-journal article-magazine article-newspaper webpage review review-book" match="any">
+<if type="article-journal article-magazine article-newspaper" match="any">
+<if type="article-journal article-magazine article-newspaper" match="none">
+<if type="article-journal article-magazine chapter article-newspaper entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-magazine chapter entry-encyclopedia entry-dictionary" match="any">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper post-weblog webpage" match="any">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper post-weblog webpage" match="none">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="none">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper thesis graphic review review-book entry-dictionary entry-encyclopedia" match="none">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper" match="any">
+<if type="article-journal article-magazine chapter paper-conference article-newspaper" match="none">
+<if type="article-journal article-magazine chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<if type="article-journal article-magazine chapter" match="any">
+<if type="article-journal article-magazine paper-conference article-newspaper review review-book entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-magazine paper-conference article-newspaper" match="any">
+<if type="article-journal article-magazine paper-conference" match="any">
+<if type="article-journal article-magazine paper-conference" match="none">
+<if type="article-journal article-magazine report" match="none">
+<if type="article-journal article-magazine review review-book" match="any">
+<if type="article-journal article-magazine review review-book" match="none">
+<if type="article-journal article-magazine review" match="any">
+<if type="article-journal article-magazine speech" match="none">
+<if type="article-journal article-magazine" match="any"/>
+<if type="article-journal article-magazine" match="any">
+<if type="article-journal article-magazine" match="none">
+<if type="article-journal article-magazine">
+<if type="article-journal article-newspaper article-magazine bill broadcast speech personal_communication interview manuscript entry-dictionary entry-encyclopedia paper-conference" match="any">
+<if type="article-journal article-newspaper article-magazine bill broadcast speech personal_communication interview manuscript entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-newspaper article-magazine bill broadcast speech personal_communication interview manuscript" match="any">
+<if type="article-journal article-newspaper article-magazine bill chapter paper-conference entry-dictionary entry-encyclopedia" match="any">
+<if type="article-journal article-newspaper article-magazine interview" match="any">
+<if type="article-journal article-newspaper article-magazine" match="any">
+<if type="article-journal article-newspaper article-magazine" match="none">
+<if type="article-journal article-newspaper book chapter interview paper-conference" match="any">
+<if type="article-journal article-newspaper book chapter interview" match="any">
+<if type="article-journal article-newspaper entry-encyclopedia" match="any">
+<if type="article-journal article-newspaper webpage" match="any">
+<if type="article-journal article-newspaper" match="any">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song dataset" match="none">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song speech" match="none">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="none">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song webpage thesis" match="none">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<if type="article-journal bill book chapter graphic legal_case legislation motion_picture paper-conference report thesis song webpage patent" match="none">
+<if type="article-journal bill chapter legal_case legislation paper-conference" match="none">
+<if type="article-journal bill legislation legal_case manuscript thesis" variable="publisher-place publisher" match="any">
+<if type="article-journal bill legislation legal_case manuscript thesis" variable="publisher-place publisher" match="none">
+<if type="article-journal bill legislation legal_case" match="none">
+<if type="article-journal book chapter paper-conference entry-encyclopedia" match="none">
+<if type="article-journal book chapter paper-conference report" match="none">
+<if type="article-journal book chapter paper-conference webpage" match="any">
+<if type="article-journal book chapter paper-conference" match="any">
+<if type="article-journal book chapter" match="any"/>
+<if type="article-journal book" match="any">
+<if type="article-journal chapter article-magazine article-newspaper review review-book" match="none">
+<if type="article-journal chapter article-magazine speech webpage" match="any">
+<if type="article-journal chapter bill book graphic legal_case legislation motion_picture song" match="any">
+<if type="article-journal chapter paper-conference article-magazine thesis" match="any">
+<if type="article-journal chapter paper-conference article-magazine" match="any">
+<if type="article-journal chapter paper-conference book" match="none">
+<if type="article-journal chapter paper-conference entry-dictionary entry-encyclopedia map" match="any">
+<if type="article-journal chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
+<if type="article-journal chapter paper-conference" match="any">
+<if type="article-journal chapter paper-conference" match="none">
+<if type="article-journal chapter" match="any">
+<if type="article-journal legal_case manuscript thesis" variable="publisher-place publisher" match="any">
+<if type="article-journal legal_case manuscript thesis" variable="publisher-place publisher" match="none">
+<if type="article-journal legal_case" match="any">
+<if type="article-journal legal_case" match="none">
+<if type="article-journal legal_case" variable="publisher-place publisher" match="any">
+<if type="article-journal legal_case" variable="publisher-place publisher" match="none">
+<if type="article-journal legal_case" variable="publisher-place" match="any">
+<if type="article-journal legal_case" variable="publisher-place" match="none">
+<if type="article-journal paper-conference" match="any">
+<if type="article-journal patent" match="any">
+<if type="article-journal post" match="any">
+<if type="article-journal report bill book chapter graphic legal_case legislation motion_picture paper-conference song thesis" match="any">
+<if type="article-journal report paper-conference" match="any">
+<if type="article-journal report" match="any">
+<if type="article-journal review review-book" match="any">
+<if type="article-journal review review-book">
+<if type="article-journal review" match="any">
+<if type="article-journal webpage" match="any">
+<if type="article-journal" match="all" variable="DOI">
+<if type="article-journal" match="all" variable="container-title-short">
+<if type="article-journal" match="all" variable="editor">
+<if type="article-journal" match="all">
+<if type="article-journal" match="any">
+<if type="article-journal" match="none">
+<if type="article-journal" variable="DOI" match="all">
+<if type="article-journal" variable="page" match="all">
+<if type="article-journal" variable="volume" match="all">
+<if type="article-journal"/>
+<if type="article-journal">
+<if type="article-magazine article-newspaper article" match="any">
+<if type="article-magazine article-newspaper article-journal chapter entry-dictionary paper-conference article bill legislation" match="any">
+<if type="article-magazine article-newspaper entry entry-dictionary entry-encyclopedia" match="any">
+<if type="article-magazine article-newspaper interview" match="any">
+<if type="article-magazine article-newspaper paper-conference personal_communication manuscript interview legal_case patent map song speech motion_picture broadcast" match="any">
+<if type="article-magazine article-newspaper review review-book" match="any">
+<if type="article-magazine article-newspaper" match="any">
+<if type="article-magazine bill chapter legislation paper-conference article-journal article-newspaper entry-encyclopedia entry-dictionary" match="any">
+<if type="article-magazine bill legal_case legislation motion_picture paper-conference thesis" match="none">
+<if type="article-magazine chapter paper-conference article-newspaper" match="any">
+<if type="article-magazine interview article-newspaper" match="any">
+<if type="article-magazine webpage report article-newspaper" match="any">
+<if type="article-magazine" match="any">
+<if type="article-magazine">
+<if type="article-newspaper article-journal article-magazine entry-encyclopedia" match="any">
+<if type="article-newspaper article-journal article-magazine paper-conference" match="none">
+<if type="article-newspaper article-journal article-magazine" match="any">
+<if type="article-newspaper article-journal article-magazine" match="none">
+<if type="article-newspaper article-journal" match="none">
+<if type="article-newspaper article-magazine article-journal" match="any">
+<if type="article-newspaper article-magazine broadcast manuscript speech webpage" match="any">
+<if type="article-newspaper article-magazine dataset book webpage" match="any">
+<if type="article-newspaper article-magazine interview" match="any">
+<if type="article-newspaper article-magazine motion_picture paper-conference broadcast" match="any">
+<if type="article-newspaper article-magazine motion_picture speech broadcast report" match="any">
+<if type="article-newspaper article-magazine paper-conference broadcast post personal_communication interview post-weblog" match="any">
+<if type="article-newspaper article-magazine post-weblog speech bill" match="any">
+<if type="article-newspaper article-magazine post-weblog speech" match="any">
+<if type="article-newspaper article-magazine" match="any">
+<if type="article-newspaper article-magazine">
+<if type="article-newspaper broadcast personal_communication manuscript" match="any">
+<if type="article-newspaper chapter paper-conference" match="none">
+<if type="article-newspaper entry-dictionary entry-encyclopedia" match="any">
+<if type="article-newspaper interview paper-conference personal_communication speech webpage broadcast bill post-weblog post" match="any">
+<if type="article-newspaper interview speech" match="any">
+<if type="article-newspaper interview" match="any">
+<if type="article-newspaper manuscript speech legal_case legislation interview paper-conference pamphlet article bill report personal_communication" match="all">
+<if type="article-newspaper motion_picture paper-conference broadcast" match="any">
+<if type="article-newspaper paper-conference broadcast" match="any">
+<if type="article-newspaper paper-conference post-weblog" match="any">
+<if type="article-newspaper paper-conference" match="any">
+<if type="article-newspaper post-weblog broadcast" match="any">
+<if type="article-newspaper report post post-weblog song" match="any">
+<if type="article-newspaper report post post-weblog" match="any">
+<if type="article-newspaper report" match="any">
+<if type="article-newspaper speech interview" match="any">
+<if type="article-newspaper speech" match="any">
+<if type="article-newspaper thesis" match="any">
+<if type="article-newspaper webpage post-weblog" match="any">
+<if type="article-newspaper webpage report post-weblog" match="any">
+<if type="article-newspaper" match="all" variable="URL">
+<if type="article-newspaper" match="any">
+<if type="article-newspaper" match="none">
+<if type="article-newspaper" variable="URL" match="all">
+<if type="article-newspaper" variable="page" match="none">
+<if type="article-newspaper">
+<if type="bill book article" match="any">
+<if type="bill book broadcast chapter graphic legal_case legislation motion_picture paper-conference report song thesis" match="any">
+<if type="bill book broadcast graphic legal_case legislation manuscript map motion_picture report song" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case legislation manuscript motion_picture paper-conference report song thesis" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case legislation motion_picture paper-conference report song article-magazine" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case legislation motion_picture paper-conference report song" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case manuscript motion_picture paper-conference report song speech" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case manuscript motion_picture paper-conference report song" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case motion_picture paper-conference report song map" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case motion_picture paper-conference report song speech" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case motion_picture paper-conference report song thesis" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case motion_picture paper-conference report song" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia graphic legal_case motion_picture paper-conference song" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia thesis graphic legal_case manuscript motion_picture paper-conference report song map" match="any">
+<if type="bill book chapter entry-dictionary entry-encyclopedia thesis graphic legal_case manuscript motion_picture paper-conference report song" match="any">
+<if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song article-journal article-magazine chapter entry-dictionary entry-encyclopedia webpage" match="none">
+<if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="any">
+<if type="bill book chapter graphic legal_case legislation motion_picture paper-conference report song" match="none">
+<if type="bill book chapter graphic legal_case legislation motion_picture paper-conference song" match="any">
+<if type="bill book chapter graphic legal_case legislation motion_picture report musical_score" match="any">
+<if type="bill book chapter graphic legal_case legislation motion_picture report song" match="any">
+<if type="bill book chapter report" match="any">
+<if type="bill book graphic interview legal_case motion_picture report song" match="any">
+<if type="bill book graphic legal_case legislation manuscript map motion_picture report song thesis webpage" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture paper-conference report song thesis chapter entry-dictionary entry-encyclopedia article-journal article-newspaper article-magazine" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture paper-conference report song thesis chapter entry-dictionary entry-encyclopedia" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture paper-conference report song thesis" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture report song thesis entry-dictionary article-journal" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture report song thesis" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture report song webpage" match="any">
+<if type="bill book graphic legal_case legislation manuscript motion_picture report song" match="any">
+<if type="bill book graphic legal_case legislation map motion_picture report song thesis" match="any">
+<if type="bill book graphic legal_case legislation map motion_picture report song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture paper-conference song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture patent report song thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture post-weblog report song webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture post-weblog song webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture post-weblog song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report musical_score" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report patent thesis song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song chapter entry-dictionary entry-encyclopedia" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song chapter paper-conference" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song speech thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song thesis chapter paper-conference" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song thesis paper-conference" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song thesis patent" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song thesis webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song webpage report" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song webpage thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report song" match="none">
+<if type="bill book graphic legal_case legislation motion_picture report speech thesis song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report thesis song" match="any">
+<if type="bill book graphic legal_case legislation motion_picture report thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song patent" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song report thesis webpage manuscript" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song report" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song thesis webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song thesis" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song webpage" match="any">
+<if type="bill book graphic legal_case legislation motion_picture song" match="any">
+<if type="bill book graphic legal_case legislation report song thesis webpage" match="any">
+<if type="bill book graphic legal_case legislation report song thesis" match="any">
+<if type="bill book graphic legal_case motion_picture manuscript report song thesis" match="any">
+<if type="bill book graphic legal_case motion_picture paper-conference manuscript report song thesis chapter entry-dictionary entry-encyclopedia" match="any">
+<if type="bill book graphic legal_case motion_picture paper-conference manuscript report song thesis map" match="any">
+<if type="bill book graphic legal_case motion_picture paper-conference manuscript report song thesis" match="any">
+<if type="bill book graphic legal_case motion_picture paper-conference report song speech thesis" match="any">
+<if type="bill book graphic legal_case motion_picture paper-conference report song thesis" match="any">
+<if type="bill book graphic legal_case motion_picture report song article" match="any">
+<if type="bill book graphic legal_case motion_picture report song article-journal chapter paper-conference" match="none">
+<if type="bill book graphic legal_case motion_picture report song chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<if type="bill book graphic legal_case motion_picture report song chapter paper-conference entry-encyclopedia" match="any">
+<if type="bill book graphic legal_case motion_picture report song chapter paper-conference map" match="any">
+<if type="bill book graphic legal_case motion_picture report song chapter paper-conference speech" match="any">
+<if type="bill book graphic legal_case motion_picture report song chapter paper-conference" match="any">
+<if type="bill book graphic legal_case motion_picture report song map" match="any">
+<if type="bill book graphic legal_case motion_picture report song speech" match="any">
+<if type="bill book graphic legal_case motion_picture report song thesis manuscript" match="any">
+<if type="bill book graphic legal_case motion_picture report song thesis webpage" match="any">
+<if type="bill book graphic legal_case motion_picture report song thesis" match="any">
+<if type="bill book graphic legal_case motion_picture report song" match="any">
+<if type="bill book graphic legal_case motion_picture song report thesis" match="any">
+<if type="bill book graphic legal_case motion_picture song" match="any">
+<if type="bill book graphic legal_case report song" match="any">
+<if type="bill book graphic legal_case report thesis" match="any">
+<if type="bill book graphic legislation motion_picture report song" match="any">
+<if type="bill book graphic manuscript motion_picture report song speech thesis" match="any">
+<if type="bill book legal_case legislation report" match="any">
+<if type="bill book legal_case motion_picture song article-journal article-magazine article-newspaper thesis chapter paper-conference" match="none">
+<if type="bill book legal_case report song motion_picture graphic thesis" match="any">
+<if type="bill book webpage graphic legal_case motion_picture report song article" match="any">
+<if type="bill book webpage graphic legal_case motion_picture report song" match="any">
+<if type="bill book" match="any">
+<if type="bill broadcast legal_case legislation motion_picture" match="any">
+<if type="bill chapter legislation legal_case paper-conference" match="any">
+<if type="bill graphic legal_case legislation manuscript motion_picture report song webpage" match="any">
+<if type="bill graphic legal_case legislation motion_picture report song thesis webpage" match="any">
+<if type="bill graphic legal_case legislation motion_picture report song thesis" match="any">
+<if type="bill graphic legal_case legislation motion_picture report song" match="any">
+<if type="bill graphic legal_case legislation motion_picture song thesis webpage manuscript" match="any">
+<if type="bill legal_case legislation entry-dictionary" match="any">
+<if type="bill legal_case legislation legislation report" match="none">
+<if type="bill legal_case legislation report" match="any"/>
+<if type="bill legal_case legislation report" match="any">
+<if type="bill legal_case legislation treaty" match="none">
+<if type="bill legal_case legislation webpage" match="none">
+<if type="bill legal_case legislation" match="any">
+<if type="bill legal_case legislation" match="none">
+<if type="bill legal_case legislation">
+<if type="bill legal_case report" match="any">
+<if type="bill legislation legal_case article-journal chapter paper-conference" match="none">
+<if type="bill legislation legal_case book" match="none">
+<if type="bill legislation legal_case" match="any"/>
+<if type="bill legislation legal_case" match="any">
+<if type="bill legislation legal_case" match="none">
+<if type="bill legislation report" match="any">
+<if type="bill legislation treaty" match="any">
+<if type="bill legislation" match="any">
+<if type="bill legislation" match="none">
+<if type="bill" match="any">
+<if type="bill" match="none">
+<if type="bill">
+<if type="book article" match="any">
+<if type="book article-journal article-magazine thesis chapter manuscript paper-conference entry-encyclopedia entry-dictionary" match="none">
+<if type="book bill article-magazine article-newspaper broadcast interview legal_case legislation motion_picture personal_communication speech webpage" match="any">
+<if type="book bill graphic legal_case legislation motion_picture report musical_score" match="any">
+<if type="book broadcast article bill chapter dataset entry entry-dictionary entry-encyclopedia figure graphic interview legal_case legislation manuscript map motion_picture musical_score pamphlet paper-conference patent personal_communication post post-weblog report review review-book song speech thesis webpage" match="any">
+<if type="book broadcast graphic legal_case motion_picture report song" match="any">
+<if type="book chapter article" match="any">
+<if type="book chapter article-journal thesis paper-conference" match="any">
+<if type="book chapter article-journal" match="none">
+<if type="book chapter broadcast personal_communication manuscript paper-conference article-newspaper report legislation motion_picture speech interview thesis entry-encyclopedia webpage" match="any">
+<if type="book chapter entry entry-dictionary entry-encyclopedia paper-conference thesis post-weblog webpage" match="any">
+<if type="book chapter entry-dictionary entry-encyclopedia thesis graphic legal_case manuscript paper-conference report song" match="any">
+<if type="book chapter entry-dictionary entry-encyclopedia" match="any">
+<if type="book chapter entry-encyclopedia entry-dictionary song motion_picture" match="any">
+<if type="book chapter entry-encyclopedia entry-dictionary" match="any">
+<if type="book chapter graphic motion_picture paper-conference report song" match="any">
+<if type="book chapter legal_case manuscript paper-conference" match="any">
+<if type="book chapter paper-conference article" match="any">
+<if type="book chapter paper-conference article-magazine article-newspaper article-journal manuscript report speech entry-encyclopedia" match="any">
+<if type="book chapter paper-conference article-magazine article-newspaper article-journal report speech entry-encyclopedia" match="any">
+<if type="book chapter paper-conference article-newspaper report legislation motion_picture speech interview thesis" match="any">
+<if type="book chapter paper-conference article-newspaper report" match="any">
+<if type="book chapter paper-conference entry entry-dictionary entry-encyclopedia" match="any">
+<if type="book chapter paper-conference entry-dictionary entry-encyclopedia" match="any">
+<if type="book chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
+<if type="book chapter paper-conference motion_picture" match="any">
+<if type="book chapter paper-conference thesis" match="any">
+<if type="book chapter paper-conference" match="any">
+<if type="book chapter paper-conference" match="none">
+<if type="book chapter report" match="any">
+<if type="book chapter thesis report paper-conference entry-dictionary entry-encyclopedia" match="any">
+<if type="book chapter thesis report paper-conference entry-dictionary entry-encyclopedia" match="none">
+<if type="book chapter thesis report paper-conference" match="any">
+<if type="book chapter webpage" match="none">
+<if type="book chapter" match="any">
+<if type="book chapter" match="none">
+<if type="book chapter">
+<if type="book figure graphic legal_case legislation manuscript pamphlet patent report thesis broadcast song post" match="any">
+<if type="book graphic legal_case legislation motion_picture report song broadcast patent pamphlet figure manuscript post" match="any">
+<if type="book graphic legal_case legislation motion_picture report song" match="any">
+<if type="book graphic legal_case motion_picture report song" match="any">
+<if type="book graphic manuscript map motion_picture report song thesis" match="any">
+<if type="book graphic manuscript motion_picture report song speech thesis chapter" match="any">
+<if type="book graphic manuscript motion_picture report song speech thesis webpage post-weblog paper-conference" match="any">
+<if type="book graphic manuscript motion_picture report song speech thesis" match="any">
+<if type="book graphic motion_picture report song manuscript speech" match="any">
+<if type="book graphic motion_picture report song speech" match="any">
+<if type="book graphic motion_picture report song" match="any">
+<if type="book graphic report entry-dictionary entry-encyclopedia chapter speech paper-conference" match="any">
+<if type="book graphic report map personal_communication interview motion_picture thesis broadcast speech manuscript" match="any">
+<if type="book graphic report" match="any">
+<if type="book graphic" match="any">
+<if type="book interview manuscript map patent legislation legal_case report thesis" match="any">
+<if type="book legal_case legislation map musical_score motion_picture patent broadcast report song thesis webpage bill" match="any">
+<if type="book legal_case motion_picture report" match="any">
+<if type="book legal_case report motion_picture" match="any">
+<if type="book legal_case report song chapter paper-conference" match="any">
+<if type="book legal_case report song motion_picture graphic thesis" match="any">
+<if type="book legislation webpage thesis motion_picture manuscript" match="any">
+<if type="book manuscript motion_picture report song speech thesis" match="any">
+<if type="book manuscript patent thesis webpage report" match="any">
+<if type="book manuscript thesis graphic motion_picture" match="any">
+<if type="book map motion_picture song manuscript broadcast" match="any">
+<if type="book map thesis report chapter entry entry-dictionary entry-encyclopedia" match="any">
+<if type="book map" match="any">
+<if type="book motion_picture manuscript" match="any">
+<if type="book motion_picture song thesis" match="any">
+<if type="book motion_picture treaty" match="any">
+<if type="book paper-conference chapter entry-encyclopedia entry-dictionary entry post-weblog map patent legislation report thesis">
+<if type="book paper-conference report " match="any">
+<if type="book patent report thesis" match="any">
+<if type="book post webpage interview report patent thesis" match="any">
+<if type="book post webpage post-weblog interview chapter entry-encyclopedia entry entry-dictionary" match="any">
+<if type="book post webpage post-weblog interview report patent thesis" match="any">
+<if type="book post webpage post-weblog interview" match="any">
+<if type="book report chapter" match="any">
+<if type="book report thesis legislation" match="any">
+<if type="book report thesis" match="any">
+<if type="book report" match="any">
+<if type="book thesis chapter article-journal article-newspaper article-magazine personal_communication" match="any">
+<if type="book thesis chapter article-newspaper article-magazine legal_case graphic report webpage" match="none">
+<if type="book thesis chapter paper-conference motion_picture" match="any">
+<if type="book thesis chapter paper-conference motion_picture">
+<if type="book thesis chapter" match="any">
+<if type="book thesis graphic motion_picture" match="any">
+<if type="book thesis graphic" match="any">
+<if type="book thesis legislation report legal_case" match="any">
+<if type="book thesis legislation report" match="any">
+<if type="book thesis manuscript" match="any">
+<if type="book thesis map motion_picture song manuscript broadcast report" match="any">
+<if type="book thesis map motion_picture song manuscript report" match="any">
+<if type="book thesis map motion_picture song manuscript" match="any">
+<if type="book thesis paper-conference" match="any">
+<if type="book thesis report" match="any">
+<if type="book thesis" match="any"/>
+<if type="book thesis" match="any">
+<if type="book thesis">
+<if type="book webpage graphic" match="any">
+<if type="book webpage report entry-dictionary entry-encyclopedia chapter thesis" match="any">
+<if type="book webpage" match="any">
+<if type="book" match="all" variable="genre">
+<if type="book" match="all" variable="version">
+<if type="book" match="all" variable="volume">
+<if type="book" match="any"/>
+<if type="book" match="any">
+<if type="book" match="none">
+<if type="book" variable="archive_location" match="all">
+<if type="book" variable="author" match="all">
+<if type="book" variable="collection-title" match="all">
+<if type="book" variable="medium">
+<if type="book" variable="volume" match="all">
+<if type="book">
+<if type="broadcast chapter entry-dictionary entry-encyclopedia paper-conference post-weblog speech webpage" match="none">
+<if type="broadcast chapter entry-dictionary entry-encyclopedia paper-conference post-weblog speech" match="any">
+<if type="broadcast chapter entry-dictionary entry-encyclopedia paper-conference post-weblog speech" match="none">
+<if type="broadcast entry-dictionary entry-encyclopedia graphic post post-weblog report song speech webpage" match="any">
+<if type="broadcast interview" match="any">
+<if type="broadcast interview" match="none">
+<if type="broadcast map" match="none">
+<if type="broadcast motion_picture legal_case" match="none">
+<if type="broadcast motion_picture legislation bill map legal_case" match="any">
+<if type="broadcast motion_picture song report entry-encyclopedia entry-dictionary" match="any">
+<if type="broadcast motion_picture song report" match="any">
+<if type="broadcast motion_picture" match="any">
+<if type="broadcast paper-conference post personal_communication interview post-weblog" match="any">
+<if type="broadcast personal_communication interview" match="none">
+<if type="broadcast personal_communication" match="none">
+<if type="broadcast post-weblog">
+<if type="broadcast report" match="any">
+<if type="broadcast" match="any" variable="container-title">
+<if type="broadcast" match="any">
+<if type="broadcast" match="none">
+<if type="broadcast">
+<if type="chapter article-journal article-magazine entry-encyclopedia entry-dictionary" match="any">
+<if type="chapter article-journal article-magazine" match="any">
+<if type="chapter article-journal article-newspaper article-magazine paper-conference" match="any">
+<if type="chapter article-journal article-newspaper article-magazine" match="any">
+<if type="chapter article-journal article-newspaper" match="any">
+<if type="chapter article-journal" match="any">
+<if type="chapter article-magazine article-newspaper post-weblog" match="any">
+<if type="chapter book thesis manuscript" match="any">
+<if type="chapter book" match="any">
+<if type="chapter book" match="none">
+<if type="chapter entry entry-dictionary entry-encyclopedia paper-conference" match="any"/>
+<if type="chapter entry entry-dictionary entry-encyclopedia paper-conference" match="any">
+<if type="chapter entry entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter entry-dictionary entry-encyclopedia article-journal article-newspaper article-magazine paper-conference post-weblog post" match="any">
+<if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="any">
+<if type="chapter entry-dictionary entry-encyclopedia paper-conference" match="none">
+<if type="chapter entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter entry-encyclopedia entry-dictionary paper-conference" match="any">
+<if type="chapter entry-encyclopedia entry-dictionary paper-conference" match="none">
+<if type="chapter entry-encyclopedia paper-conference" match="any">
+<if type="chapter entry-encyclopedia paper-conference" match="none">
+<if type="chapter entry-encyclopedia" match="any">
+<if type="chapter paper-conference article article-journal article-magazine article-newspaper book review review-book report" match="any">
+<if type="chapter paper-conference article article-journal article-magazine article-newspaper entry entry-dictionary entry-encyclopedia" match="none">
+<if type="chapter paper-conference article article-journal article-magazine article-newspaper" match="any">
+<if type="chapter paper-conference article entry-dictionary article-newspaper entry-encyclopedia book" match="any">
+<if type="chapter paper-conference article" match="any">
+<if type="chapter paper-conference article-journal article article-magazine article-newspaper book review review-book report" match="any">
+<if type="chapter paper-conference article-journal article article-magazine article-newspaper book review review-book" match="any">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper broadcast interview manuscript map personal_communication speech thesis map post post-weblog" match="none">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper broadcast interview manuscript map personal_communication speech thesis map song" match="none">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper entry-dictionary entry-encyclopedia article" match="any">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper interview" match="any">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper webpage post post-weblog thesis" match="none">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper webpage thesis entry-dictionary entry-encyclopedia article" match="none">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper webpage" match="any">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper webpage" match="none">
+<if type="chapter paper-conference article-journal article-magazine article-newspaper" match="any">
+<if type="chapter paper-conference article-journal article-newspaper" match="any">
+<if type="chapter paper-conference article-journal entry-dictionary post article-magazine article-newspaper entry-encyclopedia" match="any">
+<if type="chapter paper-conference article-journal" match="any">
+<if type="chapter paper-conference article-journal" match="none">
+<if type="chapter paper-conference article-magazine book review review-book report" match="any">
+<if type="chapter paper-conference article-magazine review review-book report" match="any">
+<if type="chapter paper-conference article-newspaper" match="any">
+<if type="chapter paper-conference book article" match="any">
+<if type="chapter paper-conference book" match="any">
+<if type="chapter paper-conference book" match="none">
+<if type="chapter paper-conference entry entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter paper-conference entry-dictionary article-magazine entry-encyclopedia" match="any">
+<if type="chapter paper-conference entry-dictionary entry-encyclopedia broadcast" match="any">
+<if type="chapter paper-conference entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter paper-conference entry-dictionary entry-encyclopedia" match="none">
+<if type="chapter paper-conference entry-encyclopedia entry-dictionary article-magazine article-newspaper article-journal" match="any">
+<if type="chapter paper-conference entry-encyclopedia entry-dictionary article-newspaper article-magazine article-journal" match="any">
+<if type="chapter paper-conference entry-encyclopedia entry-dictionary song musical_score" match="any">
+<if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="any">
+<if type="chapter paper-conference entry-encyclopedia entry-dictionary" match="none">
+<if type="chapter paper-conference entry-encyclopedia" match="any">
+<if type="chapter paper-conference entry-encyclopedia" match="none">
+<if type="chapter paper-conference legal_case" match="none">
+<if type="chapter paper-conference map entry-encyclopedia entry-dictionary" match="any">
+<if type="chapter paper-conference musical_score" match="none">
+<if type="chapter paper-conference patent" match="none">
+<if type="chapter paper-conference report" match="any">
+<if type="chapter paper-conference webpage entry entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter paper-conference webpage entry-dictionary entry-encyclopedia" match="any">
+<if type="chapter paper-conference" match="any"/>
+<if type="chapter paper-conference" match="any">
+<if type="chapter paper-conference" match="none">
+<if type="chapter paper-conference">
+<if type="chapter post-weblog entry-dictionary entry-encyclopedia article-journal article-newspaper article-magazine paper-conference" match="any">
+<if type="chapter report paper-conference article webpage" match="any">
+<if type="chapter report paper-conference" match="any">
+<if type="chapter report paper-conference" match="none">
+<if type="chapter speech" match="any">
+<if type="chapter webpage" match="any">
+<if type="chapter" match="all" variable="edition">
+<if type="chapter" match="any">
+<if type="chapter" match="none">
+<if type="chapter" variable="container-title" match="all">
+<if type="chapter"/>
+<if type="chapter">
+<if type="dataset manuscript paper-conference post post-weblog report webpage" match="any">
+<if type="entry entry-dictionary entry-encyclopedia broadcast" match="none">
+<if type="entry entry-dictionary entry-encyclopedia" match="any">
+<if type="entry-dictionary entry-encyclopedia chapter paper-conference" match="any">
+<if type="entry-dictionary entry-encyclopedia chapter" match="any">
+<if type="entry-dictionary entry-encyclopedia chapter" match="none">
+<if type="entry-dictionary entry-encyclopedia paper-conference chapter" match="any">
+<if type="entry-dictionary entry-encyclopedia" match="any">
+<if type="entry-dictionary entry-encyclopedia" match="none">
+<if type="entry-dictionary entry-encyclopedia">
+<if type="entry-dictionary post-weblog entry-encyclopedia interview webpage post" match="any">
+<if type="entry-dictionary">
+<if type="entry-encyclopedia article-newspaper" match="any">
+<if type="entry-encyclopedia entry-dictionary" match="any">
+<if type="entry-encyclopedia entry-dictionary" match="none">
+<if type="entry-encyclopedia" match="all" variable="author editor"/>
+<if type="entry-encyclopedia" match="all" variable="author editor">
+<if type="entry-encyclopedia" match="any">
+<if type="entry-encyclopedia" match="none">
+<if type="entry-encyclopedia">
+<if type="figure graphic map entry-encyclopedia article-newspaper" match="any">
+<if type="figure graphic motion_picture" match="any">
+<if type="figure graphic" match="none"/>
+<if type="figure graphic" match="none">
+<if type="graphic manuscript motion_picture report song speech thesis" match="any">
+<if type="graphic map" match="any">
+<if type="graphic motion_picture song chapter paper-conference" match="any">
+<if type="graphic personal_communication interview" match="any">
+<if type="graphic personal_communication" match="any">
+<if type="graphic report article-newspaper article-magazine personal_communication" match="any">
+<if type="graphic report article-newspaper personal_communication speech" match="any">
+<if type="graphic report article-newspaper" match="any">
+<if type="graphic report paper-conference" match="any">
+<if type="graphic report webpage" match="any">
+<if type="graphic report" match="any">
+<if type="graphic" match="any">
+<if type="graphic" match="none">
+<if type="graphic">
+<if type="interview article-newspaper" match="any">
+<if type="interview legal_case" match="any">
+<if type="interview" match="any">
+<if type="interview" match="none">
+<if type="interview">
+<if type="legal_case " match="any">
+<if type="legal_case article" match="none">
+<if type="legal_case article-journal article-magazine" match="any">
+<if type="legal_case article-journal chapter paper-conference" match="none">
+<if type="legal_case article-journal" match="none">
+<if type="legal_case bill legislation manuscript" match="any">
+<if type="legal_case bill legislation treaty" match="any">
+<if type="legal_case book chapter article-journal" match="none">
+<if type="legal_case book thesis" match="none">
+<if type="legal_case chapter paper-conference" match="any">
+<if type="legal_case chapter" match="none">
+<if type="legal_case legislation bill" match="none">
+<if type="legal_case legislation" match="any">
+<if type="legal_case thesis book" match="none">
+<if type="legal_case webpage" match="none">
+<if type="legal_case" match="any">
+<if type="legal_case" match="none">
+<if type="legal_case" variable="locator" match="all">
+<if type="legal_case"/>
+<if type="legal_case">
+<if type="legislation bill patent" match="any">
+<if type="legislation bill" match="any"/>
+<if type="legislation bill" match="any">
+<if type="legislation bill" match="none">
+<if type="legislation bill"/>
+<if type="legislation legal_case bill" match="none">
+<if type="legislation" match="any">
+<if type="legislation" match="none">
+<if type="legislation"/>
+<if type="legislation">
+<if type="manuscript personal_communication" match="any">
+<if type="manuscript thesis speech" match="any">
+<if type="manuscript" locator="chapter" match="any"/>
+<if type="manuscript" locator="chapter" match="any">
+<if type="manuscript" match="all" variable="archive">
+<if type="manuscript" match="any">
+<if type="manuscript" match="none">
+<if type="manuscript">
+<if type="map book webpage post-weblog" match="any">
+<if type="map book webpage" match="any">
+<if type="map" match="any">
+<if type="map">
+<if type="motion_picture broadcast article-newspaper article-magazine" match="none">
+<if type="motion_picture broadcast article-newspaper entry-dictionary entry-encyclopedia" match="none">
+<if type="motion_picture broadcast legal_case" match="none">
+<if type="motion_picture broadcast paper-conference" match="any">
+<if type="motion_picture broadcast" match="any">
+<if type="motion_picture broadcast" match="none">
+<if type="motion_picture map book paper-conference entry-dictionary entry-encyclopedia chapter report" match="any">
+<if type="motion_picture map entry-dictionary entry-encyclopedia book speech paper-conference chapter" match="any">
+<if type="motion_picture musical_score" match="any">
+<if type="motion_picture paper-conference" match="any">
+<if type="motion_picture song" match="any">
+<if type="motion_picture" match="any">
+<if type="motion_picture">
+<if type="musical_score" match="any">
+<if type="musical_score" match="none">
+<if type="paper-conference broadcast article-newspaper" match="any">
+<if type="paper-conference post-weblog speech" match="none">
+<if type="paper-conference speech chapter article-journal article-magazine article-newspaper post-weblog post webpage broadcast" match="any">
+<if type="paper-conference speech" match="any">
+<if type="paper-conference thesis speech manuscript" match="any">
+<if type="paper-conference" match="all">
+<if type="paper-conference" match="any">
+<if type="paper-conference" match="none">
+<if type="paper-conference"/>
+<if type="paper-conference">
+<if type="patent article-newspaper webpage" match="any">
+<if type="patent manuscript article-newspaper broadcast motion_picture song entry-encyclopedia entry-dictionary" match="any">
+<if type="patent manuscript article-newspaper broadcast motion_picture song" match="any">
+<if type="patent report thesis webpage" match="any">
+<if type="patent thesis" match="any">
+<if type="patent" match="all" variable="number">
+<if type="patent" match="all">
+<if type="patent" match="any">
+<if type="patent" match="none">
+<if type="patent">
+<if type="personal_communication" match="any">
+<if type="personal_communication" match="none">
+<if type="personal_communication">
+<if type="post post-weblog speech" match="any">
+<if type="post post-weblog webpage bill" match="any">
+<if type="post post-weblog webpage manuscript dataset">
+<if type="post post-weblog webpage" match="any">
+<if type="post-weblog chapter entry-dictionary entry-encyclopedia paper-conference article-journal article-magazine article-newspaper" match="any">
+<if type="post-weblog webpage" match="any">
+<if type="post-weblog webpage" match="none">
+<if type="post-weblog webpage">
+<if type="post-weblog">
+<if type="report bill book graphic legal_case legislation motion_picture song webpage" match="any">
+<if type="report interview manuscript" match="any">
+<if type="report interview" match="any">
+<if type="report thesis book graphic motion_picture report song manuscript speech" match="any">
+<if type="report thesis book" match="any">
+<if type="report thesis interview patent entry-dictionary" match="any">
+<if type="report thesis manuscript map" match="any">
+<if type="report thesis manuscript" match="any">
+<if type="report thesis patent" match="any">
+<if type="report thesis speech interview" match="any">
+<if type="report thesis" match="any">
+<if type="report webpage book thesis interview patent speech" match="any">
+<if type="report webpage" match="any">
+<if type="report" match="all" is-numeric="number">
+<if type="report" match="all">
+<if type="report" match="any">
+<if type="report" match="none">
+<if type="report"/>
+<if type="report">
+<if type="review-book personal_communication article" match="any">
+<if type="song motion_picture broadcast" match="any">
+<if type="song motion_picture" match="any">
+<if type="song" match="any">
+<if type="song" variable="composer" match="all">
+<if type="song">
+<if type="speech article-magazine" match="any">
+<if type="speech motion_picture" match="none" variable="event version">
+<if type="speech paper-conference report post post-weblog webpage interview manuscript dataset" match="any">
+<if type="speech paper-conference" match="any">
+<if type="speech" match="any"/>
+<if type="speech" match="any">
+<if type="speech" match="none">
+<if type="speech" variable="container-title" match="any">
+<if type="speech" variable="event" match="any">
+<if type="speech" variable="publisher publisher-place" match="any">
+<if type="speech" variable="publisher publisher-place" match="none">
+<if type="speech">
+<if type="statute"> -->
+<if type="thesis article book" match="any" variable="event">
+<if type="thesis bill book graphic legal_case legislation motion_picture report song" match="any">
+<if type="thesis chapter" match="any">
+<if type="thesis dataset speech interview broadcast" match="any">
+<if type="thesis manuscript personal_communication speech motion_picture">
+<if type="thesis patent" match="any">
+<if type="thesis report" match="any">
+<if type="thesis" match="all">
+<if type="thesis" match="any">
+<if type="thesis" match="none">
+<if type="thesis" variable="archive" match="all">
+<if type="thesis" variable="archive">
+<if type="thesis">
+<if type="treaty" match="none">
+<if type="treaty">
+<if type="webpage article article-journal" match="any">
+<if type="webpage article-journal" match="none">
+<if type="webpage article-newspaper broadcast figure graphic post post-weblog song" match="any">
+<if type="webpage book" match="any">
+<if type="webpage entry-encyclopedia" match="any">
+<if type="webpage interview personal_communication post-weblog" match="any">
+<if type="webpage post post-weblog" match="any">
+<if type="webpage post post-weblog" match="none">
+<if type="webpage post post-weblog">
+<if type="webpage post-weblog article-journal">
+<if type="webpage post-weblog post graphic" match="any">
+<if type="webpage post-weblog" match="any">
+<if type="webpage post-weblog" match="none">
+<if type="webpage post-weblog" variable="accessed" match="any">
+<if type="webpage post-weblog">
+<if type="webpage report" match="any">
+<if type="webpage report">
+<if type="webpage song" match="any">
+<if type="webpage thesis article article-magazine article-newspaper article-journal manuscript" match="any">
+<if type="webpage" match="all">
+<if type="webpage" match="any" variable="URL">
+<if type="webpage" match="any">
+<if type="webpage" match="none" variable="issued">
+<if type="webpage" match="none">
+<if type="webpage" variable="URL" match="all">
+<if type="webpage" variable="container-title" match="all">
+<if type="webpage"/>
+<if type="webpage">
+<if variable="DOI URL accessed" match="any">
+<if variable="DOI URL" match="any">
+<if variable="DOI accessed" match="all">
+<if variable="DOI issued" match="none">
+<if variable="DOI volume" match="none">
+<if variable="DOI" match="all">
+<if variable="DOI" match="any">
+<if variable="DOI" match="none">
+<if variable="DOI" type="legal_case" match="none">
+<if variable="DOI"/>
+<if variable="DOI">
+<if variable="ISBN ISBN" match="any">
+<if variable="ISBN ISSN container-title" match="any">
+<if variable="ISBN ISSN" match="any">
+<if variable="ISBN">
+<if variable="ISSN">
+<if variable="PMCID" match="none">
+<if variable="PMCID">
+<if variable="PMID" match="any">
+<if variable="PMID">
+<if variable="URL DOI" match="any">
+<if variable="URL DOI" match="none">
+<if variable="URL accessed" match="all">
+<if variable="URL archive" match="any">
+<if variable="URL archive" match="none">
+<if variable="URL collection-title collection-number" match="any">
+<if variable="URL" match="all">
+<if variable="URL" match="any">
+<if variable="URL" match="none">
+<if variable="URL" type="webpage post-weblog">
+<if variable="URL" type="webpage" match="all">
+<if variable="URL" type="webpage">
+<if variable="URL"/>
+<if variable="URL">
+<if variable="accessed URL archive" match="any">
+<if variable="accessed URL" match="any">
+<if variable="accessed" match="any">
+<if variable="accessed" match="none">
+<if variable="accessed">
+<if variable="archive archive_location" match="all">
+<if variable="archive" match="any">
+<if variable="archive">
+<if variable="archive_location">
+<if variable="author container-author" match="all"/>
+<if variable="author container-title" match="any">
+<if variable="author editor container-author" match="any">
+<if variable="author editor container-author" match="none">
+<if variable="author editor editorial-director" match="any">
+<if variable="author editor translator collection-editor interviewer" match="any">
+<if variable="author editor translator collection-editor" match="any">
+<if variable="author editor translator collection-editor" match="none">
+<if variable="author editor translator title title-short" match="any">
+<if variable="author editor translator title" match="any">
+<if variable="author editor translator title" match="none">
+<if variable="author editor translator" match="any">
+<if variable="author editor translator" match="none">
+<if variable="author editor" match="any"/>
+<if variable="author editor" match="any">
+<if variable="author editor" match="none">
+<if variable="author recipient">
+<if variable="author title" match="any">
+<if variable="author translator" match="none">
+<if variable="author" match="all">
+<if variable="author" match="any">
+<if variable="author" match="none">
+<if variable="author" type="book" match="all">
+<if variable="author" type="motion_picture" match="all">
+<if variable="author"/>
+<if variable="author">
+<if variable="authority number" match="all">
+<if variable="authority" match="none">
+<if variable="authority">
+<if variable="call-number" match="none">
+<if variable="call-number">
+<if variable="chapter-number">
+<if variable="collection-editor">
+<if variable="collection-number">
+<if variable="collection-title collection-number" match="any">
+<if variable="collection-title" match="any">
+<if variable="collection-title" match="none">
+<if variable="collection-title">
+<if variable="composer author" match="all">
+<if variable="container-author author" match="all">
+<if variable="container-author editor note" match="any">
+<if variable="container-author editor translator collection-editor" match="any">
+<if variable="container-author editor translator" match="any">
+<if variable="container-author editor" match="any">
+<if variable="container-author reviewed-author" match="any">
+<if variable="container-author" match="all">
+<if variable="container-author" match="any">
+<if variable="container-author" match="none">
+<if variable="container-author" type="chapter" match="all">
+<if variable="container-author">
+<if variable="container-title chapter-number" match="any">
+<if variable="container-title event" match="all">
+<if variable="container-title event" match="any">
+<if variable="container-title event" match="none">
+<if variable="container-title number" match="none">
+<if variable="container-title" match="any">
+<if variable="container-title" match="none">
+<if variable="container-title" type="post-weblog webpage post report thesis" match="none">
+<if variable="container-title">
+<if variable="container-title-short">
+<if variable="edition container-title" match="any">
+<if variable="edition" match="any">
+<if variable="edition" match="none">
+<if variable="edition">
+<if variable="editor author" match="all"/>
+<if variable="editor author" match="all">
+<if variable="editor collection-title" match="any">
+<if variable="editor container-title" match="all">
+<if variable="editor container-title" match="any">
+<if variable="editor director" match="all">
+<if variable="editor edition" match="any">
+<if variable="editor translator" match="any">
+<if variable="editor" match="any">
+<if variable="editor">
+<if variable="event version" type="speech motion_picture" match="none">
+<if variable="event version" type="speech" match="none">
+<if variable="event" match="any">
+<if variable="event" match="none">
+<if variable="event" type="speech motion_picture" match="none">
+<if variable="event" type="speech" match="none">
+<if variable="event" type="webpage" match="none">
+<if variable="event">
+<if variable="event-date">
+<if variable="event-place publisher-place" match="any">
+<if variable="event-place publisher-place" match="none"/>
+<if variable="event-place">
+<if variable="genre URL" match="any">
+<if variable="genre" match="any">
+<if variable="genre" match="none">
+<if variable="genre">
+<if variable="illustrator">
+<if variable="interviewer" match="any">
+<if variable="interviewer" match="none">
+<if variable="interviewer">
+<if variable="issue volume" match="any">
+<if variable="issue" match="any">
+<if variable="issue" type="article-newspaper" match="any">
+<if variable="issue">
+<if variable="issued accessed" match="any">
+<if variable="issued note" match="none">
+<if variable="issued original-date" match="none">
+<if variable="issued original-date">
+<if variable="issued publisher" match="any">
+<if variable="issued submitted" match="all">
+<if variable="issued" match="any">
+<if variable="issued" match="none">
+<if variable="issued">
+<if variable="locator accessed URL" match="any">
+<if variable="locator page" match="any">
+<if variable="locator volume" match="none">
+<if variable="locator" match="any"/>
+<if variable="locator" match="any">
+<if variable="locator" match="none">
+<if variable="locator">
+<if variable="medium version" match="any">
+<if variable="medium">
+<if variable="note" match="none">
+<if variable="note">
+<if variable="number authority" match="all">
+<if variable="number issue" match="any">
+<if variable="number title" match="all">
+<if variable="number volume container-title" match="all">
+<if variable="number" match="any">
+<if variable="number" match="none">
+<if variable="number">
+<if variable="number-of-pages">
+<if variable="number-of-volumes" match="any">
+<if variable="number-of-volumes">
+<if variable="original-date issued" match="all">
+<if variable="original-date">
+<if variable="original-publisher original-publisher-place" match="none">
+<if variable="page " match="none">
+<if variable="page DOI URL" match="any">
+<if variable="page issue" match="none">
+<if variable="page volume" match="all">
+<if variable="page volume" match="any">
+<if variable="page volume" match="none">
+<if variable="page" match="all">
+<if variable="page" match="any">
+<if variable="page" match="none">
+<if variable="page" type="book" match="none">
+<if variable="page" type="chapter" match="all">
+<if variable="page"/>
+<if variable="page">
+<if variable="page-first">
+<if variable="publisher ISBN ISSN" match="any">
+<if variable="publisher accessed URL" match="any">
+<if variable="publisher issued genre container-title" match="any">
+<if variable="publisher issued" match="none">
+<if variable="publisher publisher-place issued" match="all">
+<if variable="publisher publisher-place" match="any">
+<if variable="publisher publisher-place" match="none">
+<if variable="publisher" match="any">
+<if variable="publisher" match="none">
+<if variable="publisher"/>
+<if variable="publisher">
+<if variable="publisher-place accessed URL" match="any">
+<if variable="publisher-place publisher" match="any">
+<if variable="publisher-place publisher" match="none">
+<if variable="publisher-place" match="any">
+<if variable="publisher-place" match="none">
+<if variable="publisher-place">
+<if variable="recipient" match="any">
+<if variable="recipient">
+<if variable="reviewed-author">
+<if variable="reviewed-title" match="none">
+<if variable="reviewed-title">
+<if variable="scale">
+<if variable="section" match="any">
+<if variable="source URL" match="all">
+<if variable="source" match="none">
+<if variable="source">
+<if variable="title author" match="none">
+<if variable="title title-short" match="any">
+<if variable="title" match="all">
+<if variable="title" match="any"/>
+<if variable="title" match="none" type="personal_communication">
+<if variable="title" match="none"/>
+<if variable="title" match="none">
+<if variable="title" type="personal_communication" match="none">
+<if variable="title">
+<if variable="title-short author">
+<if variable="title-short title" match="any">
+<if variable="title-short" match="any">
+<if variable="title-short" type="legislation bill entry-dictionary" match="all">
+<if variable="title-short">
+<if variable="translator">
+<if variable="version medium" match="any">
+<if variable="version" match="all">
+<if variable="version" match="any">
+<if variable="version" match="none">
+<if variable="version" type="book" match="all">
+<if variable="version" type="book" match="any">
+<if variable="version">
+<if variable="volume chapter-number" match="any">
+<if variable="volume chapter-number" match="none">
+<if variable="volume collection-title" match="all">
+<if variable="volume issue page" match="any" type="article-newspaper">
+<if variable="volume issue page" match="any">
+<if variable="volume issue page" match="none">
+<if variable="volume issue" match="all">
+<if variable="volume issue" match="any" type="chapter">
+<if variable="volume issue" match="any">
+<if variable="volume issue" match="none">
+<if variable="volume locator" match="all">
+<if variable="volume number-of-volumes" match="all">
+<if variable="volume number-of-volumes" match="any">
+<if variable="volume page" match="none">
+<if variable="volume" match="all">
+<if variable="volume" match="any">
+<if variable="volume" match="none">
+<if variable="volume"/>
+<if variable="volume">
+<macro name="editor"><choose><if type="chapter" match="none"></if></choose><names variable="editor"><name form="long" and="text" delimiter-precedes-last="never" sort-separator=" " font-style="normal"><name-part name="family" font-variant="small-caps"/></name><label form="short" prefix="&#160;(" suffix=".)"/></names></macro>

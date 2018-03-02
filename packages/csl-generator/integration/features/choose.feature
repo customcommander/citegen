@@ -23,7 +23,7 @@ Scenario: A very simple citation style
     """
   And the following document
     """
-    [{}]
+    [{"type": "article"}]
     """
   Then I expect the following citation
     """
