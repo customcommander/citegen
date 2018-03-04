@@ -1,6 +1,9 @@
 var tap = require('tap');
 var td = require('testdouble');
+var {check, gen, property} = require('testcheck');
+var genNumber = require('./testcheck-generators/number');
 var ifFn = require('./csl-node-if'); // Subject Under Test
+
 
 tap.test('should support the type attribute', t => {
   var iff = ifFn(/* locales */ {}, /* macros */ {});
@@ -18,18 +21,17 @@ tap.test('should support the type attribute', t => {
   t.end();
 });
 
-tap.test('should invoke all children with ref and concatenate their results', t => {
-  var ref = {type: 'article'};
-  var foo = td.function();
-  var bar = td.function();
-  var baz = td.function();
+tap.test('shoud support the "is-numeric" attribute', t => {
+  const iff = ifFn(/* locales*/{}, /* macros */ {});
 
-  td.when(foo(ref)).thenReturn('foo');
-  td.when(bar(ref)).thenReturn('bar');
-  td.when(baz(ref)).thenReturn('baz');
+  const child = td.function();
+  td.when(child(td.matchers.anything())).thenReturn('ok');
 
-  var iff = ifFn(/* locales */ {}, /* macros */ {}, /* attributes */ {type: 'article'});
-  var out = iff([foo, bar, baz], ref);
-  t.is(out, 'foobarbaz');
+  const applyChildrenWhenFieldIsNumeric = property({'is-numeric': 'volume'}, [child, child], gen.object({volume: genNumber}),
+    (attrs, children, ref) => iff(attrs, children, ref) === 'okok'
+  );
+
+  const propCheck = check(applyChildrenWhenFieldIsNumeric);
+  t.is(propCheck.result, true, 'apply children if field is numeric');
   t.end();
 });

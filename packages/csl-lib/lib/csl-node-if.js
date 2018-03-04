@@ -5,13 +5,22 @@ var isType = R.curry(function (types, ref) {
   return R.any(thisType, types);
 });
 
+var isNumeric = R.curry(function (vars, ref) {
+  return R.any(R.pipe(
+    R.prop(R.__, ref),
+    R.split(/[,\-&]/),
+    R.all(R.pipe(R.trim, R.test(/^[a-z]*\d+[a-z]*$/i)))
+  ), vars);
+});
+
 /**
  * @function
  * @param {object} attrs - CSL Node Attributes
  * @return {function[]}
  */
 var generateConditions = R.compose(R.values, R.evolve({
-  type: R.compose(isType, R.split(' '))
+  type: R.compose(isType, R.split(' ')),
+  'is-numeric': R.compose(isNumeric, R.split(' '))
 }));
 
 var generateEvaluate = function (attrs) {
