@@ -1,8 +1,14 @@
-var tap = require('tap');
-var delimiter = require('./csl-attr-delimiter');
+const tap = require('tap');
+const delimiter = require('./csl-attr-delimiter');
 
 tap.equal(delimiter(null, [1,2,3]), '123',
-  'default `delimiter` is an empty string');
+  'join values with an empty string if `attrs` is not an object.');
+
+tap.equal(delimiter({}, [1,2,3]), '123',
+  'join values with an empty string if `attrs` does not include a delimiter attribute.');
+
+tap.equal(delimiter({delimiter: []}, [1,2,3]), '123',
+  'join values with an empty string if `attrs.delimiter` is not a string.');
 
 tap.equal(delimiter({delimiter: '-'}, [1,2,3]), '1-2-3',
-  'join items in `arr` with `delimiter`');
+  'join values with given `attrs.delimiter` if it is a string.');
