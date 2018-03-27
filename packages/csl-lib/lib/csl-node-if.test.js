@@ -1,35 +1,42 @@
-var tap = require('tap');
-var td = require('testdouble');
-var {check, gen, property} = require('testcheck');
-var genNumber = require('./testcheck-generators/number');
-var ifFn = require('./csl-node-if'); // Subject Under Test
+const tap = require('tap');
+const td = require('testdouble');
+const {check, gen, property} = require('testcheck');
+const genNumber = require('./testcheck-generators/number');
+const ifFn = require('./csl-node-if'); // Subject Under Test
 
+tap.test('support the `type` attribute', t => {
+  const iff = ifFn(/* locales */ {}, /* macros */ {});
+  const ref = {type: 'article'};
+  const fn = td.function();
 
-tap.test('should support the type attribute', t => {
-  var iff = ifFn(/* locales */ {}, /* macros */ {});
-  var ref = {type: 'article'};
-  var foo = td.function();
-  var out;
+  td.when(fn(ref)).thenReturn('🌯');
 
-  out = iff({type: 'draft'}, [foo], ref);
-  t.is(out, '');
+  t.is(iff({type: 'xxx'}, [fn, fn], ref), '',
+    'return empty string when given type does not match');
 
-  td.when(foo(ref)).thenReturn('foo');
-  out = iff({type: 'draft article'}, [foo], ref);
-  t.is(out, 'foo');
+  t.is(iff({type: 'article'}, [fn, fn], ref), '🌯🌯',
+    'apply children if given type matches reference type');
+
+  t.is(iff({type: 'xxx yyy article zzz', match: 'any'}, [fn, fn], ref), '🌯🌯',
+    'apply children if any of the given types match reference type');
+
+  t.is(iff({type: 'xxx yyy zzz', match: 'none'}, [fn, fn], ref), '🌯🌯',
+    'apply children if none of the given type match reference type');
 
   t.end();
 });
 
-tap.test('shoud support the "is-numeric" attribute', t => {
+tap.test('support the `is-numeric` attribute', t => {
   const iff = ifFn(/* locales*/{}, /* macros */ {});
 
   const child = td.function();
   td.when(child(td.matchers.anything())).thenReturn('ok');
 
-  const applyChildrenWhenFieldIsNumeric = property({'is-numeric': 'volume'}, [child, child], gen.object({volume: genNumber}),
-    (attrs, children, ref) => iff(attrs, children, ref) === 'okok'
-  );
+  const applyChildrenWhenFieldIsNumeric = property(
+    {'is-numeric': 'volume'},
+      [child, child],
+        gen.object('volume', genNumber).notEmpty(),
+          (attrs, children, ref) => iff(attrs, children, ref) === 'okok');
 
   const propCheck = check(applyChildrenWhenFieldIsNumeric);
   t.is(propCheck.result, true, 'apply children if field is numeric');
