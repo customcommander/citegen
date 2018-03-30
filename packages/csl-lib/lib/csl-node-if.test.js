@@ -1,7 +1,7 @@
 const tap = require('tap');
 const td = require('testdouble');
-const {check, gen, property} = require('testcheck');
-const genNumber = require('./testcheck-generators/number');
+const {gen, sampleOne} = require('testcheck');
+const genNumber = require('./generators/number');
 const ifFn = require('./csl-node-if'); // Subject Under Test
 
 tap.test('support the `type` attribute', t => {
@@ -28,17 +28,13 @@ tap.test('support the `type` attribute', t => {
 
 tap.test('support the `is-numeric` attribute', t => {
   const iff = ifFn(/* locales*/{}, /* macros */ {});
+  const ref = sampleOne(gen.object({volume: genNumber}));
+  const fn = td.function();
 
-  const child = td.function();
-  td.when(child(td.matchers.anything())).thenReturn('ok');
+  td.when(fn(ref)).thenReturn('ok');
 
-  const applyChildrenWhenFieldIsNumeric = property(
-    {'is-numeric': 'volume'},
-      [child, child],
-        gen.object('volume', genNumber).notEmpty(),
-          (attrs, children, ref) => iff(attrs, children, ref) === 'okok');
+  t.is(iff({'is-numeric': 'volume'}, [fn, fn], ref), 'okok',
+    'apply children if field is numeric');
 
-  const propCheck = check(applyChildrenWhenFieldIsNumeric);
-  t.is(propCheck.result, true, 'apply children if field is numeric');
   t.end();
 });
