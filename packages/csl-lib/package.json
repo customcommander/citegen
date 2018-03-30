@@ -4,8 +4,8 @@
   "main": "index.js",
   "files": [
     "lib",
-    "!lib/*.test.js",
-    "!lib/testcheck-generators"
+    "!lib/generators",
+    "!lib/*.test.js"
   ],
   "license": "MIT",
   "scripts": {
