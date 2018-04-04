@@ -7,8 +7,6 @@ const sep = gen.oneOf([
   '&', ' &', '& ', ' & '
 ]);
 
-const num = gen.posInt.then(n => String(n));
-
 const affix = gen.array(gen.oneOf([
   'a', 'A', 'b', 'B', 'c', 'C', 'd', 'D', 'e', 'E',
   'f', 'F', 'g', 'G', 'h', 'H', 'i', 'I', 'j', 'J',
@@ -18,14 +16,11 @@ const affix = gen.array(gen.oneOf([
   'z', 'Z'
 ]), {minSize: 1, maxSize: 5}).then(join(''));
 
-const withPrefix = gen.array([affix, num]).then(arr => arr.join(''));
-
-const withSuffix = gen.array([num, affix]).then(arr => arr.join(''));
-
-const withPrefixAndSuffix = gen.array([affix, num, affix]).then(arr => arr.join(''));
-
+const num = gen.posInt.then(n => String(n));
+const withPrefix = gen.array([affix, num]).then(join(''));
+const withSuffix = gen.array([num, affix]).then(join(''));
+const withPrefixAndSuffix = gen.array([affix, num, affix]).then(join(''));
 const single = gen.oneOf([num, withPrefix, withSuffix, withPrefixAndSuffix]);
+const multiple = gen.array([single, sep, single]).then(join(''));
 
-const multiple = gen.array([single, sep, single]).then(arr => arr.join(''));
-
-module.exports = gen.oneOf([single, multiple]);
+module.exports = exports = gen.oneOf([single, multiple]);

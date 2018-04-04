@@ -1,0 +1,41 @@
+const {gen} = require('testcheck');
+
+const types = [
+  'article',
+  'article-magazine',
+  'article-newspaper',
+  'article-journal',
+  'bill',
+  'book',
+  'broadcast',
+  'chapter',
+  'dataset',
+  'entry',
+  'entry-dictionary',
+  'entry-encyclopedia',
+  'figure',
+  'graphic',
+  'interview',
+  'legislation',
+  'legal_case',
+  'manuscript',
+  'map',
+  'motion_picture',
+  'musical_score',
+  'pamphlet',
+  'paper-conference',
+  'patent',
+  'post',
+  'post-weblog',
+  'personal_communication',
+  'report',
+  'review',
+  'review-book',
+  'song',
+  'speech',
+  'thesis',
+  'treaty',
+  'webpage'
+];
+
+module.exports = exports = gen.oneOf(types);
