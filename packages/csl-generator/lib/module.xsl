@@ -26,6 +26,7 @@
     <xsl:variable name="fnName">
       <xsl:choose>
         <xsl:when test="name() = 'if'">ifFn</xsl:when>
+        <xsl:when test="name() = 'else-if'">elseIf</xsl:when>
         <xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
       </xsl:choose>
     </xsl:variable>

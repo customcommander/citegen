@@ -10,53 +10,39 @@ Scenario: choose with a single if statement
         <updated>2008-10-29T21:01:24+00:00</updated>
       </info>
       <citation>
-        <layout>
+        <layout delimiter=", ">
             <choose>
               <if type="article">
+                <text value="art"/>
+                <text value="icle"/>
+              </if>
+              <else-if type="book" is-numeric="edition">
+                <text value="bo"/>
+                <text value="ok"/>
+              </else-if>
+              <else-if type="article" is-numeric="edition" match="any">
                 <text value="foo"/>
                 <text value="bar"/>
-              </if>
+              </else-if>
             </choose>
-        </layout>
-      </citation>
-    </style>
-    """
-  And the following document
-    """
-    [{"type": "article"}]
-    """
-  Then I expect the following citation
-    """
-    foobar
-    """
-
-Scenario: Render children if type matches nothing
-  Given the following citation style
-    """
-    <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
-      <info>
-        <id/>
-        <title/>
-        <updated>2008-10-29T21:01:24+00:00</updated>
-      </info>
-      <citation>
-        <layout>
             <choose>
-              <if type="article" match="none">
-                <text value="foo"/>
-                <text value="bar"/>
+              <if type="article book" match="none">
+                <text value="chapter"/>
               </if>
             </choose>
         </layout>
       </citation>
     </style>
     """
-  And the following document
+  And the following documents
     """
-    [{"type": "draft"}]
+    [
+      {"type": "article"},
+      {"type": "book", "edition": "2nd"},
+      {"type": "chapter"}
+    ]
     """
   Then I expect the following citation
     """
-    foobar
+    article, book, chapter
     """
-
