@@ -7,3 +7,8 @@ test:
 		--100 \
 		$(if $(CI),,--coverage-report=html --reporter=spec --no-browser) \
 		-- lib/*.test.js
+
+index.js:
+	find ./lib -type f -name "csl-node-*.js" -and -not -name "*.test.js" | awk -f index.js.awk >$@
+
+.PHONY: index.js

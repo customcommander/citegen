@@ -23,14 +23,7 @@
   </xsl:template>
 
   <xsl:template match="csl:*" mode="function-call">
-    <xsl:variable name="fnName">
-      <xsl:choose>
-        <xsl:when test="name() = 'if'">ifFn</xsl:when>
-        <xsl:when test="name() = 'else-if'">elseIf</xsl:when>
-        <xsl:otherwise><xsl:value-of select="name()"/></xsl:otherwise>
-      </xsl:choose>
-    </xsl:variable>
-    lib.<xsl:value-of select="$fnName"/>(locales, macros,
+    lib['<xsl:value-of select="name()"/>'](locales, macros,
       <xsl:apply-templates select="self::node()" mode="param-attrs"/>,
       <xsl:apply-templates select="self::node()" mode="param-children"/>)
   </xsl:template>
