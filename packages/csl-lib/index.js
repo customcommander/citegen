@@ -1,8 +1,10 @@
+// This file has been auto-generated
+// Run `make index.js` to regenerate it
 module.exports = {
-  choose: require('./lib/csl-node-choose'),
-  citation: require('./lib/csl-node-citation'),
-  elseIf: require('./lib/csl-node-else-if'),
-  ifFn: require('./lib/csl-node-if'),
-  layout: require('./lib/csl-node-layout'),
-  text: require('./lib/csl-node-text')
+  'choose': require('./lib/csl-node-choose.js'),
+  'citation': require('./lib/csl-node-citation.js'),
+  'else-if': require('./lib/csl-node-else-if.js'),
+  'if': require('./lib/csl-node-if.js'),
+  'layout': require('./lib/csl-node-layout.js'),
+  'text': require('./lib/csl-node-text.js'),
 };
