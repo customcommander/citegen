@@ -1,6 +1,10 @@
-var tap = require('tap');
-var td = require('testdouble');
-var textFn = require('./csl-node-text'); // Subject Under Test
+const R = require('ramda');
+const tap = require('tap');
+const {gen, check, property} = require('testcheck');
+const td = require('testdouble');
+const genDisplayAttr = require('./generators/attr-display');
+const displayAttr = require('./csl-attr-display');
+const textFn = require('./csl-node-text'); // Subject Under Test
 
 tap.test('should support a "value" attribute', t => {
   var text = textFn({}, {});
@@ -37,3 +41,10 @@ tap.test('should support a "term" attribute', t => {
   t.is(text({term: 'greetings'}, [], {}), 'Hello World!');
   t.end();
 });
+
+const supportDisplayAttr =
+  property(genDisplayAttr, gen.asciiString.notEmpty(),
+    (attr, str) => textFn({}, {}, R.merge(attr, {value: 'foo'}), [], {}) === displayAttr(attr, 'foo'));
+
+tap.is(check(supportDisplayAttr).result, true,
+  'supports "display" attribute.');

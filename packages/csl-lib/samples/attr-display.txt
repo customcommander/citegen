@@ -1,0 +1,35 @@
+<group delimiter=" " display="block" font-weight="bold">
+<group display="block" delimiter=" " font-weight="bold">
+<group display="block" delimiter=" ">
+<group display="block" delimiter=" : " suffix=".">
+<group display="block" delimiter="">
+<group display="block" delimiter=", " prefix=", ">
+<group display="block" delimiter=", " suffix=".">
+<group display="block" delimiter=", ">
+<group display="block" delimiter=". ">
+<group display="block" delimiter=".">
+<group display="block" font-style="italic">
+<group display="block" font-weight="bold">
+<group display="block" suffix=".">
+<group display="block" suffix=".&#9;">
+<group display="block">
+<group display="indent" suffix=".">
+<group display="indent">
+<group display="left-margin" prefix=" (" suffix=")">
+<group display="left-margin">
+<group display="right-inline" suffix=".">
+<group display="right-inline">
+<text macro="author" display="block" suffix="."/>
+<text macro="author" display="block"/>
+<text macro="contributors" display="block"/>
+<text macro="date" display="left-margin" suffix=" "/>
+<text macro="date" display="left-margin"/>
+<text macro="title" display="right-inline" prefix=" "/>
+<text variable="PMID" display="block" prefix="PMID "/>
+<text variable="abstract" display="block"/>
+<text variable="citation-number" display="left-margin" suffix=". "/>
+<text variable="locator" form="short" display="block"/>
+<text variable="note" display="block"/>
+<text variable="title" font-style="normal" font-variant="normal" font-weight="normal" text-decoration="none" display="right-inline"/>
+<text variable="title" form="short" font-weight="bold" display="block"/>
+<text variable="year-suffix" form="short" text-case="lowercase" display="block" prefix=" "/>
