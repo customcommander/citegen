@@ -1,5 +1,6 @@
 var R = require('ramda');
 var l10nText = require('./csl-l10n-text');
+var textCaseAttr = require('./csl-attr-text-case');
 
 var getEmptyString = R.always('');
 var getTerm = l10nText;
@@ -29,5 +30,5 @@ module.exports = R.curry(function (locales, macros, attrs, children, ref) {
     [R.T, getEmptyString]
   ])(attrs);
 
-  return content;
+  return textCaseAttr(attrs, content);
 });
