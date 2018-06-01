@@ -1,10 +1,12 @@
-csl_files = $(shell find test/csl -type f -name "*.csl")
-cucumber = ./node_modules/.bin/cucumber-js
-test_files := $(shell find integration -type f)
-features_files = $(filter %.feature,$(test_files))
+tap = ./node_modules/.bin/tap
 
-test: csl-check
-	$(cucumber) --fail-fast --exit integration/
+test: tmp
+	$(tap) \
+		--bail \
+		--cov \
+		--100 \
+		$(if $(CI),,--coverage-report=html --reporter=spec --no-browser) \
+		-- lib/*.test.js
 
 csl-check: tmp/csl-check
 tmp/csl-check: $(patsubst integration/features/%.feature,tmp/csl-check/%.feature,$(features_files))
@@ -15,6 +17,8 @@ tmp/csl-check/%.feature: integration/features/%.feature
 	find $(dir $@) -type f -name "$*-*" -print0 | xargs -0 -n1 jing -c /var/csl/csl.rnc
 	touch $@
 
+tmp:; mkdir -p $@
+
 clean:; rm -rfv tmp
 
-.PHONY: test
+.PHONY: test tmp

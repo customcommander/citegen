@@ -16,11 +16,11 @@ Scenario: A very simple citation style
       </citation>
     </style>
     """
-  And the following document
+  And the following data
     """
     [{},{}]
     """
-  Then I expect the following citation
+  Then the following result is expected
     """
     (a,a)
     """

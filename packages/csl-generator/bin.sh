@@ -1,10 +1,13 @@
 #!/bin/sh
 
-THIS_DIR=$(dirname $(realpath $0))
-XSL_FILE=$(realpath $THIS_DIR/lib/module.xsl)
-CSL_FILE=$(realpath $1 2>/dev/null)
+csl_file=$1
+xsl_path=$(dirname $(realpath $0))/lib/module.xsl
 
-test $? -ne 0 && echo "path no found: $1" && exit 1
-test -f $CSL_FILE || (echo "file does not exist: $CSL_FILE" && exit 1)
-
-xsltproc -o $2 $XSL_FILE $CSL_FILE 
+# if csl file exists and is not empty
+if [ -s $csl_file ]; then
+  xsltproc $xsl_path $csl_file
+  exit $0
+else
+  echo "file not found: $csl_file" 1>&2
+  exit 1
+fi

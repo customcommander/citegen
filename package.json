@@ -2,9 +2,12 @@
   "name": "@customcommander/citegen",
   "private": true,
   "version": "1.0.0",
-  "description": "",
+  "description": "CSL Processor Generator",
   "workspaces": [
     "packages/csl-distribution",
+    "packages/csl-features-extras",
+    "packages/csl-features-std",
+    "packages/csl-features-support",
     "packages/csl-generator",
     "packages/csl-lib",
     "packages/csl-locales"

@@ -34,7 +34,7 @@ Scenario: choose with a single if statement
       </citation>
     </style>
     """
-  And the following documents
+  And the following data
     """
     [
       {"type": "article"},
@@ -42,7 +42,7 @@ Scenario: choose with a single if statement
       {"type": "chapter"}
     ]
     """
-  Then I expect the following citation
+  Then the following result is expected
     """
     article, book, chapter
     """

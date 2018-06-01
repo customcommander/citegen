@@ -1,0 +1,182 @@
+## About
+
+This package contains the entire test suite from the `citation-style-language/test-suite` project converted to Gherkin.
+
+There is one `.feature` file for each `.txt` file found in the `processor-tests/humans`
+directory of the `citation-style-language/test-suite` project.
+
+## Installation
+
+NPM
+
+`npm install @customcommander/csl-features-std`
+
+Yarn
+
+`yarn add @customcommander/csl-features-std`
+
+Features files will be available in the `dist` folder.
+
+## Development
+
+This package depends on the `citation-style-language/test-suite` project which is a Git submodule of this repository. (Cf. `vendor/test-suite`.)
+
+| Make target      | Comment                                             |
+|:-----------------|:----------------------------------------------------|
+| `make`           | Alias for `make dist README.md`                     |
+| `make dist`      | Generate the `dist` folder from `vendor/test-suite` |
+| `make clean`     | Delete the `dist` folder                            |
+| `make README.md` | Keeps `README.md` up to date with `dist/*.feature`  |
+
+## Text To Gherkin Conversion
+
+The content of the `>>===== MODE =====>>` section becomes a "mode" tag.
+
+The first part of the filename becomes a "feature" tag. The second part becomes the name of the feature.
+
+Example: `affix_CommaAfterQuote.txt`
+
+```
+>>===== MODE =====>>
+citation
+<<===== MODE =====<<
+
+...
+```
+
+```gherkin
+@citation @affix
+Feature: CommaAfterQuote
+
+...
+```
+
+Each opening section (except for the `MODE` section) corresponds to a Gherkin step.
+
+Everything between the opening and the closing of a section is passed as a Doc String.
+
+Example:
+
+```
+>>===== CSL =====>>
+<style>
+  <!-- some style -->
+</style>
+<<===== CSL =====<<
+```
+
+```gherkin
+Given the following citation style
+  """
+  <style>
+    <!-- some style -->
+  </style>
+  """
+```
+
+A feature file always starts with the `CSL` section and ends with the `RESULT` section.
+
+Example: `example_HelloWorld.feature`
+
+```gherkin
+@citation @example
+Feature: HelloWorld
+
+Scenario:
+Given the following citation style
+  """
+  <style>
+    <!-- ... -->
+  </style>
+  """
+# ...
+# (some additional steps here)
+# ...
+Then the following result is expected
+  """
+  Some citation
+  """
+```
+
+### Section To Step Reference
+
+| Section        | Step                                            |
+|:---------------|:------------------------------------------------|
+| ABBREVIATIONS  | the following abbreviations                     |
+| BIBENTRIES     | the following bibliographic entries             |
+| BIBSECTION     | the following bibliographic sections            |
+| CITATION-ITEMS | the following citations items                   |
+| CITATIONS      | the following citations                         |
+| CSL            | the following citation style                    |
+| INPUT          | the following data                              |
+| INPUT2         | the following additional data                   |
+| MODE           | (no associated step; start of the feature file) |
+| OPTIONS        | the following options                           |
+| RESULT         | the following result is expected                |
+
+### Mode Tags
+
+{{#modes}}
+- {{.}}
+{{/modes}}
+
+### Feature Tags
+
+{{#features}}
+- {{.}}
+{{/features}}
+
+## Full Conversion Example
+
+Before: `sample_GenerateCitation.txt`
+
+```
+>>===== MODE =====>>
+citation
+<<===== MODE =====<<
+
+>>===== CSL =====>>
+<style>
+  <!-- ... -->
+</style>
+<<===== CSL =====<<
+
+>>===== INPUT =====>>
+[
+  {
+    /* ... */
+  }
+]
+<<===== INPUT =====<<
+
+>>===== RESULT =====>>
+Expected citation
+<<===== RESULT =====<<
+```
+
+After: `sample_GenerateCitation.feature`
+
+```gherkin
+@citation @sample
+Feature: GenerateCitation
+
+Scenario:
+Given the following citation style
+  """
+  <style>
+    <!-- ... -->
+  </style>
+  """
+And the following data
+  """
+  [
+    {
+      /* ... */
+    }
+  ]
+  """
+Then the following result is expected
+  """
+  Expected citation
+  """
+```
