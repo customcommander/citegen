@@ -1,0 +1,25 @@
+{
+  "name": "@customcommander/csl-features-support",
+  "version": "1.0.0",
+  "license": "MIT",
+  "bin": {
+    "csl-validate": "bin/csl-validate.sh"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "!lib/*.test.js"
+  ],
+  "scripts": {
+    "postinstall": "mkdir -p tmp"
+  },
+  "devDependencies": {
+    "tap": "^12.0.1"
+  },
+  "dependencies": {
+    "@customcommander/csl-generator": "^1.0.0",
+    "@customcommander/csl-lib": "^1.0.0",
+    "@customcommander/csl-locales": "^1.0.0",
+    "uuid": "^3.2.1"
+  }
+}

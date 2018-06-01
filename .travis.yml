@@ -11,7 +11,7 @@ node_js:
   - "8"
 
 install:
-  - make build-docker
+  - docker pull customcommander/citegen-dev
   - make start-docker
   - docker exec citegen-dev-box yarn
 

@@ -1,5 +1,5 @@
 {
-  "name": "@customcommander/csl-generator",
+  "name": "@customcommander/csl-features-extras",
   "version": "1.0.0",
   "license": "MIT",
   "main": "index.js",
@@ -9,8 +9,10 @@
     "!lib/*.test.js"
   ],
   "devDependencies": {
+    "@customcommander/csl-features-support": "^1.0.0",
     "@customcommander/csl-lib": "^1.0.0",
     "@customcommander/csl-locales": "^1.0.0",
+    "cucumber": "^4.2.1",
     "tap": "^12.0.1"
   }
 }

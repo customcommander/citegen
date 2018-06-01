@@ -32,11 +32,11 @@ Scenario: Text node with a text-case attribute
       </citation>
     </style>
     """
-  And the following document
+  And the following data
     """
     [{}]
     """
-  Then I expect the following citation
+  Then the following result is expected
     """
     hello, WORLD, Hello world, Hello World, Foo bar baz, Aaa bbb ccc, Heal the World, Intern, The, The Intern
     """
@@ -63,11 +63,11 @@ Scenario: Text node with a display attribute
       </citation>
     </style>
     """
-  And the following document
+  And the following data
     """
     [{}]
     """
-  Then I expect the following citation
+  Then the following result is expected
     """
     <div class="csl-display-line">aaa</div> <div class="csl-display-col1">bbb</div> <div class="csl-display-col2">ccc</div> <div class="csl-display-indent">ddd</div>
     """

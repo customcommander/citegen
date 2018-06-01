@@ -1,0 +1,27 @@
+{
+  "name": "@customcommander/csl-features-std",
+  "version": "1.0.0",
+  "description": "Test suite from citation-style-language/test-suite converted to Gherkin",
+  "keywords": [
+    "csl",
+    "citation style language",
+    "gherkin"
+  ],
+  "files": [
+    "dist"
+  ],
+  "author": {
+    "name": "Julien Gonzalez",
+    "email": "hello@spinjs.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/customcommander/citegen"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@customcommander/csl-features-support": "^1.0.0",
+    "cucumber": "^4.2.1",
+    "mustache": "^2.3.0"
+  }
+}
