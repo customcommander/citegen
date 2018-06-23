@@ -7,8 +7,7 @@
   },
   "files": [
     "bin",
-    "lib",
-    "!lib/*.test.js"
+    "lib"
   ],
   "scripts": {
     "postinstall": "mkdir -p tmp"
