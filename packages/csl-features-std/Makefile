@@ -1,10 +1,18 @@
+node_bin = ./node_modules/.bin
+
 all: dist README.md
 
 dist: tmp/dist
+test: tmp/test
 
 tmp/dist: $(shell find ../../vendor/test-suite/processor-tests/humans -type f -name "*.txt")
 	mkdir -p tmp dist
 	./dist.sh $?
+	touch $@
+
+tmp/test: dist
+	mkdir -p tmp
+	$(node_bin)/cucumber-js --tags '@citation' -r ./support.js dist
 	touch $@
 
 README.md: tmp/readme-data.json read.me.mustache

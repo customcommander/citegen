@@ -5,6 +5,7 @@
   "bin": {
     "csl-validate": "bin/csl-validate.sh"
   },
+  "main": "lib/steps.js",
   "files": [
     "bin",
     "lib"
