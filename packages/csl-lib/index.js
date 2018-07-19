@@ -6,5 +6,6 @@ module.exports = {
   'else-if': require('./lib/csl-node-else-if.js'),
   'if': require('./lib/csl-node-if.js'),
   'layout': require('./lib/csl-node-layout.js'),
+  'number': require('./lib/csl-node-number.js'),
   'text': require('./lib/csl-node-text.js'),
 };

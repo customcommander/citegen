@@ -9,7 +9,7 @@ const ifFn = require('./csl-node-if'); // Subject Under Test
 const matchCond = R.propOr('all', 'match');
 const splitAttr = R.pipe(R.propOr(''), R.split(' '), R.reject(R.isEmpty));
 const wontMatch = R.pipe(R.map(R.objOf(R.__, 'NaN')), R.mergeAll);
-const willMatch = R.pipe(R.map(R.objOf(R.__, sampleOne(genNumber))), R.mergeAll);
+const willMatch = R.pipe(R.map(R.objOf(R.__, sampleOne(genNumber.any))), R.mergeAll);
 
 function generateMatchingTypeProp(attrs) {
   const prop = R.objOf('type');

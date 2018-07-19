@@ -1,5 +1,5 @@
 var R = require('ramda');
-var isNumeric = require('./csl-util-is-numeric');
+var isNumeric = require('./utils/number-is-numeric');
 
 var isType = function (ref) {
   return R.equals(R.prop('type', ref));
@@ -18,7 +18,7 @@ var evaluateConditions = function (attrs, ref) {
   return R.values(
     R.evolve({
       'type': R.o(R.map(isType(ref)), R.split(' ')),
-      'is-numeric': R.o(R.map(R.pipe(R.prop(R.__, ref), isNumeric)), R.split(' '))
+      'is-numeric': R.o(R.map(R.pipe(R.propOr('', R.__, ref), isNumeric)), R.split(' '))
     }, R.omit(['match'], attrs))
   );
 }
