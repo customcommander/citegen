@@ -116,7 +116,7 @@ var capitalizeWord = R.when(isLowerCased,
  */
 var capitalizeFirst = R.pipe(
   splitSentence,
-  R.adjust(capitalizeWord, 0),
+  R.over(R.lensIndex(0), capitalizeWord),
   R.join('')
 );
 

@@ -1,5 +1,5 @@
 var R = require('ramda');
-var l10nText = require('./csl-l10n-text');
+var l10nText = require('./l10n/find-term-text');
 var displayAttr = require('./csl-attr-display');
 var textCaseAttr = require('./csl-attr-text-case');
 

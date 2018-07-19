@@ -20,80 +20,107 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/**
- * @file Finds a term in a list of locales.
- * @author Julien Gonzalez <hello@spinjs.com>
- */
+const {
+  allPass,
+  compose,
+  concat,
+  cond,
+  curry,
+  either,
+  equals,
+  filter,
+  has,
+  identity,
+  ifElse,
+  is,
+  isEmpty,
+  juxt,
+  lensProp,
+  map,
+  merge,
+  of,
+  pipe,
+  prop,
+  propEq,
+  propOr,
+  propSatisfies,
+  reject,
+  set,
+  T,
+  take,
+  test,
+  transduce
+} = require('ramda');
 
-var R = require('ramda');
+const form = propOr('long', 'form');
+const term = prop('term');
+const plural = propOr('false', 'plural');
+const matchFunction = ifElse(is(RegExp), test, equals);
+
+/**
+ * Checks that given `term` has a name property equals to `termName`.
+ * @param {string} expected
+ * @param {term} term
+ * @return {boolean}
+ */
+const nameIs = curry((expected, term) =>
+  propSatisfies(matchFunction(expected), 'name', term));
+
+/**
+ * Checks that given `term` has a form property equals to `termForm`.
+ * @param {string} expected
+ * @param {term} term
+ * @return {boolean}
+ */
+const formIs = curry((expected, term) =>
+  expected === form(term));
+
+/**
+ * Checks that given `term` exposes a singular or plural form.
+ * @param {string} expected
+ * @param {term} term
+ * @return {boolean}
+ */
+const pluralIs = curry((expected, term) =>
+  has((expected === 'false' ? 'single' : 'multiple'), term));
 
 /**
  * Takes a set of attributes `attrs` and creates a function
  * that takes a term as its sole parameter and returns true
  * if it satisfies all attributes.
  *
- * @function
  * @param {object} attrs
  * @param {string} attrs.term term's name
  * @param {string} [attrs.form='long'] term's form
  * @param {string} [attrs.plural='false'] singular or plural version of the form?
  * @return {function}
  */
-var generatePredicate =
-  R.converge(
-    R.unapply(R.allPass), [
-      R.unary(
-        R.useWith(R.equals, [
-          R.prop('term'),
-          R.prop('name')])),
-      R.unary(
-        R.useWith(R.equals, [
-          R.prop('form'),
-          R.propOr('long', 'form')])),
-      R.unary(
-        R.useWith(R.has, [
-          R.ifElse(R.propEq('plural', 'false'),
-            R.always('single'),
-            R.always('multiple')),
-          R.identity]))]);
-
-/**
- * Returns a function to extract the value of a term
- * depending on the plural attribute.
- *
- * @example
- * var value = extractValue({plural: 'true'});
- * value({single: 'foo', multiple: 'bar'}); //=> 'bar'
- *
- * @function
- * @param {object} attrs
- * @return {function}
- */
-var extractValue =
-  R.ifElse(R.propEq('plural', 'false'),
-    R.always(R.prop('single')),
-    R.always(R.prop('multiple')));
+const predicate = (attrs) =>
+  allPass([
+    nameIs(term(attrs)),
+    formIs(form(attrs)),
+    pluralIs(plural(attrs))]);
 
 /**
  * Finds a term in a given list of locales `locales`
  * that satisfies the attributes `attrs`.
  *
- * @function
- * @param {object} attrs
  * @param {locale[]} locales
+ * @param {function} validate
+ * @param {object} attrs
  * @return {string}
  */
-var findTerm = R.curry(function (attrs, locales) {
-  return R.into('',
-    R.compose(
-      R.map(R.propOr([], 'terms')),
-      R.map(R.filter(generatePredicate(attrs))),
-      R.reject(R.isEmpty),
-      R.map(R.head),
-      R.map(extractValue(attrs)),
-      R.take(1)),
-    locales);
-});
+const findTerm = curry((locales, validate, attrs) =>
+  transduce(
+    compose(
+      map(propOr([], 'terms')),
+      map(filter(predicate(attrs))),
+      map(filter(validate)),
+      reject(isEmpty),
+      take(1)),
+    concat,
+    [],
+    locales));
 
 /**
  * Sets the form property of a given object to a given value.
@@ -102,45 +129,30 @@ var findTerm = R.curry(function (attrs, locales) {
  * setForm('short', {term: 'foo', form: 'long'});
  * //=> {term: 'foo', form: 'short'}
  *
- * @function
  * @param {string} form
  * @param {object} obj
  * @return {object} A similar object but with an updated form property
  */
-var setForm = R.set(R.lensProp('form'));
-
-/**
- * Merges defaults into given attributes.
- *
- * @example
- * withDefault({term: 'foo'});
- * //=> {term: 'foo', form: 'long', plural: 'false'}
- *
- * @function
- * @param {object} attrs
- * @return {object} The same attributes with default values.
- */
-var withDefault = R.merge({form: 'long', plural: 'false'});
+const setForm = set(lensProp('form'));
 
 /**
  * Implements the form fallback mechanism as described here:
  * http://docs.citationstyles.org/en/1.0.1/specification.html#terms
  *
- * @function
  * @param {object} attrs
  * @return {object[]} Array of attributes
  */
-var withFallback =
-  R.pipe(
-    withDefault,
-    R.cond([
-      [R.propEq('form', 'symbol'),
-        R.juxt([R.identity, setForm('short'), setForm('long')])],
-      [R.propEq('form', 'verb-short'),
-        R.juxt([R.identity, setForm('verb'), setForm('long')])],
-      [R.either(R.propEq('form', 'verb'), R.propEq('form', 'short')),
-        R.juxt([R.identity, setForm('long')])],
-      [R.T, R.of]]));
+const withFallback =
+  pipe(
+    merge({form: 'long', plural: 'false'}),
+    cond([
+      [propEq('form', 'symbol'),
+        juxt([identity, setForm('short'), setForm('long')])],
+      [propEq('form', 'verb-short'),
+        juxt([identity, setForm('verb'), setForm('long')])],
+      [either(propEq('form', 'verb'), propEq('form', 'short')),
+        juxt([identity, setForm('long')])],
+      [T, of]]));
 
 /**
  * Finds a term in given list of locales `locales`, that satisfies
@@ -182,16 +194,18 @@ var withFallback =
  * findTerm({term: 'foo', plural: 'true'}, locales); //=> 'foo_long_plural'
  * findTerm({term: 'foo', form: 'short', plural: 'true'}, locales); //=> 'foo_short_plural'
  *
- * @module {function} csl-l10n-text
+ * @module {function} l10n/find-term
  * @param {object} attrs
+ * @param {function} validate
  * @param {locale[]} locales
  * @return {string}
  */
-module.exports = R.curry(function (attrs, locales) {
-  return R.into('',
-    R.compose(
-      R.map(findTerm(R.__, locales)),
-      R.reject(R.isEmpty),
-      R.take(1)),
-    withFallback(attrs));
-});
+module.exports = curry((attrs, validate, locales) =>
+  transduce(
+    compose(
+      map(findTerm(locales, validate)),
+      reject(isEmpty),
+      take(1)),
+    concat,
+    [],
+    withFallback(attrs)));

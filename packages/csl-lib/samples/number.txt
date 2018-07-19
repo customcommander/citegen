@@ -1,0 +1,136 @@
+<number variable="edition" form="numeric"/>
+<number font-style="italic" variable="volume"/>
+<number font-style="italic" vertical-align="baseline" variable="edition" form="ordinal"/>
+<number font-weight="bold" variable="volume"/>
+<number form="long-ordinal" variable="edition" text-case="capitalize-first"/>
+<number form="numeric" suffix=":" variable="volume"/>
+<number form="numeric" variable="number-of-volumes" prefix="1&#8211;"/>
+<number form="numeric" variable="number-of-volumes"/>
+<number form="numeric" variable="volume"/>
+<number form="ordinal" variable="collection-number"/>
+<number form="ordinal" variable="edition"/>
+<number prefix=" " variable="volume"/>
+<number prefix=" (" suffix=")" variable="issue"/>
+<number prefix=" Vol. " suffix="," variable="collection-number"/>
+<number prefix="(" suffix=")" variable="issue"/>
+<number prefix=", " suffix=" " variable="number"/>
+<number prefix=", " suffix=" " variable="number-of-volumes"/>
+<number prefix=", " suffix=" p." variable="number-of-pages"/>
+<number prefix=", " variable="edition" form="ordinal"/>
+<number prefix=", " variable="number"/>
+<number prefix=", " variable="number-of-pages"/>
+<number prefix=", " variable="volume" form="roman"/>
+<number prefix="ch. " variable="chapter-number" suffix=", "/>
+<number prefix="no. " suffix="," variable="issue"/>
+<number prefix="چاپ " variable="edition" form="long-ordinal"/>
+<number suffix=" " variable="edition" form="ordinal"/>
+<number suffix=" " variable="number-of-volumes"/>
+<number suffix=" " variable="volume"/>
+<number suffix=" ed." variable="edition" form="ordinal"/>
+<number suffix=", " variable="volume"/>
+<number suffix="," variable="issue"/>
+<number suffix="," variable="volume"/>
+<number suffix=". " variable="edition"/>
+<number suffix=":" variable="volume"/>
+<number suffix="a." variable="edition"/>
+<number text-case="capitalize-first" prefix=". " variable="edition" form="long-ordinal"/>
+<number text-case="capitalize-first" variable="edition" form="long-ordinal"/>
+<number text-case="capitalize-first" variable="edition" form="ordinal"/>
+<number text-case="capitalize-first" variable="edition"/>
+<number text-case="capitalize-first" variable="volume"/>
+<number text-case="lowercase" vertical-align="baseline" variable="edition" form="ordinal"/>
+<number text-case="uppercase" prefix=" " variable="volume" form="roman"/>
+<number text-case="uppercase" prefix=": " variable="volume" form="roman"/>
+<number text-case="uppercase" variable="volume" form="roman"/>
+<number variable="chapter-number" form="numeric"/>
+<number variable="chapter-number" form="ordinal"/>
+<number variable="chapter-number" prefix=" (c. " suffix=")"/>
+<number variable="chapter-number"/>
+<number variable="collection-number" prefix=", "/>
+<number variable="collection-number"/>
+<number variable="edition" form="long-ordinal" text-case="capitalize-first"/>
+<number variable="edition" form="long-ordinal" text-case="title"/>
+<number variable="edition" form="long-ordinal"/>
+<number variable="edition" form="numeric" suffix=" ed."/>
+<number variable="edition" form="numeric" suffix=". "/>
+<number variable="edition" form="numeric" suffix=". Aufl.&#160;"/>
+<number variable="edition" form="numeric" suffix="."/>
+<number variable="edition" form="numeric"/>
+<number variable="edition" form="ordinal" prefix=" ("/>
+<number variable="edition" form="ordinal" prefix="("/>
+<number variable="edition" form="ordinal" prefix=", "/>
+<number variable="edition" form="ordinal" prefix=". "/>
+<number variable="edition" form="ordinal" suffix=" "/>
+<number variable="edition" form="ordinal" suffix=" edn" prefix=", "/>
+<number variable="edition" form="ordinal" suffix=" edn"/>
+<number variable="edition" form="ordinal" text-case="lowercase" suffix=" "/>
+<number variable="edition" form="ordinal"/>
+<number variable="edition" suffix="."/>
+<number variable="edition" suffix="e"/>
+<number variable="edition" text-case="capitalize-first" suffix="."/>
+<number variable="edition" vertical-align="sup"/>
+<number variable="edition"/>
+<number variable="issue" form="numeric" prefix="(" suffix=") "/>
+<number variable="issue" form="numeric" prefix="(" suffix=")"/>
+<number variable="issue" form="numeric"/>
+<number variable="issue" prefix=" no. "/>
+<number variable="issue" prefix="(" suffix=")"/>
+<number variable="issue" prefix=", n° "/>
+<number variable="issue" prefix="/"/>
+<number variable="issue" prefix="no. "/>
+<number variable="issue" prefix="n°"/>
+<number variable="issue"/>
+<number variable="number" form="numeric"/>
+<number variable="number"/>
+<number variable="number-of-pages" suffix="p."/>
+<number variable="number-of-pages"/>
+<number variable="number-of-volumes" form="numeric" prefix=" "/>
+<number variable="number-of-volumes" form="numeric" prefix=" of "/>
+<number variable="number-of-volumes" form="numeric" prefix=", "/>
+<number variable="number-of-volumes" form="numeric" prefix="1&#8211;"/>
+<number variable="number-of-volumes" form="numeric" prefix="1-"/>
+<number variable="number-of-volumes" form="numeric" prefix="1–"/>
+<number variable="number-of-volumes" form="numeric" prefix="1�"/>
+<number variable="number-of-volumes" form="numeric" prefix="v. "/>
+<number variable="number-of-volumes" form="numeric"/>
+<number variable="number-of-volumes" form="roman" text-case="uppercase" prefix=" I-"/>
+<number variable="number-of-volumes" suffix=" "/>
+<number variable="number-of-volumes"/>
+<number variable="volume" font-style="italic"/>
+<number variable="volume" font-weight="bold"/>
+<number variable="volume" form="long-ordinal" text-case="capitalize-first"/>
+<number variable="volume" form="long-ordinal"/>
+<number variable="volume" form="numeric" prefix=" " suffix=" "/>
+<number variable="volume" form="numeric" prefix=" " suffix="."/>
+<number variable="volume" form="numeric" prefix=", "/>
+<number variable="volume" form="numeric" suffix=" of "/>
+<number variable="volume" form="numeric" suffix=", "/>
+<number variable="volume" form="numeric" suffix=","/>
+<number variable="volume" form="numeric" suffix=". "/>
+<number variable="volume" form="numeric" suffix="."/>
+<number variable="volume" form="numeric" suffix=":"/>
+<number variable="volume" form="numeric"/>
+<number variable="volume" form="ordinal"/>
+<number variable="volume" form="roman" font-variant="small-caps"/>
+<number variable="volume" form="roman" prefix=" "/>
+<number variable="volume" form="roman" text-case="uppercase"/>
+<number variable="volume" form="roman"/>
+<number variable="volume" prefix=" " suffix=":"/>
+<number variable="volume" prefix=" "/>
+<number variable="volume" prefix=" vol. " suffix=", "/>
+<number variable="volume" prefix=", "/>
+<number variable="volume" prefix=", vol. "/>
+<number variable="volume" suffix=" / "/>
+<number variable="volume" suffix=""/>
+<number variable="volume" suffix=", "/>
+<number variable="volume" suffix=". årgang"/>
+<number variable="volume" suffix="." form="numeric"/>
+<number variable="volume" suffix="."/>
+<number variable="volume" suffix=":"/>
+<number variable="volume"/>
+<number vertical-align="baseline" suffix=" " variable="edition" form="ordinal"/>
+<number vertical-align="baseline" suffix=" Bände," variable="number-of-volumes"/>
+<number vertical-align="baseline" variable="edition" form="ordinal"/>
+<number vertical-align="baseline" variable="edition"/>
+<number vertical-align="sup" prefix=" " variable="edition"/>
+<number vertical-align="sup" variable="edition"/>

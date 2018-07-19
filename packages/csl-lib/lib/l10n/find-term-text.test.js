@@ -1,8 +1,8 @@
 const R = require('ramda');
 const tap = require('tap');
-const l10nText = require('./csl-l10n-text'); // SUT
+const findTermText = require('./find-term-text'); // SUT
 
-const find = l10nText(R.__, [
+const find = findTermText(R.__, [
   {terms: [
     {name: '🌯', single: '🌯'},
     {name: '🌯', form: 'short', single: '🌮'}]},
