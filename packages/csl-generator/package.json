@@ -1,5 +1,6 @@
 {
   "name": "@customcommander/csl-generator",
+  "private": true,
   "version": "1.0.0",
   "license": "MIT",
   "main": "index.js",
@@ -8,6 +9,12 @@
     "lib",
     "!lib/*.test.js"
   ],
+  "workspaces": {
+    "nohoist": [
+      "@customcommander/csl-locales",
+      "@customcommander/csl-locales/**"
+    ]
+  },
   "devDependencies": {
     "@customcommander/csl-lib": "^1.0.0",
     "@customcommander/csl-locales": "^1.0.0",
