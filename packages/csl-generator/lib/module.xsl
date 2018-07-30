@@ -6,6 +6,8 @@
   xmlns:str="http://exslt.org/strings"
   extension-element-prefixes="str">
 
+  <xsl:import href="../node_modules/@customcommander/csl-locales/lib/xml2json.xsl"/>
+
   <xsl:output method="text" />
 
   <xsl:template match="csl:*" mode="param-attrs">
@@ -32,7 +34,10 @@
     var lib = require('@customcommander/csl-lib');
 
     var locales = [
-      require('@customcommander/csl-locales')['en-US']
+      <xsl:for-each select="csl:locale">
+        <xsl:apply-templates select="."/>
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
     ];
 
     var macros = {};
