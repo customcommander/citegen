@@ -7,7 +7,6 @@
   extension-element-prefixes="str">
 
   <xsl:output method="text" encoding="UTF-8" indent="yes"/>
-  <xsl:key name="csl_term" match="csl:term" use="@name"/>
 
   <xsl:template match="csl:locale">
   {
@@ -71,19 +70,13 @@
   </xsl:template>
 
   <xsl:template match="csl:terms">
-    "terms": {
-      <xsl:for-each select="csl:term[generate-id()=generate-id(key('csl_term', @name))]">
-        <xsl:sort select="@name" data-type="text"/>
-        "<xsl:value-of select="@name"/>": [
-          <xsl:variable name="this_name" select="@name"/>
-          <xsl:for-each select="//csl:term[@name=$this_name]">
-            <xsl:apply-templates select="." mode="object"/>
-            <xsl:if test="position() != last()">,</xsl:if>
-          </xsl:for-each>
-        ]
+    "terms": [
+      <xsl:for-each select="csl:term">
+        <xsl:sort select="@name"/>
+        <xsl:apply-templates select="." mode="object"/>
         <xsl:if test="position() != last()">,</xsl:if>
       </xsl:for-each>
-    }
+    ]
   </xsl:template>
 
   <xsl:template match="csl:*" mode="object">
