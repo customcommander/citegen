@@ -22,6 +22,13 @@ var runMacro = R.curry(function (macros, ref, attrs) {
   )(attrs);
 });
 
+/**
+ * @param {object[]} locales
+ * @param {object} macros
+ * @param {object} attrs
+ * @param {function[]} children
+ * @param {object} ref
+ */
 module.exports = R.curry(function (locales, macros, attrs, children, ref) {
   var applyAttrs = R.pipe(
     textCaseAttr(attrs),

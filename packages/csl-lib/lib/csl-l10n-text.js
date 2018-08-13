@@ -1,32 +1,136 @@
 var R = require('ramda');
 
-var getL10nTermKey = R.always('name');
-var getL10nFormKey = R.always('form');
-var getL10nPluralKey = R.pipe(
-  R.prop('plural'),
-  R.ifElse(
-    R.equals('true'),
-    R.always('multiple'),
-    R.always('single')
-  )
+/**
+ * Returns a function that checks if a term has a `name` property
+ * that is equal to `expectedName`.
+ *
+ * @example
+ * var termNameIsDeveloper = termNameIs('developer');
+ * termNameIsDeveloper({name: 'developer', single: 'developer'}); //=> true
+ * termNameIsDeveloper({name: 'manager', single: 'manager'}); //=> false
+ *
+ * @private
+ * @function
+ * @param {string} expectedName
+ * @return {function}
+ */
+var termNameIs = R.propEq('name');
+
+/**
+ * Returns a function that checks if a term has a `form` property
+ * that is equal to `expectedForm`.
+ *
+ * The function also returns `true` if `expectedForm` is set to `'long'`
+ * and a term doesn't have a `form` property.
+ *
+ * @example
+ * var termFormIsLong = termFormIs('long');
+ * termFormIsLong({name: 'developer', single: 'developer'}); //=> true
+ * termFormIsLong({name: 'developer', single: 'developer', form: 'long'}); //=> true
+ * termFormIsLong({name: 'developer', single: 'dev', form: 'short'}); //=> false
+ *
+ * @private
+ * @function
+ * @param {string} expectedForm
+ * @return {function}
+ */
+var termFormIs = R.pipe(
+  R.ifElse(R.equals('long'),
+  R.pipe(R.equals, R.either(R.isNil), R.propSatisfies(R.__, 'form')),
+  R.propEq('form'))
 );
 
-var filterTerm = function (attrs) {
-  return R.where(
-    R.converge(R.unapply(R.fromPairs), [
-      R.converge(R.pair, [getL10nTermKey, R.compose(R.equals, R.prop('term'))]),
-      R.converge(R.pair, [getL10nFormKey, R.compose(R.equals, R.prop('form'))]),
-      R.converge(R.pair, [getL10nPluralKey, R.always(R.is(String))])
-    ])(attrs)
+/**
+ * Returns a function that checks if a term has a `single` property
+ * if `expectedPlural` is set to `'false'`, or has a `multiple` property
+ * if `expectedPlural` is set to `'true'`.
+ *
+ * @example
+ * var termHasPlural('true');
+ * termHasPlural({name: 'developer', single: 'developer'}); //=> false
+ * termHasPlural({name: 'developer', single: 'developer', multiple: 'developers'}); //=> true
+ *
+ * @private
+ * @function
+ * @param {string} expectedPlural
+ * @return {function}
+ */
+var termPluralIs = R.ifElse(R.equals('false'),
+  R.always(R.has('single')),
+  R.always(R.has('multiple')));
+
+/**
+ * Returns a function that checks if a term complies with all requirements defined in `attrs`.
+ *
+ * @example
+ * var termPass = generateTermPredicate({term: 'developer', form: 'short', plural: 'true'});
+ * termPass({name: 'manager', single: 'manager'}); //=> false
+ * termPass({name: 'developer', single: 'dev', form: 'short'}); //=> false
+ * termPass({name: 'developer', single: 'dev', multiple: 'devs', form: 'short'}); //=> true
+ *
+ * @private
+ * @function
+ * @param {object} attrs
+ * @return {function}
+ */
+var generateTermPredicate = R.converge(
+  R.unapply(R.allPass), [
+    R.pipe(R.prop('term'), termNameIs),
+    R.pipe(R.propOr('long', 'form'), termFormIs),
+    R.pipe(R.propOr('false', 'plural'), termPluralIs)
+  ]
+);
+
+/**
+ * Returns a function that will pick either the singular or plural version of a term
+ * depending on whether `attrs.plural` is set to `'false'` or `'true'`.
+ *
+ * @example
+ * var pickPlural = pickTermValue({term: 'developer', plural: 'true'});
+ * pickPlural({name: 'developer', single: 'developer', multiple: 'developers'}); //=> 'developers'
+ *
+ * @private
+ * @function
+ * @param {object} plural
+ * @return {function}
+ */
+var pickTermValue = R.pipe(
+  R.propOr('false', 'plural'),
+  R.ifElse(R.equals('false'),
+    R.always(R.prop('single')),
+    R.always(R.prop('multiple')))
+);
+
+/**
+ * Generates a transducer for finding a term
+ * that complies with the requirements described in `attrs`.
+ *
+ * @private
+ * @function
+ * @param {object} attrs
+ * @return {function}
+ */
+function generateTransducer (attrs) {
+  return R.compose(
+    R.map(R.propOr([], 'terms')),
+    R.map(R.find(generateTermPredicate(attrs))),
+    R.reject(R.isNil),
+    R.map(pickTermValue(attrs)),
+    R.take(1)
   );
 }
 
-module.exports = R.curry(function (locales, attrs) {
-  return R.pipe(
-    R.path(['terms', R.prop('term', attrs)]),
-    R.ifElse(R.isNil, R.always(''), R.pipe(
-      R.find(filterTerm(attrs)),
-      R.propOr('', getL10nPluralKey(attrs))
-    ))
-  )(locales);
-});
+/**
+ * Finds a term that complies with the requirements described in `attrs`.
+ *
+ * @function
+ * @param {array} locales array of locale objects
+ * @param {object} attrs csl text node attributes
+ * @return {string}
+ */
+module.exports = R.flip(R.useWith(
+  R.into(''), [
+    generateTransducer,
+    R.identity
+  ]
+));
