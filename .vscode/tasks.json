@@ -35,6 +35,17 @@
       "problemMatcher": []
     },
     {
+      "label": "csl-locales: run test",
+      "type": "shell",
+      "command": "make -C packages/csl-locales test",
+      "group": "build",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "csl-generator: run tests",
       "type": "shell",
       "command": "make csl-generator-test",
