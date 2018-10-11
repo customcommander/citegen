@@ -2,12 +2,15 @@
   "name": "@customcommander/csl-locales",
   "version": "1.0.0",
   "files": [
-    "lib"
+    "lib",
+    "!lib/*test.js"
   ],
   "main": "index.js",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "ramda": "^0.25.0"
+  },
   "devDependencies": {
-    "tap": "^11.1.0"
+    "tap": "^12.0.1"
   }
 }

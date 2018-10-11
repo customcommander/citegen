@@ -4,6 +4,14 @@ tap = ./node_modules/.bin/tap
 
 build: lib index.js
 
+test:
+	$(tap) \
+		--bail \
+		--cov \
+		--100 \
+		$(if $(CI),,--coverage-report=html --reporter=spec --no-browser) \
+		-- lib/*.test.js
+
 lib: $(patsubst $(locales_dir)/%.xml,lib/%.json,$(locales_xml)) lib/index.json
 
 lib/index.json: $(locales_dir)/locales.json lib/index.json.jq

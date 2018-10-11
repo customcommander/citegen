@@ -20,7 +20,8 @@ stop-docker:
 build: csl-locales-build
 csl-locales-build: tmp/csl-locales.build
 
-test: csl-lib-test csl-generator-test csl-features-extras-test
+test: csl-locales-test csl-lib-test csl-generator-test csl-features-extras-test
+csl-locales-test: tmp/csl-locales.test
 csl-lib-test: tmp/csl-lib.test
 csl-generator-test: tmp/csl-generator.test
 csl-features-extras-test: tmp/csl-features-extras.test
