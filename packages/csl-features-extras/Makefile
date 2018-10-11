@@ -10,7 +10,7 @@ tmp/validate-csl: $(shell find ./features -type f -name "*.feature")
 	parallel $(node_bin)/csl-validate {} ::: $^
 	touch $@
 
-tmp/test:
+tmp/test: $(shell find ./features -type f -name "*.feature")
 	mkdir -p tmp
 	$(node_bin)/cucumber-js -r ./support.js features
 	touch $@

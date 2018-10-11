@@ -65,6 +65,27 @@
         "reveal": "never"
       },
       "problemMatcher": []
+    },
+    {
+      "label": "csl-features-extras: run tests",
+      "type": "shell",
+      "command": "make csl-features-extras-test",
+      "group": "test",
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "csl-features-support: clean",
+      "type": "shell",
+      "command": "make -C packages/csl-features-support clean",
+      "group": "build",
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
     }
   ]
 }
