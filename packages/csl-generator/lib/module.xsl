@@ -32,8 +32,9 @@
 
   <xsl:template match="csl:style">
     var lib = require('@customcommander/csl-lib');
+    var getLocales = require('@customcommander/csl-locales/lib/private');
 
-    var locales = [
+    var styleLocales = [
       <xsl:for-each select="csl:locale">
         <xsl:apply-templates select="."/>
         <xsl:if test="position() != last()">,</xsl:if>
@@ -43,7 +44,8 @@
     var macros = {};
 
     module.exports = {
-      citation: function (refs) {
+      citation: function (refs, langCode) {
+        var locales = getLocales((langCode || '<xsl:value-of select="@default-locale"/>' || 'en-US'), styleLocales);
         return lib.citation(locales, macros, {},
           <xsl:apply-templates select="csl:citation" mode="param-children"/>, refs);
       }
@@ -55,8 +57,8 @@
     var parent = require('./<xsl:value-of select="$parent-path"/>');
 
     module.exports = {
-      citation: function (refs) {
-        return parent.citation(refs);
+      citation: function (refs, langCode) {
+        return parent.citation(refs, (langCode || '<xsl:value-of select="@default-locale"/>'));
       }
     };
   </xsl:template>

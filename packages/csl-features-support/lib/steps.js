@@ -7,6 +7,10 @@ const {generateModule} = require('@customcommander/csl-generator');
 
 const TMP_DIR = path.resolve(__dirname, '..', 'tmp');
 
+defineStep(/^the locale is set to "([^"]+)"$/, function (langCode) {
+  this.langCode = langCode;
+});
+
 defineStep(/^the following abbreviations$/, function (json) {
   this.abbrevs = JSON.parse(json);
 });
@@ -49,7 +53,7 @@ defineStep(/^the following options$/, function (json) {
 
 defineStep(/^the following result is expected$/, function (result) {
   try {
-    var out = this.style.citation(this.data);
+    var out = this.style.citation(this.data, this.langCode);
     assert.equal(out, result);
   } catch (e) {
     assert.fail(

@@ -11,8 +11,10 @@
   <xsl:template match="csl:locale">
   {
     <xsl:apply-templates select="csl:info"/>
-    <xsl:apply-templates select="@xml:lang"/>
-    <xsl:text>,</xsl:text>
+    <xsl:if test="@xml:lang">
+      <xsl:apply-templates select="@xml:lang"/>
+      <xsl:text>,</xsl:text>
+    </xsl:if>
     <xsl:for-each select="csl:style-options|csl:date|csl:terms">
       <xsl:apply-templates select="."/><xsl:if test="position() != last()">,</xsl:if>
     </xsl:for-each>
