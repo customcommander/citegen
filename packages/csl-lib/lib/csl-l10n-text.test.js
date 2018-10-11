@@ -1,5 +1,8 @@
+var R = require('ramda');
 var tap = require('tap');
 var l10nText = require('./csl-l10n-text');
+
+var terms = R.unapply(R.objOf('terms'));
 
 var l10nTextWithLocales = l10nText([{
   terms: [
@@ -22,3 +25,20 @@ tap.equal(l10nTextWithLocales({term: 'developer', form: 'short', plural: 'true'}
 
 tap.equal(l10nTextWithLocales({term: 'ninjaneer'}), '',
   'should return an empty string when a term does not exist in the `locales` array');
+
+tap.test('', t => {
+  const find = l10nText([
+    terms({name: '🌯', single: '🌯'}, {name: '🌯', form: 'short', single: '🌮'}),
+    terms({name: '🌯', multiple: '🌯🌯🌯'}, {name: '🌯', form: 'short', single: '🔥', multiple: '🌮🌮🌮'}),
+    terms({name: '🌶', single: '🌶'})]);
+
+  t.equal(find({term: '🐥'}), '');
+  t.equal(find({term: '🌯'}), '🌯');
+  t.equal(find({term: '🌯', plural: 'true'}), '🌯🌯🌯');
+  t.equal(find({term: '🌯', form: 'long'}), '🌯');
+  t.equal(find({term: '🌯', form: 'long', plural: 'true'}), '🌯🌯🌯');
+  t.equal(find({term: '🌯', form: 'short'}), '🌮');
+  t.equal(find({term: '🌯', form: 'short', plural: 'true'}), '🌮🌮🌮');
+  t.equal(find({term: '🌶'}), '🌶');
+  t.end();
+});
