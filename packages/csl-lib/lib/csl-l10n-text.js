@@ -1,136 +1,214 @@
+/**
+ * @license
+ * Copyright (c) 2018 Julien Gonzalez
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+/**
+ * @file Finds a term in a list of locales.
+ * @author Julien Gonzalez <hello@spinjs.com>
+ */
+
 var R = require('ramda');
 
 /**
- * Returns a function that checks if a term has a `name` property
- * that is equal to `expectedName`.
+ * Takes a set of attributes `attrs` and creates a function
+ * that takes a term as its sole parameter and returns true
+ * if it satisfies all attributes.
  *
- * @example
- * var termNameIsDeveloper = termNameIs('developer');
- * termNameIsDeveloper({name: 'developer', single: 'developer'}); //=> true
- * termNameIsDeveloper({name: 'manager', single: 'manager'}); //=> false
- *
- * @private
  * @function
- * @param {string} expectedName
+ * @param {object} attrs
+ * @param {string} attrs.term term's name
+ * @param {string} [attrs.form='long'] term's form
+ * @param {string} [attrs.plural='false'] singular or plural version of the form?
  * @return {function}
  */
-var termNameIs = R.propEq('name');
+var generatePredicate =
+  R.converge(
+    R.unapply(R.allPass), [
+      R.unary(
+        R.useWith(R.equals, [
+          R.prop('term'),
+          R.prop('name')])),
+      R.unary(
+        R.useWith(R.equals, [
+          R.prop('form'),
+          R.propOr('long', 'form')])),
+      R.unary(
+        R.useWith(R.has, [
+          R.ifElse(R.propEq('plural', 'false'),
+            R.always('single'),
+            R.always('multiple')),
+          R.identity]))]);
 
 /**
- * Returns a function that checks if a term has a `form` property
- * that is equal to `expectedForm`.
- *
- * The function also returns `true` if `expectedForm` is set to `'long'`
- * and a term doesn't have a `form` property.
+ * Returns a function to extract the value of a term
+ * depending on the plural attribute.
  *
  * @example
- * var termFormIsLong = termFormIs('long');
- * termFormIsLong({name: 'developer', single: 'developer'}); //=> true
- * termFormIsLong({name: 'developer', single: 'developer', form: 'long'}); //=> true
- * termFormIsLong({name: 'developer', single: 'dev', form: 'short'}); //=> false
+ * var value = extractValue({plural: 'true'});
+ * value({single: 'foo', multiple: 'bar'}); //=> 'bar'
  *
- * @private
- * @function
- * @param {string} expectedForm
- * @return {function}
- */
-var termFormIs = R.pipe(
-  R.ifElse(R.equals('long'),
-  R.pipe(R.equals, R.either(R.isNil), R.propSatisfies(R.__, 'form')),
-  R.propEq('form'))
-);
-
-/**
- * Returns a function that checks if a term has a `single` property
- * if `expectedPlural` is set to `'false'`, or has a `multiple` property
- * if `expectedPlural` is set to `'true'`.
- *
- * @example
- * var termHasPlural('true');
- * termHasPlural({name: 'developer', single: 'developer'}); //=> false
- * termHasPlural({name: 'developer', single: 'developer', multiple: 'developers'}); //=> true
- *
- * @private
- * @function
- * @param {string} expectedPlural
- * @return {function}
- */
-var termPluralIs = R.ifElse(R.equals('false'),
-  R.always(R.has('single')),
-  R.always(R.has('multiple')));
-
-/**
- * Returns a function that checks if a term complies with all requirements defined in `attrs`.
- *
- * @example
- * var termPass = generateTermPredicate({term: 'developer', form: 'short', plural: 'true'});
- * termPass({name: 'manager', single: 'manager'}); //=> false
- * termPass({name: 'developer', single: 'dev', form: 'short'}); //=> false
- * termPass({name: 'developer', single: 'dev', multiple: 'devs', form: 'short'}); //=> true
- *
- * @private
  * @function
  * @param {object} attrs
  * @return {function}
  */
-var generateTermPredicate = R.converge(
-  R.unapply(R.allPass), [
-    R.pipe(R.prop('term'), termNameIs),
-    R.pipe(R.propOr('long', 'form'), termFormIs),
-    R.pipe(R.propOr('false', 'plural'), termPluralIs)
-  ]
-);
-
-/**
- * Returns a function that will pick either the singular or plural version of a term
- * depending on whether `attrs.plural` is set to `'false'` or `'true'`.
- *
- * @example
- * var pickPlural = pickTermValue({term: 'developer', plural: 'true'});
- * pickPlural({name: 'developer', single: 'developer', multiple: 'developers'}); //=> 'developers'
- *
- * @private
- * @function
- * @param {object} plural
- * @return {function}
- */
-var pickTermValue = R.pipe(
-  R.propOr('false', 'plural'),
-  R.ifElse(R.equals('false'),
+var extractValue =
+  R.ifElse(R.propEq('plural', 'false'),
     R.always(R.prop('single')),
-    R.always(R.prop('multiple')))
-);
+    R.always(R.prop('multiple')));
 
 /**
- * Generates a transducer for finding a term
- * that complies with the requirements described in `attrs`.
+ * Finds a term in a given list of locales `locales`
+ * that satisfies the attributes `attrs`.
  *
- * @private
  * @function
  * @param {object} attrs
- * @return {function}
- */
-function generateTransducer (attrs) {
-  return R.compose(
-    R.map(R.propOr([], 'terms')),
-    R.map(R.find(generateTermPredicate(attrs))),
-    R.reject(R.isNil),
-    R.map(pickTermValue(attrs)),
-    R.take(1)
-  );
-}
-
-/**
- * Finds a term that complies with the requirements described in `attrs`.
- *
- * @function
- * @param {array} locales array of locale objects
- * @param {object} attrs csl text node attributes
+ * @param {locale[]} locales
  * @return {string}
  */
-module.exports = R.flip(R.useWith(
-  R.into(''), [
-    generateTransducer,
-    R.identity
-  ]
-));
+var findTerm = R.curry(function (attrs, locales) {
+  return R.into('',
+    R.compose(
+      R.map(R.propOr([], 'terms')),
+      R.map(R.filter(generatePredicate(attrs))),
+      R.reject(R.isEmpty),
+      R.map(R.head),
+      R.map(extractValue(attrs)),
+      R.take(1)),
+    locales);
+});
+
+/**
+ * Sets the form property of a given object to a given value.
+ *
+ * @example
+ * setForm('short', {term: 'foo', form: 'long'});
+ * //=> {term: 'foo', form: 'short'}
+ *
+ * @function
+ * @param {string} form
+ * @param {object} obj
+ * @return {object} A similar object but with an updated form property
+ */
+var setForm = R.set(R.lensProp('form'));
+
+/**
+ * Merges defaults into given attributes.
+ *
+ * @example
+ * withDefault({term: 'foo'});
+ * //=> {term: 'foo', form: 'long', plural: 'false'}
+ *
+ * @function
+ * @param {object} attrs
+ * @return {object} The same attributes with default values.
+ */
+var withDefault = R.merge({form: 'long', plural: 'false'});
+
+/**
+ * Implements the form fallback mechanism as described here:
+ * http://docs.citationstyles.org/en/1.0.1/specification.html#terms
+ *
+ * @function
+ * @param {object} attrs
+ * @return {object[]} Array of attributes
+ */
+var withFallback =
+  R.pipe(
+    withDefault,
+    R.cond([
+      [R.propEq('form', 'symbol'),
+        R.juxt([R.identity, setForm('short'), setForm('long')])],
+      [R.propEq('form', 'verb-short'),
+        R.juxt([R.identity, setForm('verb'), setForm('long')])],
+      [R.either(R.propEq('form', 'verb'), R.propEq('form', 'short')),
+        R.juxt([R.identity, setForm('long')])],
+      [R.T, R.of]]));
+
+/**
+ * Returns a string representation of given attributes.
+ *
+ * @example
+ * serializeAttrs({term: 'foo', form: 'long', plural: 'false'});
+ * //=> 'foo/long/false'
+ *
+ * @function
+ * @param {object} attrs
+ * @return {string}
+ */
+var serializeAttrs =
+  R.pipe(
+    withDefault,
+    R.props(['term', 'form', 'plural']),
+    R.join('/'));
+
+/**
+ * Finds a term in given list of locales `locales`, that satisfies
+ * given attributes `attrs` and returns its value.
+ *
+ * The function stops as soon as a matching term has been located
+ * in the list. (The list of locales is assumed to be arranged
+ * in increasing priority order.)
+ *
+ * If a term can't be found in a particular form,
+ * the function tries to find a similar term in another form.
+ *
+ * The fallback of forms is best described here:
+ * http://docs.citationstyles.org/en/1.0.1/specification.html#terms
+ *
+ * If a term cannot be found at all, an empty string is returned.
+ *
+ * @example
+ * var locales = [
+ *  {terms: [
+ *    {name: 'foo',
+ *     form: 'long',
+ *     single: 'foo_long_singular',
+ *     multiple: 'foo_long_plural'},
+ *    {name: 'foo',
+ *     form: 'short',
+ *     single: 'foo_short_singular',
+ *     multiple: 'foo_short_plural'},
+ *  ]},
+ *  {terms: [
+ *    {name: 'foo',
+ *     form: 'verb',
+ *     single: 'do_foo_singular',
+ *     multiple: 'do_foo_plural'}
+ *  ]}
+ * ];
+ *
+ * findTerm({term: 'foo'}, locales); //=> 'foo_long_singular'
+ * findTerm({term: 'foo', plural: 'true'}, locales); //=> 'foo_long_plural'
+ * findTerm({term: 'foo', form: 'short', plural: 'true'}, locales); //=> 'foo_short_plural'
+ *
+ * @module {function} csl-l10n-text
+ * @param {object} attrs
+ * @param {locale[]} locales
+ * @return {string}
+ */
+module.exports = R.curry(function (attrs, locales) {
+  return R.into('',
+    R.compose(
+      R.map(findTerm(R.__, locales)),
+      R.reject(R.isEmpty),
+      R.take(1)),
+    withFallback(attrs));
+});
