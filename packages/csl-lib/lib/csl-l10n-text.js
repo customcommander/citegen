@@ -143,23 +143,6 @@ var withFallback =
       [R.T, R.of]]));
 
 /**
- * Returns a string representation of given attributes.
- *
- * @example
- * serializeAttrs({term: 'foo', form: 'long', plural: 'false'});
- * //=> 'foo/long/false'
- *
- * @function
- * @param {object} attrs
- * @return {string}
- */
-var serializeAttrs =
-  R.pipe(
-    withDefault,
-    R.props(['term', 'form', 'plural']),
-    R.join('/'));
-
-/**
  * Finds a term in given list of locales `locales`, that satisfies
  * given attributes `attrs` and returns its value.
  *
