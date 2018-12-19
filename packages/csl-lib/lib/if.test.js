@@ -4,7 +4,7 @@ const td = require('testdouble');
 const genChooseCondition = require('../generators/choose-condition');
 const genNumber = require('../generators/number');
 const {check, property, sampleOne} = require('testcheck');
-const ifFn = require('./csl-node-if'); // Subject Under Test
+const ifFn = require('./if'); // Subject Under Test
 
 const matchCond = R.propOr('all', 'match');
 const splitAttr = R.pipe(R.propOr(''), R.split(' '), R.reject(R.isEmpty));

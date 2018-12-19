@@ -4,7 +4,7 @@ const {gen, check, property} = require('testcheck');
 const td = require('testdouble');
 const genDisplayAttr = require('../generators/attr-display');
 const displayAttr = require('./attributes/display');
-const textFn = require('./csl-node-text'); // Subject Under Test
+const textFn = require('./text'); // Subject Under Test
 
 tap.test('should support a "value" attribute', t => {
   var text = textFn(/* locales */[{}], {});

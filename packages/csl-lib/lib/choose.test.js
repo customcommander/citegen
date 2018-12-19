@@ -1,6 +1,6 @@
 var tap = require('tap');
 var td = require('testdouble');
-var chooseFn = require('./csl-node-choose'); // Subject Under Test
+var chooseFn = require('./choose'); // Subject Under Test
 
 var choose = chooseFn({},  // locales
                       {},  // macros
