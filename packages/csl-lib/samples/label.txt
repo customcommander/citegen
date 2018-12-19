@@ -1,0 +1,612 @@
+<label font-style="normal" variable="locator" form="short"/>
+<label font-weight="normal" variable="locator" form="short"/>
+<label form="long" prefix=" "/>
+<label form="long" prefix=" (" suffix=")" strip-periods="true"/>
+<label form="long" prefix=" (" suffix=")"/>
+<label form="long" prefix=" (" suffix=")." text-case="capitalize-first"/>
+<label form="long" prefix=" (" suffix=")."/>
+<label form="long" prefix=", " plural="contextual" suffix="."/>
+<label form="long" prefix=", " plural="contextual"/>
+<label form="long" prefix=", " strip-periods="true"/>
+<label form="long" prefix=", " suffix=" "/>
+<label form="long" prefix=", " suffix=", " strip-periods="true"/>
+<label form="long" prefix=", " suffix=". "/>
+<label form="long" prefix=", " suffix="."/>
+<label form="long" prefix=", " text-case="capitalize-first"/>
+<label form="long" prefix=", " text-case="lowercase" suffix="."/>
+<label form="long" prefix=", " text-case="lowercase"/>
+<label form="long" prefix=", "/>
+<label form="long" suffix=": " text-case="capitalize-first" strip-periods="true"/>
+<label form="long" text-case="capitalize-first" prefix=" (" suffix=")."/>
+<label form="long" text-case="capitalize-first"/>
+<label form="long" text-case="uppercase" prefix=" - " suffix=" "/>
+<label form="long" variable="locator" text-case="capitalize-first"/>
+<label form="long"/>
+<label form="short" font-style="italic" prefix=" (" suffix=") "/>
+<label form="short" font-style="italic" prefix=" (" suffix="), "/>
+<label form="short" font-style="normal" prefix=" " suffix=" "/>
+<label form="short" font-variant="normal" prefix=" (" suffix="):"/>
+<label form="short" font-variant="normal" text-case="lowercase" prefix=" (" suffix=")"/>
+<label form="short" font-variant="small-caps" text-case="lowercase" prefix=" (" suffix=")"/>
+<label form="short" font-weight="bold" prefix=" (" suffix=")"/>
+<label form="short" plural="always" suffix=" "/>
+<label form="short" plural="always" suffix=", "/>
+<label form="short" plural="contextual" prefix=" (" suffix=")"/>
+<label form="short" plural="contextual" prefix=", "/>
+<label form="short" plural="contextual"/>
+<label form="short" plural="never" prefix=" (" suffix=")"/>
+<label form="short" plural="never" prefix=" (" suffix=")."/>
+<label form="short" plural="never" prefix="(" suffix=" "/>
+<label form="short" plural="never" prefix=", "/>
+<label form="short" plural="never" strip-periods="false" suffix=" "/>
+<label form="short" plural="never" strip-periods="true" prefix=" (" suffix=".)"/>
+<label form="short" plural="never" suffix=" "/>
+<label form="short" plural="never" text-case="capitalize-first" font-style="normal" prefix=" (" suffix=".)."/>
+<label form="short" plural="never" text-case="capitalize-first" prefix=" (" suffix=")"/>
+<label form="short" plural="never" text-case="capitalize-first" prefix=", (" suffix=")"/>
+<label form="short" plural="never" text-case="capitalize-first" suffix=" "/>
+<label form="short" plural="never" text-case="lowercase" font-style="normal" prefix=" (" suffix=".)"/>
+<label form="short" plural="never" text-case="lowercase" prefix=" (" suffix=")"/>
+<label form="short" plural="never" text-case="lowercase" suffix=" "/>
+<label form="short" plural="never" text-case="lowercase" suffix=" von "/>
+<label form="short" plural="never"/>
+<label form="short" prefix=" " strip-periods="false"/>
+<label form="short" prefix=" " strip-periods="true"/>
+<label form="short" prefix=" " suffix=" " text-case="capitalize-first"/>
+<label form="short" prefix=" " suffix=" "/>
+<label form="short" prefix=" " suffix=". "/>
+<label form="short" prefix=" " suffix="." strip-periods="false"/>
+<label form="short" prefix=" " suffix="." strip-periods="true"/>
+<label form="short" prefix=" " suffix="." text-case="lowercase" strip-periods="true"/>
+<label form="short" prefix=" " suffix="." text-case="lowercase"/>
+<label form="short" prefix=" " suffix="."/>
+<label form="short" prefix=" " suffix=".," strip-periods="true"/>
+<label form="short" prefix=" " suffix=";"/>
+<label form="short" prefix=" " suffix="AA" strip-periods="true"/>
+<label form="short" prefix=" " text-case="capitalize-first"/>
+<label form="short" prefix=" " text-case="lowercase" strip-periods="true"/>
+<label form="short" prefix=" " text-case="lowercase" suffix=" " strip-periods="true"/>
+<label form="short" prefix=" " text-case="lowercase" suffix=" "/>
+<label form="short" prefix=" " text-case="lowercase"/>
+<label form="short" prefix=" "/>
+<label form="short" prefix=" (" strip-periods="true" suffix=")"/>
+<label form="short" prefix=" (" suffix=" " strip-periods="true"/>
+<label form="short" prefix=" (" suffix=") " strip-periods="true"/>
+<label form="short" prefix=" (" suffix=") "/>
+<label form="short" prefix=" (" suffix=")" plural="never"/>
+<label form="short" prefix=" (" suffix=")" strip-periods="false" text-case="lowercase"/>
+<label form="short" prefix=" (" suffix=")" strip-periods="false"/>
+<label form="short" prefix=" (" suffix=")" strip-periods="true" text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=")" strip-periods="true"/>
+<label form="short" prefix=" (" suffix=")" text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=" (" suffix=")" text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=")" text-case="lowercase"/>
+<label form="short" prefix=" (" suffix=")" text-case="uppercase"/>
+<label form="short" prefix=" (" suffix=")"/>
+<label form="short" prefix=" (" suffix="), " strip-periods="false"/>
+<label form="short" prefix=" (" suffix="), " text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix="), "/>
+<label form="short" prefix=" (" suffix=")," strip-periods="true"/>
+<label form="short" prefix=" (" suffix="),"/>
+<label form="short" prefix=" (" suffix="). " strip-periods="true"/>
+<label form="short" prefix=" (" suffix="). " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=" (" suffix=")." strip-periods="true"/>
+<label form="short" prefix=" (" suffix=")." text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=")."/>
+<label form="short" prefix=" (" suffix=").&#160;"/>
+<label form="short" prefix=" (" suffix="):"/>
+<label form="short" prefix=" (" suffix=".) " text-case="title"/>
+<label form="short" prefix=" (" suffix=".) "/>
+<label form="short" prefix=" (" suffix=".) -" text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=".)" text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=" (" suffix=".)" text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=".)" text-case="lowercase"/>
+<label form="short" prefix=" (" suffix=".)" text-case="uppercase"/>
+<label form="short" prefix=" (" suffix=".)"/>
+<label form="short" prefix=" (" suffix=".), " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=" (" suffix=".)," strip-periods="true"/>
+<label form="short" prefix=" (" suffix=".). " text-case="capitalize-first"/>
+<label form="short" prefix=" (" suffix=".)." strip-periods="true"/>
+<label form="short" prefix=" (" text-case="capitalize-first" suffix=")" strip-periods="true"/>
+<label form="short" prefix=" (" text-case="capitalize-first" suffix=")"/>
+<label form="short" prefix=" (" text-case="capitalize-first" suffix=".)," strip-periods="true"/>
+<label form="short" prefix=" (" text-case="capitalize-first" suffix=".):" strip-periods="true"/>
+<label form="short" prefix=" (" text-case="lowercase" suffix=")"/>
+<label form="short" prefix=" (" text-case="title" suffix=")"/>
+<label form="short" prefix=" Interview with " strip-periods="true"/>
+<label form="short" prefix=" [" suffix=".]" text-case="capitalize-first"/>
+<label form="short" prefix=" [" suffix=".]," strip-periods="true"/>
+<label form="short" prefix=" [" suffix="]"/>
+<label form="short" prefix="&#160;" suffix="."/>
+<label form="short" prefix="&#160;"/>
+<label form="short" prefix="&#160;(" suffix=")"/>
+<label form="short" prefix="&#160;(" suffix=".)"/>
+<label form="short" prefix="(" suffix=") " strip-periods="true"/>
+<label form="short" prefix="(" suffix=")" strip-periods="true" text-case="capitalize-first"/>
+<label form="short" prefix="(" suffix=")" strip-periods="true"/>
+<label form="short" prefix="(" suffix=")"/>
+<label form="short" prefix=", " plural="contextual" suffix="."/>
+<label form="short" prefix=", " strip-periods="true" text-case="capitalize-first"/>
+<label form="short" prefix=", " strip-periods="true"/>
+<label form="short" prefix=", " suffix=" " strip-periods="false"/>
+<label form="short" prefix=", " suffix=" "/>
+<label form="short" prefix=", " suffix=""/>
+<label form="short" prefix=", " suffix=")," strip-periods="true"/>
+<label form="short" prefix=", " suffix="): " strip-periods="true"/>
+<label form="short" prefix=", " suffix=", " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=", " suffix="," text-case="capitalize-all" strip-periods="true"/>
+<label form="short" prefix=", " suffix=","/>
+<label form="short" prefix=", " suffix=". " text-case="uppercase" strip-periods="true"/>
+<label form="short" prefix=", " suffix="." font-style="italic"/>
+<label form="short" prefix=", " suffix="." strip-periods="true"/>
+<label form="short" prefix=", " suffix="."/>
+<label form="short" prefix=", " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" prefix=", " text-case="capitalize-first" suffix=" "/>
+<label form="short" prefix=", " text-case="capitalize-first" suffix="," strip-periods="true"/>
+<label form="short" prefix=", " text-case="capitalize-first" suffix="."/>
+<label form="short" prefix=", " text-case="capitalize-first" suffix=": " strip-periods="true"/>
+<label form="short" prefix=", " text-case="capitalize-first"/>
+<label form="short" prefix=", " text-case="lowercase" strip-periods="true"/>
+<label form="short" prefix=", " text-case="lowercase" suffix="." strip-periods="true"/>
+<label form="short" prefix=", " text-case="lowercase"/>
+<label form="short" prefix=", " text-case="title"/>
+<label form="short" prefix=", " text-case="uppercase"/>
+<label form="short" prefix=", "/>
+<label form="short" prefix=", (" plural="contextual" suffix=".)" text-case="capitalize-first"/>
+<label form="short" prefix=", (" suffix=")" strip-periods="true" text-case="capitalize-first"/>
+<label form="short" prefix=", (" suffix=")" text-case="lowercase"/>
+<label form="short" prefix=", (" suffix=")"/>
+<label form="short" prefix=", (" suffix=".)"/>
+<label form="short" prefix=","/>
+<label form="short" prefix=",&#160;" suffix="."/>
+<label form="short" prefix=",&#160;" suffix=".,"/>
+<label form="short" prefix=",&#160;"/>
+<label form="short" prefix=". "/>
+<label form="short" prefix=". (" suffix=")" strip-periods="true"/>
+<label form="short" prefix=". (" suffix=")." strip-periods="true"/>
+<label form="short" prefix="[" suffix=".]. " text-case="capitalize-first"/>
+<label form="short" strip-periods="false" prefix=" "/>
+<label form="short" strip-periods="false" prefix=" (" suffix=") "/>
+<label form="short" strip-periods="false" prefix=" (" suffix=")"/>
+<label form="short" strip-periods="false" prefix=" (" suffix=")."/>
+<label form="short" strip-periods="false" prefix=", " suffix="."/>
+<label form="short" strip-periods="false" prefix=", "/>
+<label form="short" strip-periods="false"/>
+<label form="short" strip-periods="true" prefix=" " suffix="."/>
+<label form="short" strip-periods="true" prefix=" "/>
+<label form="short" strip-periods="true" prefix=" (" suffix=") "/>
+<label form="short" strip-periods="true" prefix=" (" suffix=")"/>
+<label form="short" strip-periods="true" prefix=" (" suffix="),"/>
+<label form="short" strip-periods="true" prefix=" (" suffix=")."/>
+<label form="short" strip-periods="true" prefix=" (" suffix=".)"/>
+<label form="short" strip-periods="true" prefix=" (" suffix=".),"/>
+<label form="short" strip-periods="true" prefix=" (" text-case="lowercase" suffix=")"/>
+<label form="short" strip-periods="true" prefix="(" suffix=")"/>
+<label form="short" strip-periods="true" prefix=", " suffix=" "/>
+<label form="short" strip-periods="true" prefix=", " suffix=","/>
+<label form="short" strip-periods="true" prefix=", " suffix="."/>
+<label form="short" strip-periods="true" prefix=", "/>
+<label form="short" strip-periods="true" suffix=" "/>
+<label form="short" strip-periods="true" suffix=")" prefix=" ("/>
+<label form="short" strip-periods="true" text-case="capitalize-first" suffix=" "/>
+<label form="short" strip-periods="true"/>
+<label form="short" suffix=" " plural="never"/>
+<label form="short" suffix=" " strip-periods="false" text-case="lowercase"/>
+<label form="short" suffix=" " strip-periods="false"/>
+<label form="short" suffix=" " strip-periods="true"/>
+<label form="short" suffix=" " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" suffix=" " text-case="capitalize-first"/>
+<label form="short" suffix=" " text-case="lowercase"/>
+<label form="short" suffix=" " variable="locator" prefix=", "/>
+<label form="short" suffix=" " variable="locator"/>
+<label form="short" suffix=" "/>
+<label form="short" suffix=")" prefix=" ("/>
+<label form="short" suffix=")" prefix="("/>
+<label form="short" suffix=". " plural="contextual"/>
+<label form="short" suffix=". " strip-periods="false"/>
+<label form="short" suffix=". " text-case="capitalize-first" strip-periods="true"/>
+<label form="short" suffix=". " text-case="capitalize-first"/>
+<label form="short" suffix=". "/>
+<label form="short" text-case="capitalize-first" font-variant="normal" vertical-align="baseline" prefix=" "/>
+<label form="short" text-case="capitalize-first" prefix=" " suffix=" " plural="contextual"/>
+<label form="short" text-case="capitalize-first" prefix=" " suffix=" "/>
+<label form="short" text-case="capitalize-first" prefix=" "/>
+<label form="short" text-case="capitalize-first" prefix=" (" suffix=")"/>
+<label form="short" text-case="capitalize-first" prefix=" (" suffix="):"/>
+<label form="short" text-case="capitalize-first" prefix=" (" suffix=".)"/>
+<label form="short" text-case="capitalize-first" prefix=" [" suffix="]"/>
+<label form="short" text-case="capitalize-first" prefix="(" suffix=".)"/>
+<label form="short" text-case="capitalize-first" prefix=", " suffix=","/>
+<label form="short" text-case="capitalize-first" prefix=", " suffix="."/>
+<label form="short" text-case="capitalize-first" prefix=", "/>
+<label form="short" text-case="capitalize-first" strip-periods="false" prefix=" (" suffix=")"/>
+<label form="short" text-case="capitalize-first" strip-periods="false" prefix=" (" suffix="),"/>
+<label form="short" text-case="capitalize-first" strip-periods="false" prefix=", " suffix="."/>
+<label form="short" text-case="capitalize-first" strip-periods="false" prefix=", "/>
+<label form="short" text-case="capitalize-first" strip-periods="true" prefix=" (" suffix=") "/>
+<label form="short" text-case="capitalize-first" strip-periods="true" prefix=" (" suffix=")"/>
+<label form="short" text-case="capitalize-first" strip-periods="true" prefix=", "/>
+<label form="short" text-case="capitalize-first" strip-periods="true" suffix=" "/>
+<label form="short" text-case="capitalize-first" strip-periods="true" suffix=": "/>
+<label form="short" text-case="capitalize-first" suffix=" " strip-periods="true"/>
+<label form="short" text-case="capitalize-first" suffix=" "/>
+<label form="short" text-case="capitalize-first" suffix=". "/>
+<label form="short" text-case="capitalize-first" suffix=".: " strip-periods="true"/>
+<label form="short" text-case="capitalize-first" suffix=": " strip-periods="true"/>
+<label form="short" text-case="capitalize-first"/>
+<label form="short" text-case="lowercase" prefix=" "/>
+<label form="short" text-case="lowercase" prefix=" (" suffix=")" plural="contextual"/>
+<label form="short" text-case="lowercase" prefix=" (" suffix=")" strip-periods="true"/>
+<label form="short" text-case="lowercase" prefix=" (" suffix=")"/>
+<label form="short" text-case="lowercase" prefix=" (" suffix=")."/>
+<label form="short" text-case="lowercase" prefix=", " suffix=","/>
+<label form="short" text-case="lowercase" prefix=", "/>
+<label form="short" text-case="lowercase" prefix=", (" suffix=")"/>
+<label form="short" text-case="lowercase" strip-periods="false" prefix=" [" suffix="]"/>
+<label form="short" text-case="lowercase" strip-periods="false" prefix=", "/>
+<label form="short" text-case="lowercase" strip-periods="false" suffix=" "/>
+<label form="short" text-case="lowercase" strip-periods="false" suffix=" v. "/>
+<label form="short" text-case="lowercase" strip-periods="false"/>
+<label form="short" text-case="lowercase" strip-periods="true" font-variant="normal" prefix=", "/>
+<label form="short" text-case="lowercase" strip-periods="true" prefix=" (" suffix=") "/>
+<label form="short" text-case="lowercase" strip-periods="true" prefix=" (" suffix=")"/>
+<label form="short" text-case="lowercase" strip-periods="true" prefix=" (" suffix=".)."/>
+<label form="short" text-case="lowercase" strip-periods="true" prefix=", "/>
+<label form="short" text-case="lowercase" strip-periods="true"/>
+<label form="short" text-case="lowercase" suffix=" "/>
+<label form="short" text-case="lowercase" suffix="."/>
+<label form="short" text-case="lowercase"/>
+<label form="short" text-case="sentence" prefix=" (" suffix=")"/>
+<label form="short" text-case="sentence" suffix=" " strip-periods="true"/>
+<label form="short" text-case="sentence" suffix=" von "/>
+<label form="short" text-case="title" prefix=" "/>
+<label form="short" text-case="title" prefix=", " suffix=";"/>
+<label form="short" text-case="title" prefix=","/>
+<label form="short" text-case="title" strip-periods="true" prefix=" (" suffix=")"/>
+<label form="short" text-case="title" strip-periods="true" prefix=" (" suffix=".)"/>
+<label form="short" text-case="title" strip-periods="true" prefix=", "/>
+<label form="short" variable="locator" plural="never"/>
+<label form="short" variable="locator"/>
+<label form="short" variable="number-of-pages" prefix=" "/>
+<label form="short" variable="page"/>
+<label form="short"/>
+<label form="symbol" font-style="normal" font-variant="normal" prefix=" (" suffix=")"/>
+<label form="symbol" plural="always" text-case="capitalize-first" strip-periods="true" prefix=" (" suffix=".),"/>
+<label form="verb" font-style="italic" text-case="sentence" suffix=" "/>
+<label form="verb" font-style="italic" text-case="title"/>
+<label form="verb" prefix=" " suffix=" " strip-periods="true"/>
+<label form="verb" prefix=" " suffix=" " text-case="capitalize-first"/>
+<label form="verb" prefix=" " suffix=" "/>
+<label form="verb" prefix=" " suffix=". "/>
+<label form="verb" prefix=" " text-case="capitalize-first" suffix=" "/>
+<label form="verb" prefix=" " text-case="capitalize-first"/>
+<label form="verb" prefix=" " text-case="lowercase" suffix=" "/>
+<label form="verb" prefix=" (" suffix=")" strip-periods="true"/>
+<label form="verb" prefix=", " suffix="."/>
+<label form="verb" strip-periods="true" prefix=" " suffix=" "/>
+<label form="verb" suffix=" " plural="never" text-case="capitalize-first"/>
+<label form="verb" suffix=" " plural="never"/>
+<label form="verb" suffix=" " strip-periods="true"/>
+<label form="verb" suffix=" " text-case="capitalize-first" prefix=" "/>
+<label form="verb" suffix=" " text-case="capitalize-first"/>
+<label form="verb" suffix=" " text-case="lowercase" prefix=" "/>
+<label form="verb" suffix=" " text-case="lowercase"/>
+<label form="verb" suffix=" "/>
+<label form="verb" text-case="capitalize-first" prefix=" " suffix=" "/>
+<label form="verb" text-case="capitalize-first" prefix=". " suffix=" "/>
+<label form="verb" text-case="capitalize-first" suffix=" " plural="never"/>
+<label form="verb" text-case="capitalize-first" suffix=" " strip-periods="true"/>
+<label form="verb" text-case="capitalize-first" suffix=" "/>
+<label form="verb" text-case="capitalize-first" suffix=". "/>
+<label form="verb" text-case="capitalize-first"/>
+<label form="verb" text-case="lowercase" prefix=" (" suffix=") " strip-periods="true"/>
+<label form="verb" text-case="lowercase" prefix=" (" suffix=")" strip-periods="true"/>
+<label form="verb" text-case="lowercase" prefix=", "/>
+<label form="verb" text-case="lowercase" suffix=" " strip-periods="true"/>
+<label form="verb" text-case="lowercase" suffix=" "/>
+<label form="verb" text-case="lowercase"/>
+<label form="verb" text-case="title" suffix=" "/>
+<label form="verb"/>
+<label form="verb-short" plural="contextual" prefix=" (" suffix=")"/>
+<label form="verb-short" plural="never" prefix=" (" suffix=")"/>
+<label form="verb-short" plural="never" strip-periods="true" prefix=" (" suffix=".)"/>
+<label form="verb-short" plural="never" suffix=" "/>
+<label form="verb-short" prefix=" " suffix=" " strip-periods="true"/>
+<label form="verb-short" prefix=" " suffix=" "/>
+<label form="verb-short" prefix=" " suffix=" by "/>
+<label form="verb-short" prefix=" " suffix=". "/>
+<label form="verb-short" prefix=" " suffix="." strip-periods="true"/>
+<label form="verb-short" prefix=" " suffix=".:"/>
+<label form="verb-short" prefix=" " text-case="capitalize-first" suffix=" "/>
+<label form="verb-short" prefix=" " text-case="capitalize-first" suffix=" by "/>
+<label form="verb-short" prefix=" " text-case="lowercase" suffix=" " strip-periods="true"/>
+<label form="verb-short" prefix=" " text-case="lowercase" suffix=" "/>
+<label form="verb-short" prefix=" " text-case="lowercase"/>
+<label form="verb-short" prefix=" "/>
+<label form="verb-short" prefix=" (" suffix=" "/>
+<label form="verb-short" prefix=" (" suffix=")" strip-periods="false"/>
+<label form="verb-short" prefix=" (" suffix=")" text-case="lowercase" strip-periods="false"/>
+<label form="verb-short" prefix=" (" suffix=")"/>
+<label form="verb-short" prefix=" (" suffix=")."/>
+<label form="verb-short" prefix=" (" text-case="capitalize-first" suffix=") "/>
+<label form="verb-short" prefix=" (" text-case="lowercase" suffix=")"/>
+<label form="verb-short" prefix="&#160;(" suffix=".)"/>
+<label form="verb-short" prefix=", " suffix=" "/>
+<label form="verb-short" prefix=", " suffix="." strip-periods="false"/>
+<label form="verb-short" prefix=", " suffix="."/>
+<label form="verb-short" prefix=", " text-case="lowercase"/>
+<label form="verb-short" prefix=", "/>
+<label form="verb-short" suffix=" " strip-periods="true"/>
+<label form="verb-short" suffix=" " text-case="capitalize-first"/>
+<label form="verb-short" suffix=" " text-case="lowercase"/>
+<label form="verb-short" suffix=" "/>
+<label form="verb-short" suffix=". "/>
+<label form="verb-short" suffix="."/>
+<label form="verb-short" text-case="capitalize-first" prefix=" (" suffix=")"/>
+<label form="verb-short" text-case="capitalize-first" suffix=" "/>
+<label form="verb-short" text-case="capitalize-first" suffix=". "/>
+<label form="verb-short" text-case="capitalize-first"/>
+<label form="verb-short" text-case="lowercase" prefix=" " strip-periods="false"/>
+<label form="verb-short" text-case="lowercase" prefix=" " suffix="." strip-periods="true"/>
+<label form="verb-short" text-case="lowercase" prefix=" (" suffix=")" strip-periods="false"/>
+<label form="verb-short" text-case="lowercase" prefix=", " strip-periods="true"/>
+<label form="verb-short" text-case="lowercase" suffix=" " strip-periods="true"/>
+<label form="verb-short" text-case="lowercase" suffix=" "/>
+<label form="verb-short" text-case="lowercase" suffix=". " strip-periods="false"/>
+<label form="verb-short" text-case="lowercase" suffix=". "/>
+<label form="verb-short" text-case="lowercase"/>
+<label form="verb-short" text-case="uppercase"/>
+<label form="verb-short"/>
+<label plural="always" strip-periods="false" variable="page" form="short"/>
+<label plural="always" strip-periods="true" variable="page" form="short"/>
+<label plural="always" suffix=" " variable="page" form="short"/>
+<label plural="always" text-case="capitalize-first" strip-periods="true"/>
+<label plural="always" variable="locator" form="short"/>
+<label plural="always" variable="page" form="short"/>
+<label plural="contextual" variable="locator" form="short"/>
+<label plural="never" prefix=" " variable="locator" form="short"/>
+<label plural="never" prefix=" " variable="page" form="short"/>
+<label plural="never" prefix=", " suffix=" " variable="volume" form="short"/>
+<label plural="never" prefix=", " variable="volume" form="short"/>
+<label plural="never" strip-periods="false" variable="page" form="short"/>
+<label plural="never" strip-periods="true" prefix=" " variable="page" form="short"/>
+<label plural="never" strip-periods="true" suffix=" " variable="page" form="short"/>
+<label plural="never" strip-periods="true" variable="page" form="short"/>
+<label plural="never" suffix=" " variable="issue" form="short"/>
+<label plural="never" suffix=" " variable="page" form="short"/>
+<label plural="never" suffix=" " variable="volume" form="short"/>
+<label plural="never" suffix=" "/>
+<label plural="never" suffix="&#160;" variable="locator" form="short"/>
+<label plural="never" suffix=". " variable="page" form="short"/>
+<label plural="never" text-case="capitalize-first" suffix=" " variable="volume"/>
+<label plural="never" text-case="capitalize-first" suffix=" "/>
+<label plural="never" text-case="capitalize-first" variable="page" form="short"/>
+<label plural="never" text-case="capitalize-first" variable="volume" form="short"/>
+<label plural="never" text-case="lowercase" variable="page" form="short"/>
+<label plural="never" variable="edition" form="short"/>
+<label plural="never" variable="edition"/>
+<label plural="never" variable="issue" form="short"/>
+<label plural="never" variable="locator" form="short"/>
+<label plural="never" variable="number-of-pages" form="short"/>
+<label plural="never" variable="page" form="short"/>
+<label plural="never" variable="page"/>
+<label plural="never" variable="volume" form="short"/>
+<label prefix="  " variable="page" form="short"/>
+<label prefix=" " form="long" suffix=". "/>
+<label prefix=" " form="short" text-case="lowercase" suffix=" " strip-periods="false"/>
+<label prefix=" " form="short" text-case="lowercase"/>
+<label prefix=" " suffix=" " variable="locator" form="short"/>
+<label prefix=" " suffix=" "/>
+<label prefix=" " variable="number-of-pages" form="short"/>
+<label prefix=" " variable="page" form="short"/>
+<label prefix=" "/>
+<label prefix=" (" form="short" suffix=".)"/>
+<label prefix=" (" form="short" text-case="lowercase" suffix=")" strip-periods="true"/>
+<label prefix=" (" suffix=")" form="long"/>
+<label prefix=" (" suffix=")" form="short"/>
+<label prefix=" (" suffix=")" text-case="capitalize-first" font-style="italic"/>
+<label prefix=" (" suffix=")" text-case="capitalize-first" form="short"/>
+<label prefix=" (" suffix=")"/>
+<label prefix="" form="verb-short" text-case="lowercase" suffix=". "/>
+<label prefix=", " form="long" suffix="."/>
+<label prefix=", " form="long"/>
+<label prefix=", " form="short" suffix=". "/>
+<label prefix=", " form="short" suffix="."/>
+<label prefix=", " form="short"/>
+<label prefix=", " plural="contextual" suffix="."/>
+<label prefix=", " suffix=" " variable="locator" form="short"/>
+<label prefix=", " suffix=" " variable="page" form="short"/>
+<label prefix=", " suffix="."/>
+<label prefix=", " variable="page" form="short"/>
+<label prefix=", " variable="volume"/>
+<label prefix=", "/>
+<label prefix=". " form="short" plural="contextual" suffix="."/>
+<label prefix=": " variable="locator" form="short"/>
+<label prefix="; "/>
+<label strip-periods="false" suffix=" " variable="page" form="short"/>
+<label strip-periods="false" suffix=" " variable="page" form="symbol"/>
+<label strip-periods="false" suffix="." variable="number" form="short"/>
+<label strip-periods="false" variable="page" form="short"/>
+<label strip-periods="true" prefix=" " variable="page" form="short"/>
+<label strip-periods="true" prefix=" (" suffix=")"/>
+<label strip-periods="true" prefix=", " suffix=". " variable="page" form="short"/>
+<label strip-periods="true" prefix=", " suffix="."/>
+<label strip-periods="true" prefix=", "/>
+<label strip-periods="true" suffix=" " variable="page" form="short"/>
+<label strip-periods="true" suffix="." variable="page" form="short"/>
+<label strip-periods="true" variable="edition" form="short"/>
+<label strip-periods="true" variable="issue" form="short"/>
+<label strip-periods="true" variable="number" form="short"/>
+<label strip-periods="true" variable="number-of-pages" form="short"/>
+<label strip-periods="true" variable="page" form="short"/>
+<label suffix=" " variable="edition"/>
+<label suffix=" " variable="issue" form="short"/>
+<label suffix=" " variable="locator" form="short"/>
+<label suffix=" " variable="number" form="short"/>
+<label suffix=" " variable="page" form="short"/>
+<label suffix=" " variable="page"/>
+<label suffix=" " variable="volume" form="short"/>
+<label suffix=" " variable="volume"/>
+<label suffix="&#160;" variable="locator" form="short"/>
+<label suffix="&#160;" variable="page" form="short"/>
+<label suffix=")" variable="locator" form="short"/>
+<label suffix=". " variable="page" form="short"/>
+<label suffix="." variable="issue" form="short"/>
+<label suffix="." variable="locator" form="short"/>
+<label suffix="." variable="page" form="short"/>
+<label suffix="." variable="volume" form="short"/>
+<label text-case="capitalize-first" form="short" suffix=" "/>
+<label text-case="capitalize-first" form="verb-short" suffix=" "/>
+<label text-case="capitalize-first" prefix=" " variable="edition"/>
+<label text-case="capitalize-first" prefix=" (" suffix=")"/>
+<label text-case="capitalize-first" prefix=", " variable="issue" form="short"/>
+<label text-case="capitalize-first" prefix=", "/>
+<label text-case="capitalize-first" prefix=". " suffix=": "/>
+<label text-case="capitalize-first" prefix=". " variable="page"/>
+<label text-case="capitalize-first" strip-periods="false" suffix=" " variable="page" form="short"/>
+<label text-case="capitalize-first" suffix=" " variable="locator"/>
+<label text-case="capitalize-first" suffix=" " variable="volume" form="short"/>
+<label text-case="capitalize-first" suffix=" " variable="volume"/>
+<label text-case="capitalize-first" variable="edition" form="short"/>
+<label text-case="capitalize-first" variable="issue" form="short"/>
+<label text-case="capitalize-first" variable="locator" form="short"/>
+<label text-case="capitalize-first" variable="number" form="short"/>
+<label text-case="capitalize-first" variable="page" form="short"/>
+<label text-case="capitalize-first" variable="volume" form="short"/>
+<label text-case="lowercase" prefix=", " variable="page" form="short"/>
+<label text-case="lowercase" suffix="." variable="locator" form="short"/>
+<label text-case="lowercase" variable="page" form="short"/>
+<label text-case="lowercase" variable="page"/>
+<label text-case="title" prefix=" (" suffix=")"/>
+<label text-case="title" suffix=" " variable="volume" form="short"/>
+<label variable="collection-number" form="short"/>
+<label variable="edition" form="short" prefix=" "/>
+<label variable="edition" form="short" prefix="&#160;" suffix=")"/>
+<label variable="edition" form="short" prefix="&#160;"/>
+<label variable="edition" form="short" strip-periods="true"/>
+<label variable="edition" form="short" text-case="capitalize-first"/>
+<label variable="edition" form="short"/>
+<label variable="edition"/>
+<label variable="issue" form="short" text-case="capitalize-first"/>
+<label variable="issue" form="short"/>
+<label variable="issue"/>
+<label variable="locator" form="long" text-case="capitalize-first"/>
+<label variable="locator" form="long"/>
+<label variable="locator" form="short" font-style="italic"/>
+<label variable="locator" form="short" plural="always" prefix=", "/>
+<label variable="locator" form="short" plural="contextual" prefix=" " suffix=" "/>
+<label variable="locator" form="short" plural="never"/>
+<label variable="locator" form="short" prefix=" " suffix=" "/>
+<label variable="locator" form="short" prefix=" "/>
+<label variable="locator" form="short" prefix=", " suffix=" "/>
+<label variable="locator" form="short" prefix=", " suffix=".&#160;" strip-periods="true"/>
+<label variable="locator" form="short" prefix=", "/>
+<label variable="locator" form="short" prefix=". " suffix=" "/>
+<label variable="locator" form="short" prefix="hier: "/>
+<label variable="locator" form="short" strip-periods="false"/>
+<label variable="locator" form="short" strip-periods="true" prefix=", "/>
+<label variable="locator" form="short" strip-periods="true"/>
+<label variable="locator" form="short" suffix=" " prefix=", "/>
+<label variable="locator" form="short" suffix=" "/>
+<label variable="locator" form="short" suffix="&#160;"/>
+<label variable="locator" form="short" suffix=". "/>
+<label variable="locator" form="short" suffix="."/>
+<label variable="locator" form="short" suffix=".&#160;" strip-periods="true"/>
+<label variable="locator" form="short" suffix=".&#160;"/>
+<label variable="locator" form="short" text-case="capitalize-first"/>
+<label variable="locator" form="short" text-case="lowercase" suffix="&#160;"/>
+<label variable="locator" form="short"/>
+<label variable="locator" form="symbol" strip-periods="true"/>
+<label variable="locator" form="symbol" suffix="&#160;"/>
+<label variable="locator" form="symbol"/>
+<label variable="locator" include-period="true" form="short"/>
+<label variable="locator" plural="contextual" form="short" strip-periods="true" prefix=", "/>
+<label variable="locator" plural="never" form="short" suffix=" "/>
+<label variable="locator" plural="never" form="short"/>
+<label variable="locator" prefix=" " suffix="&#160;" form="long"/>
+<label variable="locator" prefix=" " suffix="&#160;" form="short" strip-periods="true"/>
+<label variable="locator" prefix=", " form="short"/>
+<label variable="locator" prefix=", " suffix="&#160;" form="long" font-style="italic"/>
+<label variable="locator" prefix=", " suffix="&#160;" form="short" strip-periods="true"/>
+<label variable="locator" prefix=", " suffix="&#160;" form="short"/>
+<label variable="locator" suffix=" " form="short"/>
+<label variable="locator" suffix="." form="short" strip-periods="true"/>
+<label variable="locator" suffix="." form="short"/>
+<label variable="locator" suffix=".&#160;" form="short" strip-periods="true"/>
+<label variable="locator"/>
+<label variable="number" form="short"/>
+<label variable="number-of-pages" form="short" plural="never"/>
+<label variable="number-of-pages" form="short" prefix=" " plural="never"/>
+<label variable="number-of-pages" form="short" suffix=" "/>
+<label variable="number-of-pages" form="short"/>
+<label variable="number-of-pages"/>
+<label variable="number-of-volumes" form="short"/>
+<label variable="page" form="long" plural="never"/>
+<label variable="page" form="long" text-case="capitalize-first"/>
+<label variable="page" form="short" plural="always" suffix=" "/>
+<label variable="page" form="short" plural="always" suffix=". " text-case="capitalize-first"/>
+<label variable="page" form="short" plural="always" suffix=". "/>
+<label variable="page" form="short" plural="always"/>
+<label variable="page" form="short" plural="contextual" strip-periods="false"/>
+<label variable="page" form="short" plural="contextual" suffix=" "/>
+<label variable="page" form="short" plural="contextual"/>
+<label variable="page" form="short" plural="never" prefix=", " suffix=" "/>
+<label variable="page" form="short" plural="never" strip-periods="true"/>
+<label variable="page" form="short" plural="never"/>
+<label variable="page" form="short" prefix=" " suffix=" "/>
+<label variable="page" form="short" prefix=" "/>
+<label variable="page" form="short" prefix="(" suffix=" "/>
+<label variable="page" form="short" prefix=", " strip-periods="true"/>
+<label variable="page" form="short" prefix=", " suffix=" " strip-periods="true"/>
+<label variable="page" form="short" prefix=", " suffix=" "/>
+<label variable="page" form="short" prefix=", "/>
+<label variable="page" form="short" prefix=",&#160;" suffix=".&#160;" strip-periods="true"/>
+<label variable="page" form="short" prefix=": "/>
+<label variable="page" form="short" prefix="p" suffix=" " plural="never"/>
+<label variable="page" form="short" strip-periods="true"/>
+<label variable="page" form="short" suffix=" " plural="never"/>
+<label variable="page" form="short" suffix=" " prefix=" "/>
+<label variable="page" form="short" suffix=" " prefix=" &#8211; "/>
+<label variable="page" form="short" suffix=" " strip-periods="true"/>
+<label variable="page" form="short" suffix=" " text-case="capitalize-first"/>
+<label variable="page" form="short" suffix=" " text-case="lowercase"/>
+<label variable="page" form="short" suffix=" "/>
+<label variable="page" form="short" suffix=""/>
+<label variable="page" form="short" suffix="&#160;"/>
+<label variable="page" form="short" suffix=". " prefix=" &#8211; "/>
+<label variable="page" form="short" suffix=". " strip-periods="true"/>
+<label variable="page" form="short" suffix="."/>
+<label variable="page" form="short" suffix=".&#160;" strip-periods="true"/>
+<label variable="page" form="short" suffix=".&#160;"/>
+<label variable="page" form="short" text-case="capitalize-first" plural="never"/>
+<label variable="page" form="short" text-case="capitalize-first" prefix=" "/>
+<label variable="page" form="short" text-case="capitalize-first" suffix=" "/>
+<label variable="page" form="short" text-case="capitalize-first"/>
+<label variable="page" form="short" text-case="lowercase"/>
+<label variable="page" form="short" text-case="sentence" plural="never"/>
+<label variable="page" form="short"/>
+<label variable="page" plural="always"/>
+<label variable="page" plural="never" form="short" suffix=" "/>
+<label variable="page" plural="never" form="short"/>
+<label variable="page" plural="never"/>
+<label variable="page" prefix=" " form="short"/>
+<label variable="page" prefix=", " form="short"/>
+<label variable="page" strip-periods="true" form="short"/>
+<label variable="page" suffix=" " form="short" strip-periods="true"/>
+<label variable="page" suffix=" " form="short"/>
+<label variable="page" suffix="." form="short" strip-periods="true"/>
+<label variable="page" suffix=".&#160;" form="short"/>
+<label variable="page" text-case="capitalize-first" form="short"/>
+<label variable="page" text-case="capitalize-first"/>
+<label variable="page"/>
+<label variable="volume" form="long" text-case="capitalize-first" font-style="italic"/>
+<label variable="volume" form="short" plural="always"/>
+<label variable="volume" form="short" plural="never"/>
+<label variable="volume" form="short" strip-periods="true"/>
+<label variable="volume" form="short" suffix=" " text-case="capitalize-first"/>
+<label variable="volume" form="short" suffix=" "/>
+<label variable="volume" form="short" text-case="capitalize-first" suffix=". "/>
+<label variable="volume" form="short" text-case="capitalize-first"/>
+<label variable="volume" form="short"/>
+<label variable="volume"/>
+<label/>

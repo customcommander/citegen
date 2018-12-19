@@ -5,6 +5,7 @@ module.exports = {
   'citation': require('./lib/citation.js'),
   'else-if': require('./lib/else-if.js'),
   'if': require('./lib/if.js'),
+  'label': require('./lib/label.js'),
   'layout': require('./lib/layout.js'),
   'number': require('./lib/number.js'),
   'text': require('./lib/text.js'),
