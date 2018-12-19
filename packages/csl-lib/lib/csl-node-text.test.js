@@ -2,7 +2,7 @@ const R = require('ramda');
 const tap = require('tap');
 const {gen, check, property} = require('testcheck');
 const td = require('testdouble');
-const genDisplayAttr = require('./generators/attr-display');
+const genDisplayAttr = require('../generators/attr-display');
 const displayAttr = require('./csl-attr-display');
 const textFn = require('./csl-node-text'); // Subject Under Test
 

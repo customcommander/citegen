@@ -1,8 +1,8 @@
 const R = require('ramda');
 const tap = require('tap');
 const td = require('testdouble');
-const genChooseCondition = require('./generators/choose-condition');
-const genNumber = require('./generators/number');
+const genChooseCondition = require('../generators/choose-condition');
+const genNumber = require('../generators/number');
 const {check, property, sampleOne} = require('testcheck');
 const ifFn = require('./csl-node-if'); // Subject Under Test
 
