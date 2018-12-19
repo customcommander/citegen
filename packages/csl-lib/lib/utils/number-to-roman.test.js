@@ -1,6 +1,6 @@
 const tap = require('tap');
 const {gen, check, property} = require('testcheck');
-const romanNumberGen = require('../generators/roman-number');
+const romanNumberGen = require('../../generators/roman-number');
 const toRoman = require('./number-to-roman'); // SUT
 
 const romanConversion =
