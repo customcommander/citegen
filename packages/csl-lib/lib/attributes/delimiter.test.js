@@ -1,5 +1,5 @@
 const tap = require('tap');
-const delimiter = require('./csl-attr-delimiter');
+const delimiter = require('./delimiter');
 
 tap.equal(delimiter(null, [1,2,3]), '123',
   'join values with an empty string if `attrs` is not an object.');

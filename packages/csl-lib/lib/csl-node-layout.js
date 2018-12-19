@@ -1,7 +1,7 @@
 var R = require('ramda');
-var formattingAttr = require('./csl-attr-formatting');
-var affixesAttr = require('./csl-attr-affixes');
-var delimiterAttr = require('./csl-attr-delimiter');
+var formattingAttr = require('./attributes/formatting');
+var affixesAttr = require('./attributes/affixes');
+var delimiterAttr = require('./attributes/delimiter');
 
 /**
  * Reducing function

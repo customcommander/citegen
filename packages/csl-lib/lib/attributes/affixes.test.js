@@ -1,5 +1,5 @@
 const tap = require('tap');
-const affixes = require('./csl-attr-affixes'); // Subject Under Test
+const affixes = require('./affixes'); // Subject Under Test
 
 tap.equal(affixes(null, '123'), '123',
   'return value as is if `attrs` is not an object.');

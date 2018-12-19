@@ -1,7 +1,7 @@
 var R = require('ramda');
 var l10nText = require('./l10n/find-term-text');
-var displayAttr = require('./csl-attr-display');
-var textCaseAttr = require('./csl-attr-text-case');
+var displayAttr = require('./attributes/display');
+var textCaseAttr = require('./attributes/text-case');
 
 var getEmptyString = R.always('');
 var getTerm = l10nText;

@@ -1,5 +1,5 @@
 const tap = require('tap');
-const textCase = require('./csl-attr-text-case'); // Subject Under Test
+const textCase = require('./text-case'); // Subject Under Test
 
 tap.is(textCase({}, 'Hello'), 'Hello', 'returns string as is if not text-case attribute has been set.');
 tap.is(textCase({'text-case': 'foo'}, 'Hello'), 'Hello', 'returns string as is if text-case attribute is not valid.');

@@ -1,6 +1,6 @@
 const R = require('ramda');
 const tap = require('tap');
-const displayAttr = require('./csl-attr-display'); // Subject Under Test
+const displayAttr = require('./display'); // Subject Under Test
 
 const displayFoo = displayAttr(R.__, 'foo');
 
