@@ -21,6 +21,7 @@ const {
   join,
   juxt,
   last,
+  length,
   lt,
   map,
   mapAccum,
@@ -162,6 +163,22 @@ const formatLongOrdinal =
         toLongOrdinal(locales, name))))
           (value));
 
+/**
+ * True if given numeric content is made of a single number.
+ *
+ * @example
+ * isMultiple('1, 4'); //=> true
+ * isMultiple('1-4'); //=> true
+ * isMultiple('1a & 4'); //=> true
+ * isMultiple('1'); //=> false
+ * isMultiple('1a'); //=> false
+ *
+ * @function
+ * @param {string} value
+ * @return {number}
+ */
+const isMultiple = ifElse(isValid, pipe(splitNumber, length, lt(1)) , F);
+
 module.exports = {
   format,
   formatLongOrdinal,
@@ -170,6 +187,7 @@ module.exports = {
   formatRoman,
   isNumber,
   isNumeric: isValid,
+  isMultiple,
   toInt,
   toRoman
 };
