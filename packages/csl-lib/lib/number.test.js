@@ -2,7 +2,7 @@ const {always} = require('ramda');
 const test = require('tap');
 const {check, property} = require('testcheck');
 const romanNumberGenerator = require('../generators/roman-number');
-const nodeNumber = require('./csl-node-number'); // SUT
+const nodeNumber = require('./number'); // SUT
 
 const locales = always([
   {terms: [

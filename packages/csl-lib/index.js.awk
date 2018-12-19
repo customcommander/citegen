@@ -4,10 +4,15 @@ BEGIN {
   print "module.exports = {"
 }
 
+# Exclude test files
+/test\.js/ {
+  next
+}
+
 {
   key = $0
-  sub(/.\/lib\/csl-node-/, "", key)
-  sub(/.js/, "", key)
+  sub("./lib/", "", key)
+  sub(".js", "", key)
   print "  '" key "'" ": " "require('" $0 "'),"
 }
 

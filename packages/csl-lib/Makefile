@@ -9,6 +9,6 @@ test:
 		-- '**/*.test.js'
 
 index.js:
-	find ./lib -type f -name "csl-node-*.js" -and -not -name "*.test.js" | awk -f index.js.awk >$@
+	ls -1 ./lib/*.js | awk -f index.js.awk >$@
 
 .PHONY: index.js
