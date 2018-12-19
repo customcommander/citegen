@@ -1,5 +1,5 @@
 var tap = require('tap');
-var formatting = require('./csl-attr-formatting'); // Subject Under Test
+var formatting = require('./formatting'); // Subject Under Test
 
 tap.equal(formatting({}, 'foo'), 'foo',
   'return `str` as is if there are no formatting attributes');
