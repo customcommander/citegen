@@ -1,6 +1,7 @@
 locales_dir = ../../vendor/locales
 locales_xml = $(shell find $(locales_dir) -type f -name "*.xml")
 tap = ./node_modules/.bin/tap
+mustache = ./node_modules/.bin/mustache
 
 build: lib index.js
 
@@ -22,6 +23,10 @@ lib/%.json: $(locales_dir)/%.xml lib/xml2json.xsl
 
 index.js: lib index.js.awk
 	find ./lib -type f -name "locales*.json" | awk -f index.js.awk >$@
+
+README.md: README.mustache
+	jq '{langs: ."language-names" | to_entries | sort_by(.value[1])}' $(locales_dir)/locales.json \
+		| $(mustache) - $^ >$@
 
 clean:
 	rm -rfv lib/*.json
