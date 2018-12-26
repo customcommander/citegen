@@ -36,7 +36,7 @@ module.exports = R.curry(function (locales, macros, attrs, children, ref) {
   );
 
   var content = R.cond([
-    [R.has('term'), getTerm(R.__, locales)],
+    [R.has('term'), (attrs) => getTerm('long', false, attrs.term, locales)],
     [R.has('variable'), getVariable(ref)],
     [R.has('macro'), runMacro(macros, ref)],
     [R.has('value'), getValue],
