@@ -1,5 +1,5 @@
 var R = require('ramda');
-var isNumeric = require('./utils/number-is-numeric');
+var {isNumeric} = require('./utils/number');
 
 var isType = function (ref) {
   return R.equals(R.prop('type', ref));
