@@ -22,10 +22,9 @@
  */
 const {
   curry,
-  head,
+  path,
   pipe,
-  prop,
-  T
+  propEq
 } = require('ramda');
 
 const findTerm = require('./find-term');
@@ -37,5 +36,5 @@ const findTerm = require('./find-term');
  * @return {string}
  */
 module.exports = curry((locales, termName) =>
-  pipe(findTerm, head, prop('gender'))
-    ({term: termName}, T, locales));
+  pipe(findTerm, path([0, 'gender']))
+    ('long', propEq('name', termName), locales));

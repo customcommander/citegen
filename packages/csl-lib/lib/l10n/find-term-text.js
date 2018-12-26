@@ -22,40 +22,12 @@
  */
 
 const {
-  always,
   curry,
-  head,
-  ifElse,
-  isNil,
-  lensPath,
-  pipe,
-  T,
-  view
+  pathOr,
+  propEq
 } = require('ramda');
 
-
 const findTerm = require('./find-term');
-
-/*
- * Anatomy of a term object:
- *
- *   { name: 'edition',
- *     form: 'long',
- *     value: ['edition', 'editions']}
- */
-
-const singular = view(lensPath(['value', 0]));
-const plural = view(lensPath(['value', 1]));
-
-/**
- * Extract the value of a term depending on the plural attribute.
- * @function
- * @param {object} attrs
- * @param {term} term
- * @return {string}
- */
-const text = curry((attrs, term) =>
-  attrs.plural === 'true' ? plural(term) : singular(term));
 
 /**
  * Finds a term in given list of locales `locales`, that satisfies
@@ -73,32 +45,13 @@ const text = curry((attrs, term) =>
  *
  * If a term cannot be found at all, an empty string is returned.
  *
- * @example
- * var locales = [
- *  {terms: [
- *    {name: 'foo',
- *     form: 'long',
- *     value: ['foo_long_singular', 'foo_long_plural']},
- *    {name: 'foo',
- *     form: 'short',
- *     value: ['foo_short_singular', 'foo_short_plural']},
- *  ]},
- *  {terms: [
- *    {name: 'foo',
- *     form: 'verb',
- *     value: ['do_foo_singular', 'do_foo_plural']}
- *  ]}
- * ];
- *
- * findTermText({term: 'foo'}, locales); //=> 'foo_long_singular'
- * findTermText({term: 'foo', plural: 'true'}, locales); //=> 'foo_long_plural'
- * findTermText({term: 'foo', form: 'short', plural: 'true'}, locales); //=> 'foo_short_plural'
- *
  * @module {function} l10n/find-term-text
- * @param {object} attrs
+ * @param {string} form
+ * @param {boolean} plural
+ * @param {string} name
  * @param {locale[]} locales
  * @return {string}
  */
-module.exports = curry((attrs, locales) =>
-  pipe(findTerm, head, ifElse(isNil, always(''), text(attrs)))
-    (attrs, T, locales));
+module.exports = curry((form, plural, name, locales) =>
+  pathOr('', (plural ? [0, 'value', 1] : [0, 'value', 0]))
+    (findTerm(form, propEq('name', name), locales)));

@@ -31,6 +31,7 @@ const {
   repeat,
   T,
   test,
+  thunkify,
   trim,
   when,
   zipWith
@@ -51,7 +52,7 @@ const table = [
   [4, 'IV'],
   [1, 'I']];
 
-
+const findTermText = require('../l10n/find-term-text');
 const findTermOrdinal = require('../l10n/find-term-ordinal');
 
 const isComma = equals(',');
@@ -90,19 +91,21 @@ const toRoman =
         map(last, table)),
       join('')));
 
-const toOrdinal = curry((locales, name, value) =>
-  pipe(
-    either(
-      findTermOrdinal(locales, /^ordinal-/, name),
-      findTermOrdinal(locales, 'ordinal', name)),
-    concat(value))
-      (value));
+const toOrdinal =
+  curry((locales, name, value) =>
+    pipe(
+      either(
+        findTermOrdinal(locales, /^ordinal-/, name),
+        thunkify(findTermText)('long', false, 'ordinal', locales)),
+      concat(value))
+        (value));
 
-const toLongOrdinal = curry((locales, name, value) =>
-  either(
-    findTermOrdinal(locales, /^long-ordinal-/, name),
-    toOrdinal(locales, name))
-      (value));
+const toLongOrdinal =
+  curry((locales, name, value) =>
+    either(
+      findTermOrdinal(locales, /^long-ordinal-/, name),
+      toOrdinal(locales, name))
+        (value));
 
 /**
  * @function
@@ -138,11 +141,12 @@ const formatRoman = when(isValid, format(when(isNumber, toRoman)));
  * @param {string} value
  * @return {string}
  */
-const formatOrdinal = curry((locales, name, value) =>
-  when(isValid,
-    format(when(isNumber,
-      toOrdinal(locales, name))))
-        (value));
+const formatOrdinal =
+  curry((locales, name, value) =>
+    when(isValid,
+      format(when(isNumber,
+        toOrdinal(locales, name))))
+          (value));
 
 /**
  * @function
@@ -151,11 +155,12 @@ const formatOrdinal = curry((locales, name, value) =>
  * @param {string} value
  * @return {string}
  */
-const formatLongOrdinal = curry((locales, name, value) =>
-  when(isValid,
-    format(when(isNumber,
-      toLongOrdinal(locales, name))))
-        (value));
+const formatLongOrdinal =
+  curry((locales, name, value) =>
+    when(isValid,
+      format(when(isNumber,
+        toLongOrdinal(locales, name))))
+          (value));
 
 module.exports = {
   format,

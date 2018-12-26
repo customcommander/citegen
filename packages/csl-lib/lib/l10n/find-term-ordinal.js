@@ -22,34 +22,35 @@
  */
 
 const {
+  allPass,
   always,
-  both,
   compose,
   cond,
   curry,
-  defaultTo,
+  either,
   eqBy,
   equals,
+  flip,
   gt,
-  head,
+  identity,
   last,
   length,
   lensIndex,
-  lensPath,
   lt,
   over,
   partialRight,
   partition,
+  path,
   pipe,
   prop,
   propEq,
+  propSatisfies,
   reject,
   split,
-  T,
   takeLast,
+  test,
   unnest,
   useWith,
-  view,
   when
 } = require('ramda');
 
@@ -59,8 +60,7 @@ const findGender = require('./find-term-gender');
 const toInt = partialRight(parseInt, [10]);
 const name = prop('name');
 const number = pipe(name, split('-'), last);
-const singular = view(lensPath(['value', 0]));
-const gender = prop('gender-form');
+const text = path([0, 'value', 0]);
 const isNeuter = propEq('gender-form', 'neuter');
 const isFirstGroup = pipe(number, toInt, gt(10));
 const multiple = compose(lt(1), length);
@@ -72,19 +72,9 @@ const matchFunction =
     [equals('last-two-digits'), always(compose(toInt, takeLast(2)))],
     [equals('whole-number'), always(toInt)]]);
 
-/**
- * @function
- * @param {string} expected
- * @param {object} term
- * @return {boolean}
- */
-const genderIs = curry((expected, term) =>
-  expected === gender(term) || 'neuter' === gender(term));
-
-const numberIs = curry((expected, term) =>
-  eqBy(matchFunction(match(term)), expected, number(term)));
-
-const predicate = useWith(both, [genderIs, numberIs]);;
+const withName = useWith(flip(propSatisfies)('name'), [test, identity]);
+const withGender = pipe(findGender, propEq('gender-form'), flip(either)(isNeuter));
+const withNumber = curry((expected, term) => eqBy(matchFunction(match(term)), expected, number(term)));
 
 const filterGender = when(multiple, reject(isNeuter));
 const filterGroup = when(multiple, reject(isFirstGroup));
@@ -97,15 +87,12 @@ const filterTerms =
     unnest,
     filterGroup);
 
-const findOrdinal =
-  pipe(
-    findTerm,
-    filterTerms,
-    head,
-    defaultTo({}),
-    singular);
-
 module.exports = curry((locales, termName, varName, number) => {
-  const predicateFn = (termName === 'ordinal' ? T : predicate(findGender(locales, varName), number));
-  return findOrdinal({term: termName}, predicateFn, locales);
+  const predicate =
+    allPass([
+      withName(termName),
+      withGender(locales, varName),
+      withNumber(number)]);
+  return compose(text, filterTerms, findTerm)
+    ('long', predicate, locales);
 });

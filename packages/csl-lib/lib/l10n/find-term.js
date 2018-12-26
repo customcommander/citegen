@@ -21,79 +21,24 @@
  * SOFTWARE.
  */
 const {
-  allPass,
+  always,
+  both,
   compose,
   concat,
   cond,
-  converge,
   curry,
-  either,
   equals,
   filter,
-  identity,
-  ifElse,
-  is,
   isEmpty,
-  juxt,
-  lensProp,
   map,
-  merge,
-  of,
-  pipe,
-  prop,
   propEq,
   propOr,
-  propSatisfies,
   reject,
-  set,
   T,
   take,
-  test,
-  transduce,
-  unapply
+  transduce
 } = require('ramda');
 
-const matchFunction = ifElse(is(RegExp), test, equals);
-
-/**
- * Checks that given `term` has a name property equals to `termName`.
- * @param {string} expected
- * @param {term} term
- * @return {boolean}
- */
-const nameIs = curry((expected, term) =>
-  propSatisfies(matchFunction(expected), 'name', term));
-
-/**
- * Checks that given `term` has a form property equals to `termForm`.
- * @param {string} expected
- * @param {term} term
- * @return {boolean}
- */
-const formIs = propEq('form');
-
-/**
- * Checks that given `term` exposes a singular or plural form.
- * @param {string} expected
- * @param {term} term
- * @return {boolean}
- */
-const pluralIs = curry((expected, term) =>
-  expected !== 'true' || term.value.length > 1);
-
-/**
- * Takes a set of attributes `attrs` and creates a function
- * that takes a term as its sole parameter and returns true
- * if it satisfies all attributes.
- *
- * @param {object} attrs
- * @return {function}
- */
-const predicate =
-  converge(unapply(allPass), [
-    compose(nameIs, prop('term')),
-    compose(formIs, prop('form')),
-    compose(pluralIs, prop('plural'))]);
 
 /**
  * Finds a term in a given list of locales `locales`
@@ -101,15 +46,13 @@ const predicate =
  *
  * @param {locale[]} locales
  * @param {function} validate
- * @param {object} attrs
  * @return {string}
  */
-const findTerm = curry((locales, validate, attrs) =>
+const findTerm = curry((predicate, locales) =>
   transduce(
     compose(
       map(propOr([], 'terms')),
-      map(filter(predicate(attrs))),
-      map(filter(validate)),
+      map(filter(predicate)),
       reject(isEmpty),
       take(1)),
     concat,
@@ -117,36 +60,20 @@ const findTerm = curry((locales, validate, attrs) =>
     locales));
 
 /**
- * Sets the form property of a given object to a given value.
- *
- * @example
- * setForm('short', {term: 'foo', form: 'long'});
- * //=> {term: 'foo', form: 'short'}
- *
- * @param {string} form
- * @param {object} obj
- * @return {object} A similar object but with an updated form property
- */
-const setForm = set(lensProp('form'));
-
-/**
  * Implements the form fallback mechanism as described here:
  * http://docs.citationstyles.org/en/1.0.1/specification.html#terms
  *
- * @param {object} attrs
- * @return {object[]} Array of attributes
+ * @function
+ * @param {string} form
+ * @return {string[]}
  */
-const withFallback =
-  pipe(
-    merge({form: 'long', plural: 'false'}),
-    cond([
-      [propEq('form', 'symbol'),
-        juxt([identity, setForm('short'), setForm('long')])],
-      [propEq('form', 'verb-short'),
-        juxt([identity, setForm('verb'), setForm('long')])],
-      [either(propEq('form', 'verb'), propEq('form', 'short')),
-        juxt([identity, setForm('long')])],
-      [T, of]]));
+const fallback =
+  cond([
+    [equals('symbol'), always(['symbol', 'short', 'long'])],
+    [equals('verb-short'), always(['verb-short', 'verb', 'long'])],
+    [equals('verb'), always(['verb', 'long'])],
+    [equals('short'), always(['short', 'long'])],
+    [T, always(['long'])]]);
 
 /**
  * Finds a term in given list of locales `locales`, that satisfies
@@ -165,17 +92,18 @@ const withFallback =
  * If a term cannot be found at all, an empty string is returned.
  *
  * @module {function} l10n/find-term
- * @param {object} attrs
- * @param {function} validate
+ * @param {string} form
+ * @param {function} predicate
  * @param {locale[]} locales
- * @return {string}
+ * @return {term[]}
  */
-module.exports = curry((attrs, validate, locales) =>
+module.exports = curry((form, predicate, locales) =>
   transduce(
     compose(
-      map(findTerm(locales, validate)),
+      map(form => both(propEq('form', form), predicate)),
+      map(predicate => findTerm(predicate, locales)),
       reject(isEmpty),
       take(1)),
     concat,
     [],
-    withFallback(attrs)));
+    fallback(form)));
