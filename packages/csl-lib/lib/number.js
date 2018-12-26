@@ -21,99 +21,14 @@
  * SOFTWARE.
  */
 
+const {curry, propOr} = require('ramda');
+
 const {
-  always,
-  anyPass,
-  compose,
-  concat,
-  cond,
-  curry,
-  curryN,
-  either,
-  eqBy,
-  equals,
-  groupWith,
-  ifElse,
-  into,
-  map,
-  nthArg,
-  pipe,
-  propOr,
-  test,
-  trim,
-  when
-} = require('ramda');
-
-const isNumeric = require('./utils/number-is-numeric');
-const toRoman = require('./utils/number-to-roman');
-const findTermOrdinal = require('./l10n/find-term-ordinal');
-
-const isComma = equals(',');
-const isHyphen = equals('-');
-const isAmpersand = equals('&');
-const isSeparator = anyPass([isComma, isHyphen, isAmpersand]);
-const digitOnly = test(/^[0-9]+$/);
-
-const formatSeparator =
-  cond([
-    [isComma, always(', ')],
-    [isHyphen, always('-')],
-    [isAmpersand, always(' & ')]]);
-
-/**
- * @function
- * @param {function} formatNumber
- * @param {string} str
- * @return {string}
- */
-const format = (formatNumber, str) =>
-  into('',
-    compose(
-      map(trim),
-      map(ifElse(isSeparator, formatSeparator, formatNumber))),
-    groupWith(eqBy(isSeparator), str));
-
-/**
- * @param {locale[]} locales
- * @param {object} attrs
- * @param {string} number
- */
-const formatNumeric = curryN(3, nthArg(2));
-
-/**
- * @param {locale[]} locales
- * @param {object} attrs
- * @param {string} number
- */
-const formatRoman = curryN(3, pipe(nthArg(2), when(digitOnly, toRoman)));
-
-/**
- * @param {locale[]} locales
- * @param {object} attrs
- * @param {string} number
- */
-const formatOrdinal = curry((locales, attrs, number) =>
-  when(digitOnly,
-    pipe(
-      either(
-        findTermOrdinal(locales, /^ordinal-/, attrs.variable),
-        findTermOrdinal(locales, 'ordinal', attrs.variable)),
-      concat(number)),
-    number));
-
-const formatLongOrdinal = curry((locales, attrs, number) =>
-  when(digitOnly,
-    either(
-      findTermOrdinal(locales, /^long-ordinal/, attrs.variable),
-      formatOrdinal(locales, attrs)),
-    number));
-
-const formatFunction =
-  cond([
-    [equals('numeric'), always(formatNumeric)],
-    [equals('roman'), always(formatRoman)],
-    [equals('ordinal'), always(formatOrdinal)],
-    [equals('long-ordinal'), always(formatLongOrdinal)]]);
+  formatLongOrdinal,
+  formatNumeric,
+  formatOrdinal,
+  formatRoman
+} = require('./utils/number');
 
 /**
  * @function
@@ -126,7 +41,11 @@ const formatFunction =
  */
 module.exports = curry((locales, macros, attrs, children, ref) => {
   const form = propOr('numeric', 'form', attrs);
-  const str = propOr('', attrs.variable, ref);
-  const fn = formatFunction(form)(locales, attrs);
-  return isNumeric(str) ? format(fn, str) : str;
+  const number = propOr('', attrs.variable, ref);
+  const format =
+    (form === 'numeric' && formatNumeric) ||
+    (form === 'roman' && formatRoman) ||
+    (form === 'ordinal' && formatOrdinal(locales, attrs.variable)) ||
+    (form === 'long-ordinal' && formatLongOrdinal(locales, attrs.variable));
+  return format(number);
 });
