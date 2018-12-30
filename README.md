@@ -10,3 +10,12 @@ Make                    | Description
 `make start-docker`     | Runs a Docker container
 `make stop-docker`      | Stops the Docker container
 `make test`             | Runs unit tests across packages
+
+#### Useful Tips
+
+1.  See what files will be packaged:
+
+    ```
+    cd packages/<package name>
+    npm pack && tar -xvzf *.tgz && rm -rf package *.tgz
+    ```
