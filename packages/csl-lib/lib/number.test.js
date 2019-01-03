@@ -6,27 +6,27 @@ const nodeNumber = require('./number'); // SUT
 
 const locales = always([
   {terms: [
-    {name: 'feminine_word', single: 'n/a', gender: 'feminine'},
-    {name: 'masculine_word', single: 'n/a', gender: 'masculine'},
-    {name: 'neuter_word', single: 'n/a'}]},
+    {name: 'feminine_word', form: 'long', value: ['n/a'], gender: 'feminine'},
+    {name: 'masculine_word', form: 'long', value: ['n/a'], gender: 'masculine'},
+    {name: 'neuter_word', form: 'long', value: ['n/a'], gender: 'neuter'}]},
   {terms: [
-    {name: 'long-ordinal-01', single: 'premiere', 'gender-form': 'feminine'},
-    {name: 'long-ordinal-01', single: 'premier', 'gender-form': 'masculine'},
-    {name: 'long-ordinal-01', single: 'first'},
-    {name: 'long-ordinal-02', single: 'second'}]},
+    {name: 'long-ordinal-01', form: 'long', value: ['premiere'], 'gender-form': 'feminine', match: 'whole-number'},
+    {name: 'long-ordinal-01', form: 'long', value: ['premier'], 'gender-form': 'masculine', match: 'whole-number'},
+    {name: 'long-ordinal-01', form: 'long', value: ['first'], 'gender-form': 'neuter', match: 'whole-number'},
+    {name: 'long-ordinal-02', form: 'long', value: ['second'], 'gender-form': 'neuter', match: 'whole-number'}]},
   {terms: [
-    {name: 'ordinal-01', single: 're', 'gender-form': 'feminine'},
-    {name: 'ordinal-01', single: 'er', 'gender-form': 'masculine'},
-    {name: 'ordinal-01', single: 'st'},
-    {name: 'ordinal-02', single: 'nd'},
-    {name: 'ordinal-03', single: 'rd'},
-    {name: 'ordinal-05', single: 'th(05)', match: 'whole-number'},
-    {name: 'ordinal-06', single: 'th(06)'},
-    {name: 'ordinal-13', single: 'th(13)'},
-    {name: 'ordinal-14', single: 'th(14)', match: 'whole-number'},
-    {name: 'ordinal-17', single: 'th(17)'}]},
+    {name: 'ordinal-01', form: 'long', value: ['re'], 'gender-form': 'feminine', match: 'last-digit'},
+    {name: 'ordinal-01', form: 'long', value: ['er'], 'gender-form': 'masculine', match: 'last-digit'},
+    {name: 'ordinal-01', form: 'long', value: ['st'], 'gender-form': 'neuter', match: 'last-digit'},
+    {name: 'ordinal-02', form: 'long', value: ['nd'], 'gender-form': 'neuter', match: 'last-digit'},
+    {name: 'ordinal-03', form: 'long', value: ['rd'], 'gender-form': 'neuter', match: 'last-digit'},
+    {name: 'ordinal-05', form: 'long', value: ['th(05)'], 'gender-form': 'neuter', match: 'whole-number'},
+    {name: 'ordinal-06', form: 'long', value: ['th(06)'], 'gender-form': 'neuter', match: 'last-digit'},
+    {name: 'ordinal-13', form: 'long', value: ['th(13)'], 'gender-form': 'neuter', match: 'last-two-digits'},
+    {name: 'ordinal-14', form: 'long', value: ['th(14)'], 'gender-form': 'neuter', match: 'whole-number'},
+    {name: 'ordinal-17', form: 'long', value: ['th(17)'], 'gender-form': 'neuter', match: 'last-two-digits'}]},
   {terms: [
-    {name: 'ordinal', single: 'th(default)'}]}]);
+    {name: 'ordinal', form: 'long', value: ['th(default)'], 'gender': 'neuter'}]}]);
 
 // NUMERIC FORM
 
@@ -80,35 +80,35 @@ test.equal(nodeNumber(locales(), [], {variable: 'feminine_word', form: 'ordinal'
   '2nd',
   'ordinal: fallback to neuter form');
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '7'}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '7'}),
   '7th(default)',
   'ordinal: fallback to default ordinal');
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '1016'}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '1016'}),
   '1016th(06)',
   'ordinal: numbers < 10 are matched on the last digit by default');
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '1017'}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '1017'}),
   '1017th(17)',
   'ordinal: numbers >= 10 are matched on the last two digits by default');
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '13'}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '13'}),
   '13th(13)',
   'ordinal: use the ordinal from the highest ordinal group when there are matches in both groups');
 
 test.test('ordinal: can match on the full number when needed', t => {
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '105'}), '105th(default)');
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '5'}), '5th(05)');
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '114'}), '114th(default)');
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '14'}), '14th(14)');
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '105'}), '105th(default)');
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '5'}), '5th(05)');
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '114'}), '114th(default)');
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '14'}), '14th(14)');
   t.end();
 });
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '1, 2a, 3, 4b'}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '1, 2a, 3, 4b'}),
   '1st, 2a, 3rd, 4b',
   'ordinal: numbers with affixes are never ordinalized');
 
-test.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'ordinal'} , [], {foo: '  1  ,  2  -  3  &  2  -  3  '}),
+test.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'ordinal'} , [], {neuter_word: '  1  ,  2  -  3  &  2  -  3  '}),
   '1st, 2nd-3rd & 2nd-3rd',
   'ordinal: numbers with affixes are never ordinalized');
 
@@ -131,8 +131,8 @@ test.equal(nodeNumber(locales(), [], {variable: 'feminine_word', form: 'long-ord
   'long-ordinal: fallback to neuter form');
 
 test.test('long-ordinal: fallback to ordinal', t => {
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'long-ordinal'} , [], {foo: '5'}), '5th(05)',);
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'long-ordinal'} , [], {foo: '13'}), '13th(13)',);
-  t.equal(nodeNumber(locales(), [], {variable: 'foo', form: 'long-ordinal'} , [], {foo: '7'}), '7th(default)');
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'long-ordinal'} , [], {neuter_word: '5'}), '5th(05)',);
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'long-ordinal'} , [], {neuter_word: '13'}), '13th(13)',);
+  t.equal(nodeNumber(locales(), [], {variable: 'neuter_word', form: 'long-ordinal'} , [], {neuter_word: '7'}), '7th(default)');
   t.end();
 });

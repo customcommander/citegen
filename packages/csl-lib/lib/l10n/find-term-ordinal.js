@@ -28,31 +28,28 @@ const {
   cond,
   curry,
   defaultTo,
-  either,
   eqBy,
   equals,
   gt,
-  has,
   head,
-  ifElse,
-  isNil,
   last,
   length,
   lensIndex,
+  lensPath,
   lt,
   over,
   partialRight,
   partition,
   pipe,
   prop,
-  propOr,
-  propSatisfies,
+  propEq,
   reject,
   split,
+  T,
   takeLast,
   unnest,
   useWith,
-  T,
+  view,
   when
 } = require('ramda');
 
@@ -61,19 +58,13 @@ const findGender = require('./find-term-gender');
 
 const toInt = partialRight(parseInt, [10]);
 const name = prop('name');
-const gender = propOr('neuter', 'gender-form');
 const number = pipe(name, split('-'), last);
-const singular = propOr('', 'single');
-const isNeuter = propSatisfies(either(isNil, equals('neuter')), 'gender-form');
+const singular = view(lensPath(['value', 0]));
+const gender = prop('gender-form');
+const isNeuter = propEq('gender-form', 'neuter');
 const isFirstGroup = pipe(number, toInt, gt(10));
 const multiple = compose(lt(1), length);
-
-const match =
-  ifElse(has('match'),
-    prop('match'),
-    ifElse(isFirstGroup,
-      always('last-digit'),
-      always('last-two-digits')));
+const match = prop('match');
 
 const matchFunction =
   cond([
@@ -81,6 +72,12 @@ const matchFunction =
     [equals('last-two-digits'), always(compose(toInt, takeLast(2)))],
     [equals('whole-number'), always(toInt)]]);
 
+/**
+ * @function
+ * @param {string} expected
+ * @param {object} term
+ * @return {boolean}
+ */
 const genderIs = curry((expected, term) =>
   expected === gender(term) || 'neuter' === gender(term));
 

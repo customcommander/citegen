@@ -22,16 +22,13 @@
  */
 const {
   curry,
-  defaultTo,
   head,
   pipe,
-  propOr,
+  prop,
   T
 } = require('ramda');
 
 const findTerm = require('./find-term');
-
-const findGender = pipe(findTerm, head, defaultTo({}), propOr('neuter', 'gender'));
 
 /**
  * @function
@@ -40,4 +37,5 @@ const findGender = pipe(findTerm, head, defaultTo({}), propOr('neuter', 'gender'
  * @return {string}
  */
 module.exports = curry((locales, termName) =>
-  findGender({term: termName}, T, locales));
+  pipe(findTerm, head, prop('gender'))
+    ({term: termName}, T, locales));

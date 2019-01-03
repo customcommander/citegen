@@ -33,7 +33,8 @@ tap.test('should support a "term" attribute', t => {
   var text = textFn(/* locales */[{
     terms: [
       { name: 'greetings',
-        single: 'Hello World!' }
+        form: 'long',
+        value: ['Hello World!'] }
     ]
   }], /* macros */{});
   t.is(text({term: 'greetings'}, [], {}), 'Hello World!');
