@@ -25,11 +25,11 @@ const {
   compose,
   concat,
   cond,
+  converge,
   curry,
   either,
   equals,
   filter,
-  has,
   identity,
   ifElse,
   is,
@@ -49,12 +49,10 @@ const {
   T,
   take,
   test,
-  transduce
+  transduce,
+  unapply
 } = require('ramda');
 
-const form = propOr('long', 'form');
-const term = prop('term');
-const plural = propOr('false', 'plural');
 const matchFunction = ifElse(is(RegExp), test, equals);
 
 /**
@@ -72,8 +70,7 @@ const nameIs = curry((expected, term) =>
  * @param {term} term
  * @return {boolean}
  */
-const formIs = curry((expected, term) =>
-  expected === form(term));
+const formIs = propEq('form');
 
 /**
  * Checks that given `term` exposes a singular or plural form.
@@ -82,7 +79,7 @@ const formIs = curry((expected, term) =>
  * @return {boolean}
  */
 const pluralIs = curry((expected, term) =>
-  has((expected === 'false' ? 'single' : 'multiple'), term));
+  expected !== 'true' || term.value.length > 1);
 
 /**
  * Takes a set of attributes `attrs` and creates a function
@@ -90,16 +87,13 @@ const pluralIs = curry((expected, term) =>
  * if it satisfies all attributes.
  *
  * @param {object} attrs
- * @param {string} attrs.term term's name
- * @param {string} [attrs.form='long'] term's form
- * @param {string} [attrs.plural='false'] singular or plural version of the form?
  * @return {function}
  */
-const predicate = (attrs) =>
-  allPass([
-    nameIs(term(attrs)),
-    formIs(form(attrs)),
-    pluralIs(plural(attrs))]);
+const predicate =
+  converge(unapply(allPass), [
+    compose(nameIs, prop('term')),
+    compose(formIs, prop('form')),
+    compose(pluralIs, prop('plural'))]);
 
 /**
  * Finds a term in a given list of locales `locales`
@@ -169,30 +163,6 @@ const withFallback =
  * http://docs.citationstyles.org/en/1.0.1/specification.html#terms
  *
  * If a term cannot be found at all, an empty string is returned.
- *
- * @example
- * var locales = [
- *  {terms: [
- *    {name: 'foo',
- *     form: 'long',
- *     single: 'foo_long_singular',
- *     multiple: 'foo_long_plural'},
- *    {name: 'foo',
- *     form: 'short',
- *     single: 'foo_short_singular',
- *     multiple: 'foo_short_plural'},
- *  ]},
- *  {terms: [
- *    {name: 'foo',
- *     form: 'verb',
- *     single: 'do_foo_singular',
- *     multiple: 'do_foo_plural'}
- *  ]}
- * ];
- *
- * findTerm({term: 'foo'}, locales); //=> 'foo_long_singular'
- * findTerm({term: 'foo', plural: 'true'}, locales); //=> 'foo_long_plural'
- * findTerm({term: 'foo', form: 'short', plural: 'true'}, locales); //=> 'foo_short_plural'
  *
  * @module {function} l10n/find-term
  * @param {object} attrs

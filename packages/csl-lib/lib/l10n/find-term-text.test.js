@@ -4,14 +4,14 @@ const findTermText = require('./find-term-text'); // SUT
 
 const find = findTermText(R.__, [
   {terms: [
-    {name: '🌯', single: '🌯'},
-    {name: '🌯', form: 'short', single: '🌮'}]},
+    {name: '🌯', form: 'long', value: ['🌯']},
+    {name: '🌯', form: 'short', value: ['🌮']}]},
   {terms: [
-    {name: '🌯', single: '🔥', multiple: '🌯🌯🌯'},
-    {name: '🌯', form: 'short', single: '🔥', multiple: '🌮🌮🌮'}]},
+    {name: '🌯', form: 'long', value: ['🔥', '🌯🌯🌯']},
+    {name: '🌯', form: 'short', value: ['🔥', '🌮🌮🌮']}]},
   {terms: [
-    {name: '🌶', single: '🌶'},
-    {name: '🌶', form: 'verb', single: '😱'}]}]);
+    {name: '🌶', form: 'long', value: ['🌶']},
+    {name: '🌶', form: 'verb', value: ['😱']}]}]);
 
 tap.equal(find({term: '🌯'}), '🌯');
 tap.equal(find({term: '🌯', plural: 'true'}), '🌯🌯🌯');

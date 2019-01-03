@@ -22,35 +22,40 @@
  */
 
 const {
+  always,
   curry,
-  defaultTo,
   head,
+  ifElse,
+  isNil,
+  lensPath,
   pipe,
-  propOr,
-  T
+  T,
+  view
 } = require('ramda');
+
 
 const findTerm = require('./find-term');
 
+/*
+ * Anatomy of a term object:
+ *
+ *   { name: 'edition',
+ *     form: 'long',
+ *     value: ['edition', 'editions']}
+ */
+
+const singular = view(lensPath(['value', 0]));
+const plural = view(lensPath(['value', 1]));
+
 /**
  * Extract the value of a term depending on the plural attribute.
- *
- * @example
- * text({plural: 'true'}, {single: 'foo', multiple: 'bar'});
- * //=> 'bar'
- * text({plural: 'false'}, {single: 'foo', multiple: 'bar'});
- * //=> 'foo'
- *
  * @function
  * @param {object} attrs
  * @param {term} term
- * @return {function}
+ * @return {string}
  */
-const text = curry((attrs, term) => {
-  const plural = propOr('false', 'plural', attrs);
-  const key = plural === 'false' ? 'single' : 'multiple';
-  return propOr('', key, term);
-});
+const text = curry((attrs, term) =>
+  attrs.plural === 'true' ? plural(term) : singular(term));
 
 /**
  * Finds a term in given list of locales `locales`, that satisfies
@@ -73,18 +78,15 @@ const text = curry((attrs, term) => {
  *  {terms: [
  *    {name: 'foo',
  *     form: 'long',
- *     single: 'foo_long_singular',
- *     multiple: 'foo_long_plural'},
+ *     value: ['foo_long_singular', 'foo_long_plural']},
  *    {name: 'foo',
  *     form: 'short',
- *     single: 'foo_short_singular',
- *     multiple: 'foo_short_plural'},
+ *     value: ['foo_short_singular', 'foo_short_plural']},
  *  ]},
  *  {terms: [
  *    {name: 'foo',
  *     form: 'verb',
- *     single: 'do_foo_singular',
- *     multiple: 'do_foo_plural'}
+ *     value: ['do_foo_singular', 'do_foo_plural']}
  *  ]}
  * ];
  *
@@ -98,5 +100,5 @@ const text = curry((attrs, term) => {
  * @return {string}
  */
 module.exports = curry((attrs, locales) =>
-  pipe(findTerm, head, defaultTo({}), text(attrs))
+  pipe(findTerm, head, ifElse(isNil, always(''), text(attrs)))
     (attrs, T, locales));
