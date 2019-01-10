@@ -11,10 +11,47 @@
   <xsl:output method="text" />
 
   <xsl:template match="csl:*" mode="param-attrs">
-    {<xsl:for-each select="@*">
-      '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'
-      <xsl:if test="position() != last()">,</xsl:if>
-    </xsl:for-each>}
+    {
+      <xsl:apply-templates select="." mode="param-attrs-extras"/>
+      <xsl:for-each select="@*">
+        '<xsl:value-of select="name()"/>': '<xsl:value-of select="."/>'<xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    }
+  </xsl:template>
+
+  <xsl:template match="csl:*" mode="param-attrs-extras">
+  </xsl:template>
+
+  <!--
+  Why do we need `param-attrs-extras` templates?
+
+  Some CSL rendering elements have knowledge of their parents. For example:
+
+    <date variable="issued">
+      <date-part name="year"/>
+      <date-part name="month"/>
+      <date-part name="day"/>
+    </date>
+
+  The `variable` attribute indicates that we will be processing the `issued` date of a document.
+  It is set on the `<date>` element but it will be on each `<date-part>` element to extract
+  the necessary information from the date.
+
+  The CSL spec does not allow for the `variable` attribute to be set on `<date-part>` elements.
+  Therefore when constructing the `attrs` object out of an element's attributes,
+  that particular attribute won't be present and the JS implementation of `<date-part>` won't be able to know
+  on which date property it must operate on.
+
+  A `param-attrs-extras` template can be used to inject arbitrary key/value pairs into
+  an element's `attrs` object.
+  -->
+  <xsl:template match="csl:date-part" mode="param-attrs-extras">
+    variable: '<xsl:value-of select="../@variable"/>',
+    <xsl:choose>
+      <xsl:when test="@name = 'year' and not(@form)">form: 'long',</xsl:when>
+      <xsl:when test="@name = 'month' and not(@form)">form: 'long',</xsl:when>
+      <xsl:when test="@name = 'day' and not(@form)">form: 'numeric',</xsl:when>
+    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="csl:*" mode="param-children">

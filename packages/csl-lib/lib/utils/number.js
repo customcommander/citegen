@@ -17,6 +17,7 @@ const {
   identity,
   ifElse,
   into,
+  is,
   isEmpty,
   join,
   juxt,
@@ -33,7 +34,9 @@ const {
   T,
   test,
   thunkify,
+  toString,
   trim,
+  unless,
   when,
   zipWith
 } = require('ramda');
@@ -64,6 +67,7 @@ const isSeparator = anyPass([isComma, isHyphen, isAmpersand]);
 const toInt = partialRight(parseInt, [10]);
 const isNumber = test(/^\d+$/);
 const isNumeric = test(/^[a-z]*\d+[a-z]*$/i);
+const stringify = unless(is(String), toString);
 
 const splitNumber =
   pipe(
@@ -138,30 +142,30 @@ const formatRoman = when(isValid, format(when(isNumber, toRoman)));
 /**
  * @function
  * @param {locale[]} locales
- * @param {string} name
+ * @param {string} gender
  * @param {string} value
  * @return {string}
  */
 const formatOrdinal =
-  curry((locales, name, value) =>
+  curry((locales, gender, value) =>
     when(isValid,
       format(when(isNumber,
-        toOrdinal(locales, name))))
-          (value));
+        toOrdinal(locales, gender))))
+          (stringify(value)));
 
 /**
  * @function
  * @param {locale[]} locales
- * @param {string} name
+ * @param {string} gender
  * @param {string} value
  * @return {string}
  */
 const formatLongOrdinal =
-  curry((locales, name, value) =>
+  curry((locales, gender, value) =>
     when(isValid,
       format(when(isNumber,
-        toLongOrdinal(locales, name))))
-          (value));
+        toLongOrdinal(locales, gender))))
+          (stringify(value)));
 
 /**
  * True if given numeric content is made of a single number.
@@ -189,5 +193,6 @@ module.exports = {
   isNumeric: isValid,
   isMultiple,
   toInt,
-  toRoman
+  toRoman,
+  stringify
 };

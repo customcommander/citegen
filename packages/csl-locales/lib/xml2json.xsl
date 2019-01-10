@@ -47,6 +47,14 @@
     "style_options": <xsl:apply-templates select="." mode="object"/>
   </xsl:template>
 
+  <xsl:template match="csl:style-options" mode="object">
+    {
+      <xsl:apply-templates select="." mode="kv-limit"/>,
+      <xsl:apply-templates select="." mode="kv-punctuation"/>
+    }
+  </xsl:template>
+
+
   <xsl:template match="csl:date">
     "date_<xsl:value-of select="@form"/>": [
       <xsl:for-each select="csl:date-part">
@@ -121,6 +129,32 @@
       <xsl:with-param name="value" select="."/>
     </xsl:call-template>
   </xsl:template>
+
+  <!-- <style-options> attributes -->
+
+  <xsl:template match="csl:style-options[@limit-day-ordinals-to-day-1]" mode="kv-limit">
+    <xsl:apply-templates select="@limit-day-ordinals-to-day-1"/>
+  </xsl:template>
+
+  <xsl:template match="csl:style-options[not(@limit-day-ordinals-to-day-1)]" mode="kv-limit">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'limit-day-ordinals-to-day-1'"/>
+      <xsl:with-param name="value" select="'false'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="csl:style-options[@punctuation-in-quote]" mode="kv-punctuation">
+    <xsl:apply-templates select="@punctuation-in-quote"/>
+  </xsl:template>
+
+  <xsl:template match="csl:style-options[not(@punctuation-in-quote)]" mode="kv-punctuation">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'punctuation-in-quote'"/>
+      <xsl:with-param name="value" select="'false'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- <term> attributes -->
 
   <xsl:template match="csl:term" mode="kv-name">
     <xsl:apply-templates select="@name"/>
