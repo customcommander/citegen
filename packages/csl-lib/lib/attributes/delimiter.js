@@ -1,9 +1,14 @@
-var R = require('ramda');
+const {
+  identity,
+  join,
+  propOr,
+  useWith
+} = require('ramda');
 
-module.exports = R.curry(function (attrs, arr) {
-  return R.pipe(
-    R.propOr('', 'delimiter'),
-    R.join,
-    R.applyTo(arr)
-  )(attrs);
-});
+/**
+ * @function
+ * @param {object} attrs
+ * @param {string} output
+ * @return {string}
+ */
+module.exports = useWith(join, [propOr('', 'delimiter'), identity]);

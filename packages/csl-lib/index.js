@@ -3,6 +3,8 @@
 module.exports = {
   'choose': require('./lib/choose.js'),
   'citation': require('./lib/citation.js'),
+  'date-part': require('./lib/date-part.js'),
+  'date': require('./lib/date.js'),
   'else-if': require('./lib/else-if.js'),
   'if': require('./lib/if.js'),
   'label': require('./lib/label.js'),

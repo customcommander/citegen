@@ -74,7 +74,8 @@ const matchFunction =
 
 const withName = useWith(flip(propSatisfies)('name'), [test, identity]);
 const withGender = pipe(propEq('gender-form'), flip(either)(isNeuter));
-const withNumber = curry((expected, term) => eqBy(matchFunction(match(term)), expected, number(term)));
+const withNumber = curry((expected, term) =>
+  eqBy(matchFunction(match(term)), expected, number(term)));
 
 const filterGender = when(multiple, reject(isNeuter));
 const filterGroup = when(multiple, reject(isFirstGroup));
