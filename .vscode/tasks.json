@@ -78,6 +78,16 @@
       "problemMatcher": []
     },
     {
+      "label": "csl-features-extras: clean",
+      "type": "shell",
+      "command": "make -C packages/csl-features-extras clean",
+      "group": "build",
+      "presentation": {
+        "reveal": "never"
+      },
+      "problemMatcher": []
+    },
+    {
       "label": "csl-features-support: clean",
       "type": "shell",
       "command": "make -C packages/csl-features-support clean",
