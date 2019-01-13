@@ -93,19 +93,19 @@ const toRoman =
       join('')));
 
 const toOrdinal =
-  curry((locales, name, value) =>
+  curry((locales, gender, value) =>
     pipe(
       either(
-        findTermOrdinal(locales, /^ordinal-/, name),
+        findTermOrdinal(locales, /^ordinal-/, gender),
         thunkify(findTermText)('long', false, 'ordinal', locales)),
       concat(value))
         (value));
 
 const toLongOrdinal =
-  curry((locales, name, value) =>
+  curry((locales, gender, value) =>
     either(
-      findTermOrdinal(locales, /^long-ordinal-/, name),
-      toOrdinal(locales, name))
+      findTermOrdinal(locales, /^long-ordinal-/, gender),
+      toOrdinal(locales, gender))
         (value));
 
 /**

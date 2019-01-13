@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright (c) 2018 Julien Gonzalez
+ * Copyright (c) 2019 Julien Gonzalez
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,13 +49,13 @@ const {
   split,
   takeLast,
   test,
+  unapply,
   unnest,
   useWith,
   when
 } = require('ramda');
 
 const findTerm = require('./find-term');
-const findGender = require('./find-term-gender');
 
 const toInt = partialRight(parseInt, [10]);
 const name = prop('name');
@@ -73,7 +73,7 @@ const matchFunction =
     [equals('whole-number'), always(toInt)]]);
 
 const withName = useWith(flip(propSatisfies)('name'), [test, identity]);
-const withGender = pipe(findGender, propEq('gender-form'), flip(either)(isNeuter));
+const withGender = pipe(propEq('gender-form'), flip(either)(isNeuter));
 const withNumber = curry((expected, term) => eqBy(matchFunction(match(term)), expected, number(term)));
 
 const filterGender = when(multiple, reject(isNeuter));
@@ -87,12 +87,8 @@ const filterTerms =
     unnest,
     filterGroup);
 
-module.exports = curry((locales, termName, varName, number) => {
-  const predicate =
-    allPass([
-      withName(termName),
-      withGender(locales, varName),
-      withNumber(number)]);
-  return compose(text, filterTerms, findTerm)
-    ('long', predicate, locales);
-});
+const predicate = useWith(unapply(allPass), [withName, withGender, withNumber]);
+const findOrdinal = pipe(findTerm, filterTerms, text);
+
+module.exports = curry((locales, name, gender, number) =>
+  findOrdinal('long', predicate(name, gender, number), locales));
