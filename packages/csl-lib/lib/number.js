@@ -21,7 +21,13 @@
  * SOFTWARE.
  */
 
-const {curry, propOr} = require('ramda');
+const {
+  curry,
+  propOr,
+  thunkify
+} = require('ramda');
+
+const findTermGender = require('./l10n/find-term-gender');
 
 const {
   formatLongOrdinal,
@@ -42,10 +48,11 @@ const {
 module.exports = curry((locales, macros, attrs, children, ref) => {
   const form = propOr('numeric', 'form', attrs);
   const number = propOr('', attrs.variable, ref);
+  const gender = thunkify(findTermGender)(locales, attrs.variable);
   const format =
     (form === 'numeric' && formatNumeric) ||
     (form === 'roman' && formatRoman) ||
-    (form === 'ordinal' && formatOrdinal(locales, attrs.variable)) ||
-    (form === 'long-ordinal' && formatLongOrdinal(locales, attrs.variable));
+    (form === 'ordinal' && formatOrdinal(locales, gender())) ||
+    (form === 'long-ordinal' && formatLongOrdinal(locales, gender()));
   return format(number);
 });
