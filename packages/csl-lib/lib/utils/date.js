@@ -25,10 +25,12 @@ const {
   compose,
   concat,
   curry,
+  equals,
   flip,
-  gte,
+  gt,
   into,
   isNil,
+  lensProp,
   map,
   nth,
   pipe,
@@ -36,6 +38,7 @@ const {
   reject,
   takeLast,
   useWith,
+  view,
   when
 } = require('ramda');
 
@@ -43,7 +46,7 @@ const {toInt, stringify} = require('./number');
 const l10nDayNumber = require('../l10n/date-day-number');
 const l10nTermText = require('../l10n/find-term-text');
 
-const isLt10 = compose(gte(10), toInt);
+const isLt10 = compose(gt(10), toInt);
 const pad = when(isLt10, compose(concat('0'), stringify));
 
 const getDate = prop('date-parts');
@@ -70,6 +73,13 @@ const getShortMonth = curry((locales, date) =>{
   return map(pipe(name, flip(l10nTermText('short', false))(locales)), getMonth(date));
 });
 
+/**
+ * @function
+ * @param {object}
+ * @return {boolean}
+ */
+const isApproximate = compose(equals(1), view(lensProp('circa')));
+
 module.exports = {
   getYear,
   getShortYear,
@@ -79,5 +89,6 @@ module.exports = {
   getShortMonth,
   getDay,
   getPaddedDay,
-  getOrdinalDay
+  getOrdinalDay,
+  isApproximate
 };
