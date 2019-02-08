@@ -49,6 +49,7 @@ const {
 } = require('ramda');
 
 const {isNumeric} = require('./utils/number');
+const {isApproximate} = require('./utils/date');
 
 const isTrue = equals(true);
 
@@ -101,6 +102,22 @@ const checkType = flip(propEq('type'));
 const checkNumeric = curryN(2, compose(isNumeric, flip(propOr(''))));
 
 /**
+ * Checks that a `ref[dateVarName]` contains an approximate date.
+ *
+ * @example
+ * checkApproximateDate({issued: {circa: 1}}, 'issued');
+ * //=> true
+ *
+ * @function
+ * @param {object} ref
+ * @param {string} dateVarName
+ * @return {boolean}
+ * @see {@link https://docs.citationstyles.org/en/master/specification.html#approximate-dates}
+ * @see {@link https://github.com/citation-style-language/documentation/issues/61}
+ */
+const checkApproximateDate = curryN(2, compose(isApproximate, flip(propOr(''))));
+
+/**
  * @function
  * @param {object} attrs
  * @return {function}
@@ -130,7 +147,8 @@ const pickConstraints = omit(['match']);
  */
 const buildConstraints = ref => ({
   'type': check(checkType(ref)),
-  'is-numeric': check(checkNumeric(ref))
+  'is-numeric': check(checkNumeric(ref)),
+  'is-uncertain-date': check(checkApproximateDate(ref))
 });
 
 /**

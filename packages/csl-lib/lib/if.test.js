@@ -41,6 +41,7 @@ tap.test('match all', t => {
   const attrs = {
     'type': 'article',
     'is-numeric': 'edition volume',
+    'is-uncertain-date': 'issued accessed',
     'match': 'all'
   };
 
@@ -48,14 +49,18 @@ tap.test('match all', t => {
     sut(attrs, children('>', ')'),
       { type: 'article',
         edition: generateNumber(),
-        volume: generateNumber() }),
+        volume: generateNumber(),
+        issued: {circa: 1},
+        accessed: {circa: 1} }),
     '>)',
     'true when all values (in all conditions) test true');
 
   t.equals(sut(omit(['match'], attrs), children('>', ')'),
     { type: 'article',
       edition: generateNumber(),
-      volume: generateNumber() }),
+      volume: generateNumber(),
+      issued: {circa: 1},
+      accessed: {circa: 1} }),
     '>)',
     'default value for match is "all"');
 
@@ -75,6 +80,7 @@ tap.test('match none', t => {
   const attrs = {
     'type': 'article',
     'is-numeric': 'edition volume',
+    'is-uncertain': 'issued accessed',
     'match': 'none'
   };
 
@@ -82,7 +88,9 @@ tap.test('match none', t => {
     sut(attrs, children('<', '3'),
       { type: 'unknown-type',
         edition: 'NaN',
-        volume: 'NaN' }),
+        volume: 'NaN',
+        issued: {/* date are not approximate by default */},
+        accessed: {/* date are not approximate by default */} }),
     '<3',
     'true when all values (in all conditions) test false');
 
