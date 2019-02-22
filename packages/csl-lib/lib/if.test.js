@@ -1,85 +1,97 @@
-const R = require('ramda');
+const {unapply, map, always, omit} = require('ramda');
 const tap = require('tap');
-const td = require('testdouble');
-const genChooseCondition = require('../generators/choose-condition');
-const genNumber = require('../generators/number');
-const {check, property, sampleOne} = require('testcheck');
+const numberGenerator = require('../generators/number');
+const {sampleOne} = require('testcheck');
 const ifFn = require('./if'); // Subject Under Test
 
-const matchCond = R.propOr('all', 'match');
-const splitAttr = R.pipe(R.propOr(''), R.split(' '), R.reject(R.isEmpty));
-const wontMatch = R.pipe(R.map(R.objOf(R.__, 'NaN')), R.mergeAll);
-const willMatch = R.pipe(R.map(R.objOf(R.__, sampleOne(genNumber.any))), R.mergeAll);
+const children = unapply(map(always));
+const generateNumber = () => sampleOne(numberGenerator.any);
 
-function generateMatchingTypeProp(attrs) {
-  const prop = R.objOf('type');
-  const types = splitAttr('type', attrs);
-  const match = matchCond(attrs);
-  if (types.length === 0) return {};
-  if (types.length > 1 && match === 'all') return null;
-  if (match === 'none') return prop('fake_type');
-  return prop(R.last(types));
-}
+tap.test('match any', t => {
+  const sut = ifFn([]/* locales */, {}/* macros */);
 
-function generateMatchingNumberProp(attrs) {
-  const numbers = splitAttr('is-numeric', attrs);
-  const match = matchCond(attrs);
-  if (numbers.length === 0) return {};
-  if (match === 'none') return wontMatch(numbers);
-  if (match === 'all') return willMatch(numbers);
-  return R.apply(R.useWith(R.merge, [wontMatch, willMatch]), R.splitAt(-1, numbers));
-}
+  const attrs = {
+    'type': 'article',
+    'is-numeric': 'edition volume',
+    'match': 'any'
+  };
 
-function generateNonMatchingTypeProp(attrs) {
-  const prop = R.objOf('type');
-  const match = matchCond(attrs);
-  const types = splitAttr('type', attrs);
-  if (types.length === 0) return {};
-  if (match === 'none') return prop(R.last(types));
-  return prop('fake_type');
-}
+  t.equals(
+    sut(attrs, children(';', ')'),
+      { type: 'unknown-type',
+        edition: 'NaN',
+        volume: generateNumber() }),
+    ';)',
+    'true if at least one value (in any condition) tests true');
 
-function generateNonMatchingNumberProp(attrs) {
-  const numbers = splitAttr('is-numeric', attrs);
-  const match = matchCond(attrs);
-  if (numbers.length === 0) return {};
-  if (match === 'none') return willMatch(numbers);
-  return wontMatch(numbers);
-}
+  t.equals(
+    sut(attrs, children(';', ')'),
+      { type: 'unknown-type',
+        edition: 'NaN',
+        volume: 'NaN' }),
+    '',
+    'false if all values (in all conditions) test false');
 
-function generateReference(propBuilders, attrs) {
-  const props = R.juxt(propBuilders)(attrs);
-  return R.ifElse(R.any(R.isNil), R.always(null), R.mergeAll)(props);
-}
+  t.end();
+});
 
-function generateMatchingReference(attrs) {
-  return generateReference([
-    generateMatchingTypeProp,
-    generateMatchingNumberProp], attrs);
-}
+tap.test('match all', t => {
+  const sut = ifFn([]/* locales */, {}/* macros */);
 
-function generateNonMatchingReference(attrs) {
-  return generateReference([
-    generateNonMatchingTypeProp,
-    generateNonMatchingNumberProp], attrs);
-}
+  const attrs = {
+    'type': 'article',
+    'is-numeric': 'edition volume',
+    'match': 'all'
+  };
 
-const applyChildrenWhenTrue = property(genChooseCondition,
-  (attrs) => {
-    const ref = generateMatchingReference(attrs);
-    const fn = td.function();
-    td.when(fn(ref)).thenReturn('ok');
-    return ref === null ? true : ifFn({}, {}, attrs, [fn, fn], ref) === 'okok';
-  });
+  t.equals(
+    sut(attrs, children('>', ')'),
+      { type: 'article',
+        edition: generateNumber(),
+        volume: generateNumber() }),
+    '>)',
+    'true when all values (in all conditions) test true');
 
-tap.is(check(applyChildrenWhenTrue).result, true,
-  'return children output when conditions are satisfied.');
+  t.equals(sut(omit(['match'], attrs), children('>', ')'),
+    { type: 'article',
+      edition: generateNumber(),
+      volume: generateNumber() }),
+    '>)',
+    'default value for match is "all"');
 
-const returnEmptyStringWhenFalse = property(genChooseCondition,
-  (attrs) => {
-    const ref = generateNonMatchingReference(attrs);
-    return ifFn({}, {}, attrs, [], ref) === '';
-  });
+  t.equals(sut(attrs, children(';', ')'),
+    { type: 'article',
+      edition: generateNumber(),
+      volume: 'NaN' }),
+    '',
+    'false if any value (in any condition) tests false');
 
-tap.is(check(returnEmptyStringWhenFalse).result, true,
-  'return an empty string when the conditions are not satisfied.');
+  t.end();
+});
+
+tap.test('match none', t => {
+  const sut = ifFn([]/* locales */, {}/* macros */);
+
+  const attrs = {
+    'type': 'article',
+    'is-numeric': 'edition volume',
+    'match': 'none'
+  };
+
+  t.equals(
+    sut(attrs, children('<', '3'),
+      { type: 'unknown-type',
+        edition: 'NaN',
+        volume: 'NaN' }),
+    '<3',
+    'true when all values (in all conditions) test false');
+
+  t.equals(sut(attrs, children('<', '3'),
+    { type: 'unknown-type',
+      edition: generateNumber(),
+      volume: 'NaN' }),
+    '',
+    'false if any value (in any condition) tests true');
+
+  t.end();
+});
