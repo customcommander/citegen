@@ -101,3 +101,39 @@ Scenario: Make sure that date-parts form variants are all covered
     2019, 2019, 19 | June, June, Jun., 6, 06 | 1, 1, 01, 1👍
     """
 
+Scenario: standard attributes on non-localized dates
+  Given the following citation style
+    """
+    <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
+      <info>
+        <id/>
+        <title/>
+        <updated>2008-10-29T21:01:24+00:00</updated>
+      </info>
+      <citation>
+        <layout>
+          <date variable="issued" delimiter="/" text-case="uppercase" display="block" text-decoration="underline">
+            <date-part name="month" form="long"/>
+            <date-part name="day"/>
+          </date>
+        </layout>
+      </citation>
+    </style>
+    """
+  And the following data
+    """
+    [
+      {
+        "issued": {
+          "date-parts": [
+            [2019, 6, 1]
+          ]
+        }
+      }
+    ]
+    """
+  Then the following result is expected
+    """
+    <div class="csl-display-line"><span style="text-decoration:underline">JUNE/1</span></div>
+    """
+

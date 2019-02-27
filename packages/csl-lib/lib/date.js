@@ -24,16 +24,26 @@
 const {
   applyTo,
   compose,
+  converge,
   curry,
   into,
   map,
   path,
-  pipe
+  pipe,
+  unary
 } = require('ramda');
 
 const delimiter = require('./attributes/delimiter');
+const display = require('./attributes/display');
+const textCase = require('./attributes/text-case');
+const formatting = require('./attributes/formatting');
 
-const attributes = pipe(delimiter);
+const attributes = converge(
+  pipe, [
+    unary(delimiter),
+    unary(textCase),
+    unary(formatting),
+    unary(display)]);
 
 const processChildren = (ref, children) =>
   into([],
@@ -50,6 +60,5 @@ const processChildren = (ref, children) =>
  * @param {object} ref
  * @return {string}
  */
-module.exports = curry((locales, macros, attrs, children, ref) => {
-  return attributes(attrs, processChildren(ref, children));
-});
+module.exports = curry((locales, macros, attrs, children, ref) =>
+  attributes(attrs)(processChildren(ref, children)));
