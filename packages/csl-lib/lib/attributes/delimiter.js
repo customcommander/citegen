@@ -8,7 +8,7 @@ const {
 /**
  * @function
  * @param {object} attrs
- * @param {string} output
+ * @param {string[]} input
  * @return {string}
  */
 module.exports = useWith(join, [propOr('', 'delimiter'), identity]);
