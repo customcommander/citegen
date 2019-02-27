@@ -1,4 +1,27 @@
-var R = require('ramda');
+const {
+  compose,
+  converge,
+  curry,
+  equals,
+  flip,
+  has,
+  identity,
+  ifElse,
+  into,
+  join,
+  last,
+  lensIndex,
+  map,
+  nth,
+  over,
+  pipe,
+  prop,
+  split,
+  toLower,
+  toUpper,
+  trim,
+  when,
+} = require('ramda');
 
 /**
  * Checks whether `str` is a stop word.
@@ -12,7 +35,7 @@ var R = require('ramda');
  * @param {string} str - Any string (case insensitive).
  * @return {boolean}
  */
-var isStopWord = R.pipe(R.toLower, R.has(R.__, {
+const isStopWord = pipe(toLower, flip(has)({
   'a': true,
   'an': true,
   'and': true,
@@ -52,7 +75,7 @@ var isStopWord = R.pipe(R.toLower, R.has(R.__, {
  * @param {string} str
  * @return {string[]}
  */
-var splitSentence = R.split(/\b/);
+const splitSentence = split(/\b/);
 
 /**
  * Checks whether `str` is 100% lowercased.
@@ -66,7 +89,7 @@ var splitSentence = R.split(/\b/);
  * @param {string} str
  * @return {boolean}
  */
-var isLowerCased = R.converge(R.equals, [R.identity, R.toLower]);
+const isLowerCased = converge(equals, [identity, toLower]);
 
 /**
  * Checks whether `str` is 100% uppercased.
@@ -80,7 +103,7 @@ var isLowerCased = R.converge(R.equals, [R.identity, R.toLower]);
  * @param {string} str
  * @return {boolean}
  */
-var isUpperCased = R.converge(R.equals, [R.identity, R.toUpper]);
+const isUpperCased = converge(equals, [identity, toUpper]);
 
 /**
  * Capitalizes `word` if it is 100% lowercased.
@@ -94,12 +117,8 @@ var isUpperCased = R.converge(R.equals, [R.identity, R.toUpper]);
  * @param {string} word
  * @return {string}
  */
-var capitalizeWord = R.when(isLowerCased,
-  R.converge(R.concat, [
-    R.pipe(R.head, R.toUpper),
-    R.tail
-  ])
-);
+const capitalizeWord = when(isLowerCased,
+  compose(join(''), over(lensIndex(0), toUpper)));
 
 /**
  * Capitalizes the first word in `str` if the word is 100% lowercased
@@ -114,11 +133,10 @@ var capitalizeWord = R.when(isLowerCased,
  * @param {string} str
  * @return {string}
  */
-var capitalizeFirst = R.pipe(
+const capitalizeFirst = pipe(
   splitSentence,
-  R.over(R.lensIndex(0), capitalizeWord),
-  R.join('')
-);
+  over(lensIndex(0), capitalizeWord),
+  join(''));
 
 /**
  * Capitalizes all the words in `str` if they are 100% lowercase
@@ -133,10 +151,9 @@ var capitalizeFirst = R.pipe(
  * @param {string} str
  * @return {string}
  */
-var capitalizeAll = R.pipe(
+const capitalizeAll = pipe(
   splitSentence,
-  R.into('', R.map(capitalizeWord))
-);
+  into('', map(capitalizeWord)));
 
 /**
  * Converts `str` to sentence case.
@@ -157,10 +174,9 @@ var capitalizeAll = R.pipe(
  * @param {string} str
  * @return {string}
  */
-var sentenceCase = R.ifElse(isUpperCased,
-  R.pipe(R.toLower, capitalizeWord),
-  capitalizeFirst
-);
+const sentenceCase = ifElse(isUpperCased,
+  pipe(toLower, capitalizeWord),
+  capitalizeFirst);
 
 /**
  * Converts `str` to title case.
@@ -180,28 +196,25 @@ var sentenceCase = R.ifElse(isUpperCased,
  * @param {string} str
  * @return {string}
  */
-var titleCase = R.pipe(
-  R.when(isUpperCased, R.toLower),
+const titleCase = pipe(
+  when(isUpperCased, toLower),
   splitSentence,
-  function (words) {
-    return words.reduce(function (str, word, idx, words) {
-      var isStopWrd = isStopWord(word);
-      var isFirstWrd = idx === 0;
-      var isLastWrd = idx === words.length - 1;
-      var prevChr = isFirstWrd ? '' : R.last(R.trim(R.nth(idx - 1, words)));
+  (words) =>
+    words.reduce((str, word, idx, words) => {
+      const isStopWrd = isStopWord(word);
+      const isFirstWrd = idx === 0;
+      const isLastWrd = idx === words.length - 1;
+      const prevChr = isFirstWrd ? '' : last(trim(nth(idx - 1, words)));
       return (!isStopWrd || (isFirstWrd || isLastWrd || prevChr === ':')) ?
-        str + capitalizeWord(word) : str + R.toLower(word);
-    }, '');
-  }
-);
+        str + capitalizeWord(word) : str + toLower(word);
+    }, ''));
 
-module.exports = R.curry(function (attrs, str) {
-  var transform = R.prop('text-case', attrs);
-  if (transform === 'lowercase') return R.toLower(str);
-  if (transform === 'uppercase') return R.toUpper(str);
-  if (transform === 'capitalize-first') return capitalizeFirst(str);
-  if (transform === 'capitalize-all') return capitalizeAll(str);
-  if (transform === 'sentence') return sentenceCase(str);
-  if (transform === 'title') return titleCase(str);
-  return str;
+module.exports = curry((attrs, str) => {
+  const transform = prop('text-case', attrs);
+  return transform === 'lowercase' ? toLower(str) :
+    transform === 'uppercase' ? toUpper(str) :
+    transform === 'capitalize-first' ? capitalizeFirst(str) :
+    transform === 'capitalize-all' ? capitalizeAll(str) :
+    transform === 'sentence' ? sentenceCase(str) :
+    transform === 'title' ? titleCase(str) : str;
 });
