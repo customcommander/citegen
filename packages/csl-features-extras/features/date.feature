@@ -1,6 +1,6 @@
 Feature: <date>
 
-Scenario: The order of <date-parts> elements matter when rendering an unlocalized date
+Scenario: non-localized dates
   Given the following citation style
     """
     <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
@@ -10,18 +10,23 @@ Scenario: The order of <date-parts> elements matter when rendering an unlocalize
         <updated>2008-10-29T21:01:24+00:00</updated>
       </info>
       <citation>
-        <layout>
-          <date variable="issued" delimiter=" ">
-            <date-part name="month" form="long"/>
-            <date-part name="day"/>
-            <date-part name="year"/>
-          </date>
-          <text value=" | "/>
-          <date variable="issued" delimiter=" ">
-            <date-part name="day"/>
-            <date-part name="month" form="long"/>
-            <date-part name="year"/>
-          </date>
+        <layout delimiter=" | ">
+          <choose>
+            <if type="book">
+              <date variable="issued" delimiter=" ">
+                <date-part name="month" form="long"/>
+                <date-part name="day"/>
+                <date-part name="year"/>
+              </date>
+            </if>
+            <else-if type="chapter">
+              <date variable="accessed" delimiter=" ">
+                <date-part name="day"/>
+                <date-part name="month" form="long"/>
+                <date-part name="year"/>
+              </date>
+            </else-if>
+          </choose>
         </layout>
       </citation>
     </style>
@@ -30,9 +35,18 @@ Scenario: The order of <date-parts> elements matter when rendering an unlocalize
     """
     [
       {
+        "type": "book",
         "issued": {
           "date-parts": [
-            [2019, 1, 10]
+            [666, 1, 10]
+          ]
+        }
+      },
+      {
+        "type": "chapter",
+        "accessed": {
+          "date-parts": [
+            [-1666, 1, 10]
           ]
         }
       }
@@ -40,7 +54,7 @@ Scenario: The order of <date-parts> elements matter when rendering an unlocalize
     """
   Then the following result is expected
     """
-    January 10 2019 | 10 January 2019
+    January 10 666AD | 10 January -1666BC
     """
 
 Scenario: Make sure that date-parts form variants are all covered

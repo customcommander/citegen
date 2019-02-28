@@ -10,6 +10,7 @@ const {
 
 const {
   getYear,
+  getLongYear,
   getShortYear,
   getMonth,
   getPaddedMonth,
@@ -22,6 +23,16 @@ const {
 
 const locales = () => ([{
   terms: [
+    { name: "ad",
+      form: "long",
+      gender: "neuter",
+      value: ["AD"]},
+
+    { name: "bc",
+      form: "long",
+      gender: "neuter",
+      value: ["BC"]},
+
     { name: "month-01",
       form: "long",
       gender: "neuter",
@@ -48,8 +59,6 @@ const circa = flip(assoc('circa'))({});
 const y = compose(date, unapply(map(y => [y, 99, 99])));
 const m = compose(date, unapply(map(m => [9999, m, 99])));
 const d = compose(date, unapply(map(d => [9999, 99, d])));
-
-
 
 tap.deepEquals(getYear(y(2019, 2020)), [2019, 2020],
   'getYear() - returns all year parts');
@@ -80,3 +89,12 @@ tap.true(isApproximate(circa(1)),
 
 tap.false(isApproximate(circa('foo')),
   'isApproximate() - date is not uncertain if `circa` is not set to `1`');
+
+tap.deepEquals(getLongYear(locales(), y(-1, 999)), ['-1BC', '999AD'],
+  'getLongYear() - append "BC" or "AD" to years expressed as numbers');
+
+tap.deepEquals(getLongYear(locales(), y('-5', '678')), ['-5BC', '678AD'],
+  'getLongYear() - append "BC" or "AD" to years expressed as strings');
+
+tap.deepEquals(getLongYear(locales(), y(0, 1000)), [0, 1000],
+  'getLongYear() - do not append "BC" or "AD" to years outside of their range');
