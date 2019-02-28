@@ -34,12 +34,14 @@ const {
 
 const {
   getYear,
-  getShortYear,
   getMonth,
+  getDay,
+
+  getLongYear,
+  getShortYear,
   getPaddedMonth,
   getLongMonth,
   getShortMonth,
-  getDay,
   getPaddedDay,
   getOrdinalDay
 } = require('./utils/date');
@@ -81,7 +83,7 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
     (isDay(attrs) && getDay);
 
   const format =
-    (isLongYear(attrs) && getYear) ||
+    (isLongYear(attrs) && getLongYear(locales)) ||
     (isShortYear(attrs) && getShortYear) ||
     (isNumericMonth(attrs) && getMonth) ||
     (isNumericDay(attrs) && getDay) ||
