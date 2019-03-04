@@ -11,7 +11,7 @@ Scenario: Render numbers "as is" if they do not contain numeric content
       </info>
       <citation>
         <layout>
-          <number variable="edition"/>
+          <number variable="edition" prefix="(" suffix=")" text-case="uppercase" display="block" text-decoration="underline"/>
           <text value=" | "/>
           <number variable="issue" form="roman"/>
           <text value=" | "/>
@@ -33,5 +33,5 @@ Scenario: Render numbers "as is" if they do not contain numeric content
     """
   Then the following result is expected
     """
-    Second Edition | 1a, II & III | 1ᵉʳ-17ᵉ | premier & deuxième
+    (<div class="csl-display-line"><span style="text-decoration:underline">SECOND EDITION</span></div>) | 1a, II & III | 1ᵉʳ-17ᵉ | premier & deuxième
     """

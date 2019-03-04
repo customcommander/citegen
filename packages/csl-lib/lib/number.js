@@ -22,12 +22,19 @@
  */
 
 const {
+  converge,
   curry,
+  pipe,
   propOr,
-  thunkify
+  thunkify,
+  unary
 } = require('ramda');
 
 const findTermGender = require('./l10n/find-term-gender');
+const affixes = require('./attributes/affixes');
+const display = require('./attributes/display');
+const formatting = require('./attributes/formatting');
+const textCase = require('./attributes/text-case');
 
 const {
   formatLongOrdinal,
@@ -35,6 +42,21 @@ const {
   formatOrdinal,
   formatRoman
 } = require('./utils/number');
+
+/**
+ * Generates a function that will apply behavioural style attributes
+ * to the generated output.
+ *
+ * @function
+ * @param {object} attrs
+ * @return {function}
+ */
+const attributes = converge(
+  pipe, [
+    unary(textCase),
+    unary(formatting),
+    unary(display),
+    unary(affixes)]);
 
 /**
  * @function
@@ -54,5 +76,5 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
     (form === 'roman' && formatRoman) ||
     (form === 'ordinal' && formatOrdinal(locales, gender())) ||
     (form === 'long-ordinal' && formatLongOrdinal(locales, gender()));
-  return format(number);
+  return attributes(attrs)(format(number));
 });
