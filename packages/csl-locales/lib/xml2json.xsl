@@ -27,10 +27,6 @@
   }
   </xsl:template>
 
-  <xsl:template match="csl:info">
-  </xsl:template>
-
-
   <xsl:template match="csl:translator">
     {
       "name": "<xsl:value-of select="csl:name"/>"
