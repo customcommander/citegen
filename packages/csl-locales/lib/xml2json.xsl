@@ -50,7 +50,6 @@
     }
   </xsl:template>
 
-
   <xsl:template match="csl:date">
     "date_<xsl:value-of select="@form"/>": [
       <xsl:for-each select="csl:date-part">
@@ -81,42 +80,13 @@
     }
   </xsl:template>
 
-  <xsl:template match="csl:*" mode="object">
-    <xsl:variable name="keysvalues">
-
-      <xsl:for-each select="@*">
-        <xsl:apply-templates select="."/>
-        <xsl:if test="position() != last()">,</xsl:if>
+  <xsl:template match="csl:date-part" mode="object">
+    {
+      <xsl:apply-templates select="." mode="kv-form"/>
+      <xsl:for-each select="@*[not(name()='form')]">
+        ,<xsl:apply-templates select="."/>
       </xsl:for-each>
-
-      <xsl:choose>
-
-        <xsl:when test="csl:single">
-          <xsl:text>,</xsl:text>
-          <xsl:call-template name="string-property-json-line">
-            <xsl:with-param name="name" select="'single'"/>
-            <xsl:with-param name="value" select="string(csl:single)"/>
-          </xsl:call-template>
-          <xsl:text>,</xsl:text>
-          <xsl:call-template name="string-property-json-line">
-            <xsl:with-param name="name" select="'multiple'"/>
-            <xsl:with-param name="value" select="string(csl:multiple)"/>
-          </xsl:call-template>
-        </xsl:when>
-
-        <xsl:when test="text()">
-          <xsl:text>,</xsl:text>
-          <xsl:call-template name="string-property-json-line">
-            <xsl:with-param name="name" select="'single'"/>
-            <xsl:with-param name="value" select="string(.)"/>
-          </xsl:call-template>
-        </xsl:when>
-
-      </xsl:choose>
-
-    </xsl:variable>
-
-    {<xsl:value-of select="$keysvalues"/>}
+    }
   </xsl:template>
 
   <xsl:template match="@*">
@@ -147,6 +117,40 @@
     <xsl:call-template name="string-property-json-line">
       <xsl:with-param name="name" select="'punctuation-in-quote'"/>
       <xsl:with-param name="value" select="'false'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <!-- <date-part> attributes -->
+
+  <xsl:template match="csl:date-part[@form]" mode="kv-form">
+    <xsl:apply-templates select="@form"/>
+  </xsl:template>
+
+  <xsl:template match="csl:date-part[not(@form) and @name='day']" mode="kv-form">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'form'"/>
+      <xsl:with-param name="value" select="'numeric'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="csl:date-part[not(@form) and @name='year']" mode="kv-form">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'form'"/>
+      <xsl:with-param name="value" select="'long'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="csl:date-part[not(@form) and @name='month' and parent::csl:date[@form='text']]" mode="kv-form">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'form'"/>
+      <xsl:with-param name="value" select="'long'"/>
+    </xsl:call-template>
+  </xsl:template>
+
+  <xsl:template match="csl:date-part[not(@form) and @name='month' and parent::csl:date[@form='numeric']]" mode="kv-form">
+    <xsl:call-template name="string-property-json-line">
+      <xsl:with-param name="name" select="'form'"/>
+      <xsl:with-param name="value" select="'numeric'"/>
     </xsl:call-template>
   </xsl:template>
 
