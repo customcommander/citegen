@@ -61,6 +61,23 @@
     </xsl:for-each>]
   </xsl:template>
 
+  <!--
+  NOTICE: This is the only place where children elements aren't transformed into
+          functions calls, but into sets of attributes instead!
+
+  Why?
+
+  <date>'s only allowed children are <date-part> elements.
+  We rendered them as a sets of attributes instead of functions calls. Why?
+  In a localized date context, each <date-part> element is used to override locale settings.
+  -->
+  <xsl:template match="csl:date" mode="param-children">
+    [<xsl:for-each select="csl:date-part">
+      <xsl:apply-templates select="." mode="param-attrs"/>
+      <xsl:if test="position() != last()">,</xsl:if>
+    </xsl:for-each>]
+  </xsl:template>
+
   <xsl:template match="csl:*" mode="function-call">
     lib['<xsl:value-of select="name()"/>'](locales, macros,
       <xsl:apply-templates select="self::node()" mode="param-attrs"/>,

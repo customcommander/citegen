@@ -37,6 +37,7 @@ const delimiter = require('./attributes/delimiter');
 const display = require('./attributes/display');
 const textCase = require('./attributes/text-case');
 const formatting = require('./attributes/formatting');
+const datePart = require('./date-part');
 
 const attributes = converge(
   pipe, [
@@ -45,20 +46,40 @@ const attributes = converge(
     unary(formatting),
     unary(display)]);
 
-const processChildren = (ref, children) =>
+/**
+ * @param {locale[]} locales
+ * @param {object} macros
+ * @param {attrs[]} vattrs
+ * @return {array}
+ */
+const dateParts = (locales, macros, vattrs) =>
+  into([],
+    compose(
+      map(datePart(locales, macros)),
+      map(applyTo([]))),
+    vattrs);
+
+/**
+ * Executes
+ * @param {function[]} dateparts
+ * @param {object} ref
+ * @return {string[]}
+ */
+const processChildren = (dateparts, ref) =>
   into([],
     compose(
       map(applyTo(ref)),
       map(path(['format', 0]))),
-    children);
+    dateparts);
+
 /**
  * @function
  * @param {locale[]} locales
  * @param {object[]} macros
  * @param {object} attrs
- * @param {function[]} children
+ * @param {attrs[]} children
  * @param {object} ref
  * @return {string}
  */
 module.exports = curry((locales, macros, attrs, children, ref) =>
-  attributes(attrs)(processChildren(ref, children)));
+  attributes(attrs)(processChildren(dateParts(locales, macros, children), ref)));
