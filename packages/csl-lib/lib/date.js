@@ -26,10 +26,14 @@ const {
   compose,
   converge,
   curry,
+  flip,
+  includes,
   into,
   map,
+  mergeLeft,
   path,
   pipe,
+  propSatisfies,
   unary
 } = require('ramda');
 
@@ -38,8 +42,9 @@ const display = require('./attributes/display');
 const textCase = require('./attributes/text-case');
 const formatting = require('./attributes/formatting');
 const datePart = require('./date-part');
+const findDateFormat = require('./l10n/find-date-format');
 
-const attributes = converge(
+const attributesFunction = converge(
   pipe, [
     unary(delimiter),
     unary(textCase),
@@ -47,17 +52,27 @@ const attributes = converge(
     unary(display)]);
 
 /**
+ * True if <date> represents a localised date.
+ * @function
+ * @param {attrs} attrs
+ * @return {boolean}
+ */
+const isLocalisedFormat = propSatisfies(flip(includes)(['text', 'numeric']), 'form');
+
+/**
  * @param {locale[]} locales
  * @param {object} macros
- * @param {attrs[]} vattrs
+ * @param {object} attrs
+ * @param {attrs[]} children
  * @return {array}
  */
-const dateParts = (locales, macros, vattrs) =>
+const dateParts = (locales, macros, attrs, children) =>
   into([],
     compose(
+      map(mergeLeft({variable: attrs.variable})),
       map(datePart(locales, macros)),
       map(applyTo([]))),
-    vattrs);
+    children);
 
 /**
  * Executes
@@ -75,11 +90,16 @@ const processChildren = (dateparts, ref) =>
 /**
  * @function
  * @param {locale[]} locales
- * @param {object[]} macros
+ * @param {object} macros
  * @param {object} attrs
  * @param {attrs[]} children
  * @param {object} ref
  * @return {string}
  */
-module.exports = curry((locales, macros, attrs, children, ref) =>
-  attributes(attrs)(processChildren(dateParts(locales, macros, children), ref)));
+module.exports = curry((locales, macros, attrs, children, ref) => {
+  const attributes = attributesFunction(attrs);
+  const parts = isLocalisedFormat(attrs) ?
+    dateParts(locales, macros, attrs, findDateFormat(attrs.form, locales)) :
+    dateParts(locales, macros, attrs, children);
+  return attributes(processChildren(parts, ref));
+});

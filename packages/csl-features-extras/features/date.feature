@@ -151,3 +151,66 @@ Scenario: standard attributes on non-localized dates
     <div class="csl-display-line"><span style="text-decoration:underline">JUNE/1</span></div>
     """
 
+Scenario: Localised dates
+  Given the following citation style
+    """
+    <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl" default-locale="x-emoji">
+      <info>
+        <id/>
+        <title/>
+        <updated>2008-10-29T21:01:24+00:00</updated>
+      </info>
+      <locale xml:lang="x-emoji">
+        <style-options limit-day-ordinals-to-day-1="true"/>
+        <date form="text">
+          <date-part name="month"/>
+          <date-part name="year"/>
+        </date>
+        <date form="numeric">
+          <date-part name="year"/>
+          <date-part name="month" form="short"/>
+          <date-part name="day" form="ordinal"/>
+        </date>
+        <terms>
+          <term name="month-01">🌯</term>
+        </terms>
+      </locale>
+      <citation>
+        <layout delimiter=" / ">
+          <choose>
+            <if type="book">
+              <date variable="issued" form="text"/>
+            </if>
+            <else-if type="chapter">
+              <date variable="accessed" form="numeric"/>
+            </else-if>
+          </choose>
+        </layout>
+      </citation>
+    </style>
+    """
+  And the following data
+    """
+    [
+      {
+        "type": "book",
+        "issued": {
+          "date-parts": [
+            [2019, 1, 1]
+          ]
+        }
+      },
+      {
+        "type": "chapter",
+        "accessed": {
+          "date-parts": [
+            [2019, 2, 1]
+          ]
+        }
+      }
+    ]
+    """
+  Then the following result is expected
+    """
+    🌯2019 / 2019Feb.1st
+    """
