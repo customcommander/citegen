@@ -47,11 +47,6 @@
   -->
   <xsl:template match="csl:date-part" mode="param-attrs-extras">
     variable: '<xsl:value-of select="../@variable"/>',
-    <xsl:choose>
-      <xsl:when test="@name = 'year' and not(@form)">form: 'long',</xsl:when>
-      <xsl:when test="@name = 'month' and not(@form)">form: 'long',</xsl:when>
-      <xsl:when test="@name = 'day' and not(@form)">form: 'numeric',</xsl:when>
-    </xsl:choose>
   </xsl:template>
 
   <xsl:template match="csl:*" mode="param-children">

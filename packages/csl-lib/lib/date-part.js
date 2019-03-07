@@ -24,11 +24,14 @@
 const {
   both,
   curry,
+  either,
   identity,
+  isNil,
   mergeRight,
   prop,
   propEq,
   propOr,
+  propSatisfies,
   useWith
 } = require('ramda');
 
@@ -47,6 +50,7 @@ const {
 } = require('./utils/date');
 
 const getDate = useWith(propOr({}), [prop('variable'), identity]);
+const noForm = propSatisfies(isNil, 'form');
 const isYear = propEq('name', 'year');
 const isMonth = propEq('name', 'month');
 const isDay = propEq('name', 'day');
@@ -55,12 +59,12 @@ const isShort = propEq('form', 'short');
 const isOrdinal = propEq('form', 'ordinal');
 const isNumeric = propEq('form', 'numeric');
 const isPaddedNumeric = propEq('form', 'numeric-leading-zeros');
-const isLongYear = both(isYear, isLong);
+const isLongYear = both(isYear, either(isLong, noForm));
 const isShortYear = both(isYear, isShort);
-const isLongMonth = both(isMonth, isLong);
+const isLongMonth = both(isMonth, either(isLong, noForm));
 const isShortMonth = both(isMonth, isShort);
 const isNumericMonth = both(isMonth, isNumeric);
-const isNumericDay = both(isDay, isNumeric);
+const isNumericDay = both(isDay, either(isNumeric, noForm));
 const isOrdinalDay = both(isDay, isOrdinal);
 const isPaddedNumericMonth = both(isMonth, isPaddedNumeric);
 const isPaddedNumericDay = both(isDay, isPaddedNumeric);

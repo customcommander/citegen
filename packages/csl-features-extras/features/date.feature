@@ -184,6 +184,12 @@ Scenario: Localised dates
             <else-if type="chapter">
               <date variable="accessed" form="numeric"/>
             </else-if>
+            <else-if type="article">
+              <date variable="submitted" form="numeric">
+                <date-part name="month"/>
+                <date-part name="year" form="short"/>
+              </date>
+            </else-if>
           </choose>
         </layout>
       </citation>
@@ -207,10 +213,18 @@ Scenario: Localised dates
             [2019, 2, 1]
           ]
         }
+      },
+      {
+        "type": "article",
+        "submitted": {
+          "date-parts": [
+            [2019, 3, 29]
+          ]
+        }
       }
     ]
     """
   Then the following result is expected
     """
-    🌯2019 / 2019Feb.1st
+    🌯2019 / 2019Feb.1st / 19Mar.29
     """
