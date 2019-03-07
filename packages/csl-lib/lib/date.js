@@ -26,14 +26,19 @@ const {
   compose,
   converge,
   curry,
+  findIndex,
   flip,
   includes,
   into,
+  lensIndex,
   map,
   mergeLeft,
+  over,
   path,
   pipe,
+  propEq,
   propSatisfies,
+  reduce,
   unary
 } = require('ramda');
 
@@ -58,6 +63,35 @@ const attributesFunction = converge(
  * @return {boolean}
  */
 const isLocalisedFormat = propSatisfies(flip(includes)(['text', 'numeric']), 'form');
+
+/**
+ * Override the locale date parts with those found in the style.
+ *
+ * A localised format can still be overriden from the style. Example:
+ *
+ * foo-locale.xml:
+ *    <date form="numeric">
+ *      <date-part name="year" form="long" suffix="-"/>
+ *      <date-part name="month" suffix="-"/>
+ *      <date-part name="day"/>
+ *    </date>
+ *
+ * foo-style.xml:
+ *    <!-- ... -->
+ *    <date form="numeric" variable="issued">
+ *      <date-part name="year" form="short"/>
+ *    </date>
+ *    <!-- ... -->
+ *
+ * Will render '19-03-29' instead of '2019-03-19'
+ *
+ * @param {attrs[]} fromLocale date part attributes as defined in the locale
+ * @param {attrs[]} fromStyle date part attributes defined in the style, meant to override the locale
+ */
+const mergeDateParts = reduce((dateparts, override) => {
+  const idx = findIndex(propEq('name', override.name), dateparts);
+  return idx < 0 ? dateparts : over(lensIndex(idx), mergeLeft(override), dateparts);
+});
 
 /**
  * @param {locale[]} locales
@@ -99,7 +133,7 @@ const processChildren = (dateparts, ref) =>
 module.exports = curry((locales, macros, attrs, children, ref) => {
   const attributes = attributesFunction(attrs);
   const parts = isLocalisedFormat(attrs) ?
-    dateParts(locales, macros, attrs, findDateFormat(attrs.form, locales)) :
+    dateParts(locales, macros, attrs, mergeDateParts(findDateFormat(attrs.form, locales), children)) :
     dateParts(locales, macros, attrs, children);
   return attributes(processChildren(parts, ref));
 });
