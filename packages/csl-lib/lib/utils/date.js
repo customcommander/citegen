@@ -134,7 +134,7 @@ const getOrdinalDay = useWith(map, [l10nDayNumber, getDay]);
 
 const getLongMonth = curry((locales, date) => {
   const name = pipe(pad, concat('month-'));
-  return map(pipe(name, flip(l10nTermText('form', false))(locales)), getMonth(date));
+  return map(pipe(name, flip(l10nTermText('long', false))(locales)), getMonth(date));
 });
 
 const getShortMonth = curry((locales, date) =>{
