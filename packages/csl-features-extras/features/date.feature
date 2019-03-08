@@ -9,6 +9,12 @@ Scenario: non-localized dates
         <title/>
         <updated>2008-10-29T21:01:24+00:00</updated>
       </info>
+      <locale>
+        <style-options limit-day-ordinals-to-day-1="true"/>
+        <terms>
+          <term name="season-04">🔫</term>
+        </terms>
+      </locale>
       <citation>
         <layout delimiter=" | ">
           <choose>
@@ -46,7 +52,7 @@ Scenario: non-localized dates
         "type": "chapter",
         "accessed": {
           "date-parts": [
-            [-1666, 1, 10]
+            [-1666, 24, 10]
           ]
         }
       }
@@ -54,7 +60,7 @@ Scenario: non-localized dates
     """
   Then the following result is expected
     """
-    January 10 666AD | 10 January -1666BC
+    January 10 666AD | 10 🔫 -1666BC
     """
 
 Scenario: Make sure that date-parts form variants are all covered
@@ -173,6 +179,7 @@ Scenario: Localised dates
         </date>
         <terms>
           <term name="month-01">🌯</term>
+          <term name="season-01">💾</term>
         </terms>
       </locale>
       <citation>
@@ -218,7 +225,7 @@ Scenario: Localised dates
         "type": "article",
         "submitted": {
           "date-parts": [
-            [2019, 3, 29]
+            [2019, 13, 29]
           ]
         }
       }
@@ -226,5 +233,5 @@ Scenario: Localised dates
     """
   Then the following result is expected
     """
-    🌯2019 / 2019Feb.1st / 19Mar.29
+    🌯2019 / 2019Feb.1st / 19💾29
     """

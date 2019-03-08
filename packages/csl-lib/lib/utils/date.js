@@ -22,6 +22,7 @@
  */
 
 const {
+  always,
   both,
   compose,
   concat,
@@ -31,6 +32,7 @@ const {
   equals,
   flip,
   gt,
+  includes,
   into,
   isNil,
   lensProp,
@@ -43,6 +45,7 @@ const {
   reject,
   T,
   takeLast,
+  unapply,
   useWith,
   view,
   when
@@ -52,9 +55,30 @@ const {toInt, stringify} = require('./number');
 const l10nDayNumber = require('../l10n/date-day-number');
 const l10nTermText = require('../l10n/find-term-text');
 
+const oneOf = unapply((list) => compose(flip(includes)(list), toInt));
 const isLt10 = compose(gt(10), toInt);
 const isBcYear = compose(gt(0), toInt);
 const isAdYear = compose(both(lt(0), gt(1000)), toInt);
+
+/*
+
+Values 13 to 16, or 21 to 24 can be given
+in place of month to represent a season:
+
+- 13, 21: Spring
+- 14, 22: Summer
+- 15, 23: Autumn
+- 16, 24: Winter
+
+Cf. https://github.com/Juris-M/citeproc-js/issues/61
+Cf. https://docs.citationstyles.org/en/master/specification.html#seasons
+
+*/
+
+const isSpring = oneOf(13, 21);
+const isSummer = oneOf(14, 22);
+const isAutumn = oneOf(15, 23);
+const isWinter = oneOf(16, 24);
 
 /**
  * Returns the text for the `ad` term.
@@ -109,6 +133,18 @@ const withAdOrBc = curryN(2, cond([
 
 const pad = when(isLt10, compose(concat('0'), stringify));
 
+const monthTermName = cond([
+  [isSpring,
+    always('season-01')],
+  [isSummer,
+    always('season-02')],
+  [isAutumn,
+    always('season-03')],
+  [isWinter,
+    always('season-04')],
+  [T,
+    compose(concat('month-'), pad)]]);
+
 const getDate = prop('date-parts');
 
 const getDateParts = curry((part, date) =>
@@ -132,15 +168,11 @@ const getPaddedMonth = compose(map(pad), getMonth);
 const getPaddedDay = compose(map(pad), getDay);
 const getOrdinalDay = useWith(map, [l10nDayNumber, getDay]);
 
-const getLongMonth = curry((locales, date) => {
-  const name = pipe(pad, concat('month-'));
-  return map(pipe(name, flip(l10nTermText('long', false))(locales)), getMonth(date));
-});
+const getLongMonth = curry((locales, date) =>
+  map(pipe(monthTermName, flip(l10nTermText('long', false))(locales)), getMonth(date)));
 
-const getShortMonth = curry((locales, date) =>{
-  const name = pipe(pad, concat('month-'));
-  return map(pipe(name, flip(l10nTermText('short', false))(locales)), getMonth(date));
-});
+const getShortMonth = curry((locales, date) =>
+  map(pipe(monthTermName, flip(l10nTermText('short', false))(locales)), getMonth(date)));
 
 /**
  * @function
