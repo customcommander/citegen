@@ -51,7 +51,27 @@ const locales = () => ([{
     { name: "month-02",
       form: "short",
       gender: "neuter",
-      value: [ "02-short" ]} ]}]);
+      value: [ "02-short" ]},
+
+    { name: "season-01",
+      form: "long",
+      gender: "neuter",
+      value: [ "Spring" ] },
+
+    { name: "season-02",
+      form: "long",
+      gender: "neuter",
+      value: [ "Summer" ] },
+
+    { name: "season-03",
+      form: "long",
+      gender: "neuter",
+      value: [ "Autumn" ] },
+
+    { name: "season-04",
+      form: "long",
+      gender: "neuter",
+      value: [ "Winter" ] } ]}]);
 
 const date = flip(assoc('date-parts'))({});
 const circa = flip(assoc('circa'))({});
@@ -75,8 +95,14 @@ tap.deepEquals(getPaddedMonth(m(1, 10)), ['01', '10'],
 tap.deepEquals(getShortMonth(locales(), m(1, 2)), ['01-short', '02-short'],
   'getShortMonth() returns all month parts, short form');
 
+tap.deepEquals(getShortMonth(locales(), m(13, 24)), ['Spring', 'Winter'],
+  'getShortMonth() returns seasons');
+
 tap.deepEquals(getLongMonth(locales(), m(1, 2)), ['01-long', '02-long'],
   'getLongMonth() returns all month parts, long form');
+
+tap.deepEquals(getLongMonth(locales(), m(14, 23)), ['Summer', 'Autumn'],
+  'getLongMonth() returns seasons');
 
 tap.deepEquals(getDay(d(28, 29)), [28, 29],
   'getDay() returns all day parts');
