@@ -2,6 +2,7 @@ var R = require('ramda');
 var l10nText = require('./l10n/find-term-text');
 var displayAttr = require('./attributes/display');
 var textCaseAttr = require('./attributes/text-case');
+var stripPeriodsAttr = require('./attributes/strip-periods');
 
 var getEmptyString = R.always('');
 var getTerm = l10nText;
@@ -22,6 +23,12 @@ var runMacro = R.curry(function (macros, ref, attrs) {
   )(attrs);
 });
 
+var attributes = R.converge(
+  R.pipe, [
+    R.unary(stripPeriodsAttr),
+    R.unary(textCaseAttr),
+    R.unary(displayAttr)]);
+
 /**
  * @param {object[]} locales
  * @param {object} macros
@@ -30,11 +37,6 @@ var runMacro = R.curry(function (macros, ref, attrs) {
  * @param {object} ref
  */
 module.exports = R.curry(function (locales, macros, attrs, children, ref) {
-  var applyAttrs = R.pipe(
-    textCaseAttr(attrs),
-    displayAttr(attrs)
-  );
-
   var content = R.cond([
     [R.has('term'), (attrs) => getTerm('long', false, attrs.term, locales)],
     [R.has('variable'), getVariable(ref)],
@@ -43,5 +45,5 @@ module.exports = R.curry(function (locales, macros, attrs, children, ref) {
     [R.T, getEmptyString]
   ])(attrs);
 
-  return applyAttrs(content);
+  return attributes(attrs)(content);
 });
