@@ -1,13 +1,16 @@
-var td = require('testdouble');
-var tap = require('tap');
-var citationFn = require('./citation'); // Subject Under Test
+const td = require('testdouble');
+const tap = require('tap');
+const {compose, toString} = require('ramda');
+const output = require('./output');
+const sut = require('./citation'); // Subject Under Test
 
-var citation = citationFn({} /*locales*/, {} /* macros */, {} /* attributes */);
+const citation = compose(toString, sut([{}], {}, {}));
+const out = output({}, 'a-node');
 
 tap.test('invoke children with `refs`', t => {
-  var refs = [];
-  var foo = td.function();
-  citation([foo], refs);
-  td.verify(foo(refs));
+  const refs = [{},{},{}];
+  const foo = td.function();
+  td.when(foo(refs)).thenReturn(out('foo bar baz'));
+  t.is(citation([foo], refs), 'foo bar baz');
   t.end();
 });

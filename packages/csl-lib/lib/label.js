@@ -28,8 +28,11 @@ const {
   propOr
 } = require('ramda');
 
+const output = require('./output');
 const findTermText = require('./l10n/find-term-text');
 const {isNumeric, isMultiple, toInt} = require('./utils/number');
+
+const out = output({}, 'label');
 
 const isQuantityVariable = flip(includes)(['number-of-pages', 'number-of-volumes']);
 
@@ -55,5 +58,5 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
   const varName = attrs.variable;
   const varValue = propOr('', varName, ref);
   const plural = usePlural(attrs.plural || 'contextual', varName, varValue);
-  return varValue === '' ? '' : findTermText(form, plural, varName, locales);
+  return varValue === '' ? out('') : out(findTermText(form, plural, varName, locales));
 });

@@ -1,33 +1,66 @@
-var R = require('ramda');
-var l10nText = require('./l10n/find-term-text');
-var displayAttr = require('./attributes/display');
-var textCaseAttr = require('./attributes/text-case');
-var stripPeriodsAttr = require('./attributes/strip-periods');
+/**
+ * @license
+ * Copyright (c) 2018 Julien Gonzalez
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
-var getEmptyString = R.always('');
-var getTerm = l10nText;
-var getValue = R.prop('value');
+const {
+  always,
+  applyTo,
+  cond,
+  converge,
+  curry,
+  flip,
+  has,
+  pipe,
+  prop,
+  propOr,
+  T,
+  unary
+} = require('ramda');
 
-var getVariable = R.curry(function (ref, attrs) {
-  return R.pipe(
-    R.prop('variable'),
-    R.prop(R.__, ref)
+const output = require('./output');
+const l10nText = require('./l10n/find-term-text');
+const displayAttr = require('./attributes/display');
+const textCaseAttr = require('./attributes/text-case');
+const stripPeriodsAttr = require('./attributes/strip-periods');
+
+const getEmptyString = always('');
+const getTerm = l10nText;
+const getValue = prop('value');
+
+const getVariable = curry((ref, attrs) => ref[attrs.variable]);
+
+const runMacro = curry(function (macros, ref, attrs) {
+  return pipe(
+    prop('macro'),
+    flip(propOr(getEmptyString))(macros),
+    applyTo(ref)
   )(attrs);
 });
 
-var runMacro = R.curry(function (macros, ref, attrs) {
-  return R.pipe(
-    R.prop('macro'),
-    R.propOr(getEmptyString, R.__, macros),
-    R.applyTo(ref)
-  )(attrs);
-});
-
-var attributes = R.converge(
-  R.pipe, [
-    R.unary(stripPeriodsAttr),
-    R.unary(textCaseAttr),
-    R.unary(displayAttr)]);
+const attributes = converge(
+  pipe, [
+    unary(stripPeriodsAttr),
+    unary(textCaseAttr),
+    unary(displayAttr)]);
 
 /**
  * @param {object[]} locales
@@ -36,14 +69,14 @@ var attributes = R.converge(
  * @param {function[]} children
  * @param {object} ref
  */
-module.exports = R.curry(function (locales, macros, attrs, children, ref) {
-  var content = R.cond([
-    [R.has('term'), (attrs) => getTerm('long', false, attrs.term, locales)],
-    [R.has('variable'), getVariable(ref)],
-    [R.has('macro'), runMacro(macros, ref)],
-    [R.has('value'), getValue],
-    [R.T, getEmptyString]
+module.exports = curry(function (locales, macros, attrs, children, ref) {
+  const content = cond([
+    [has('term'), (attrs) => getTerm('long', false, attrs.term, locales)],
+    [has('variable'), getVariable(ref)],
+    [has('macro'), runMacro(macros, ref)],
+    [has('value'), getValue],
+    [T, getEmptyString]
   ])(attrs);
 
-  return attributes(attrs)(content);
+  return attributes(attrs)(output({}, 'text', content));
 });

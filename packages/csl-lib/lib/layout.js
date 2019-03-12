@@ -34,6 +34,7 @@ const {
   unary
 } = require('ramda');
 
+const output = require('./output');
 const formatting = require('./attributes/formatting');
 const affixes = require('./attributes/affixes');
 const delimiter = require('./attributes/delimiter');
@@ -45,22 +46,25 @@ const attributes = converge(
     unary(affixes)]);
 
 /**
- * Render given reference by apply to its children.
+ * Render given reference by applying it to its children.
  * @param {function[]} children
  * @param {object} ref
- * @return {string}
+ * @return {Output[]}
  */
-const applyChildren = curry((children, ref) =>
-  into('', compose(map(applyTo(ref))), children));
+const applyChildren = curry((children, ref) => map(applyTo(ref), children));
 
 /**
  * Renders all references by applying each to all children.
  * @param {function[]} children
  * @param {object[]} refs
- * @return {array}
+ * @return {Output[]}
  */
 const render = (children, refs) =>
-  into([], compose(map(applyChildren(children)), reject(isEmpty)), refs);
+  into([],
+    compose(
+      map(applyChildren(children)),
+      reject(isEmpty)),
+    refs);
 
 /**
  * @param {locale[]} locales
@@ -68,6 +72,7 @@ const render = (children, refs) =>
  * @param {attrs} attrs
  * @param {function[]} children
  * @param {object[]} refs
+ * @return {Output}
  */
 module.exports = curry((locales, macros, attrs, children, refs) =>
-  attributes(attrs)(render(children, refs)));
+  attributes(attrs)(output({}, 'layout', render(children, refs))));

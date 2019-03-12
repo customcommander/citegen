@@ -154,7 +154,7 @@ Scenario: standard attributes on non-localized dates
     """
   Then the following result is expected
     """
-    <div class="csl-display-line"><span style="text-decoration:underline">JUNE/1</span></div>
+    <div class="csl-display-line"><span style="text-decoration:underline;">JUNE/1</span></div>
     """
 
 Scenario: Localised dates

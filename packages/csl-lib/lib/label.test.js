@@ -1,9 +1,8 @@
-const {always} = require('ramda');
+const {always, compose, toString} = require('ramda');
 const test = require('tap');
-const {check, property} = require('testcheck');
+const sut = require('./label'); // Subject Under Test
 
-// Subject Under Test
-const nodeLabel = require('./label');
+const nodeLabel = compose(toString, sut);
 
 const locales = always([
   {terms: [

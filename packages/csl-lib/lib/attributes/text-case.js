@@ -1,3 +1,26 @@
+/**
+ * @license
+ * Copyright (c) 2019 Julien Gonzalez
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
 const {
   compose,
   converge,
@@ -15,12 +38,12 @@ const {
   nth,
   over,
   pipe,
-  prop,
   split,
   toLower,
+  toString,
   toUpper,
   trim,
-  when,
+  when
 } = require('ramda');
 
 /**
@@ -209,12 +232,26 @@ const titleCase = pipe(
         str + capitalizeWord(word) : str + toLower(word);
     }, ''));
 
-module.exports = curry((attrs, str) => {
-  const transform = prop('text-case', attrs);
-  return transform === 'lowercase' ? toLower(str) :
-    transform === 'uppercase' ? toUpper(str) :
-    transform === 'capitalize-first' ? capitalizeFirst(str) :
-    transform === 'capitalize-all' ? capitalizeAll(str) :
-    transform === 'sentence' ? sentenceCase(str) :
-    transform === 'title' ? titleCase(str) : str;
-});
+/**
+ * The `text-case` attribute applies on the entire combined output
+ * and not on each individual output. This is why we must "export" `out` as a string.
+ * @param {function(string): string} fn
+ * @param {Output} out
+ * @return {function(Output): Output}
+ */
+const mapper = (fn, out) => map(() => fn(toString(out)));
+
+/**
+ * @function
+ * @param {object} attrs
+ * @param {Output} out
+ * @return {Output}
+ */
+module.exports = curry((attrs, out) =>
+  ( attrs['text-case'] === 'lowercase' ? mapper(toLower, out) :
+    attrs['text-case'] === 'uppercase' ? mapper(toUpper, out) :
+    attrs['text-case'] === 'capitalize-first' ? mapper(capitalizeFirst, out) :
+    attrs['text-case'] === 'capitalize-all' ? mapper(capitalizeAll, out) :
+    attrs['text-case'] === 'sentence' ? mapper(sentenceCase, out) :
+    attrs['text-case'] === 'title' ? mapper(titleCase, out) : identity)
+      (out));

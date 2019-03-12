@@ -1,14 +1,21 @@
 const tap = require('tap');
-const delimiter = require('./delimiter');
+const {toString} = require('ramda');
+const output = require('../output');
+const delimiter = require('./delimiter'); // SUT
 
-tap.equal(delimiter(null, [1,2,3]), '123',
-  'join values with an empty string if `attrs` is not an object.');
+tap.test('includes a delimiter character in the output', t => {
+  t.plan(1);
 
-tap.equal(delimiter({}, [1,2,3]), '123',
-  'join values with an empty string if `attrs` does not include a delimiter attribute.');
+  const DELIM = ',';
+  const attrs = {delimiter: DELIM};
 
-tap.equal(delimiter({delimiter: []}, [1,2,3]), '123',
-  'join values with an empty string if `attrs.delimiter` is not a string.');
+  const out = output({}, 'parent-node', [
+    output({}, 'child-node-1', 'foo'),
+    output({}, 'child-node-2', 'bar'),
+    output({}, 'child-node-3', 'baz'),
+  ]);
 
-tap.equal(delimiter({delimiter: '-'}, [1,2,3]), '1-2-3',
-  'join values with given `attrs.delimiter` if it is a string.');
+  t.equals(toString(delimiter(attrs, out)), `foo${DELIM}bar${DELIM}baz`);
+
+  t.end();
+});

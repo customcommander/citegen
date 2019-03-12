@@ -1,76 +1,50 @@
-var td = require('testdouble');
-var tap = require('tap');
-var layoutFn = require('./layout'); // Subject Under Test
+const td = require('testdouble');
+const tap = require('tap');
+const {compose, toString} = require('ramda');
+const output = require('./output');
+const o = output({}, 'a-node');
+const sut = require('./layout'); // Subject Under Test
 
-tap.test('layout(children)(refs): should invoke each item in `children` for each item in `refs`', t => {
-  var foo = td.function();
-  var bar = td.function();
-  var layout = layoutFn({}, {}, {});
+tap.test('layout: apply each reference and ignore empty children output', t => {
+  const x = td.function();
+  const y = td.function();
+  const layout = compose(toString, sut(/*locales*/[{}], /*macros*/{}, /*attrs*/{}));
 
-  layout([foo, bar], ['1', '2']);
+  td.when(x('1')).thenReturn(o('10'));
+  td.when(x('2')).thenReturn(o(''));
+  td.when(x('3')).thenReturn(o('30'));
 
-  td.verify(foo('1'));
-  td.verify(foo('2'));
+  td.when(y('1')).thenReturn(o('11'));
+  td.when(y('2')).thenReturn(o(''));
+  td.when(y('3')).thenReturn(o('33'));
 
-  td.verify(bar('1'));
-  td.verify(bar('2'));
-
-  t.end();
-});
-
-tap.test('layout(children)(refs): should ignore empty strings returned by children', t => {
-  var foo = td.function();
-  var bar = td.function();
-  var layout = layoutFn({}, {}, {});
-
-  td.when(foo('1')).thenReturn('10');
-  td.when(foo('2')).thenReturn('');
-
-  td.when(bar('1')).thenReturn('11');
-  td.when(bar('2')).thenReturn('');
-
-  var out = layout([foo, bar], ['1', '2']);
-  t.is(out, '1011');
+  t.is(layout([x, y], ['1', '2', '3']), '10113033');
 
   t.end();
 });
 
 tap.test('layout(children, opts)(refs): should support affixes attributes', t => {
-  var out;
-  var foo = td.function();
-  var layout = layoutFn({}, {});
+  const x = td.function();
+  const layout = compose(toString, sut(/*locales*/[{}], /*macros*/{}));
 
-  td.when(foo(1)).thenReturn('10');
+  td.when(x(1)).thenReturn(o('10'));
 
-  out = layout({}, [foo], [1]);
-  t.is(out, '10', 'default affixes should be empty strings');
-
-  out = layout({prefix: '('}, [foo], [1]);
-  t.is(out, '(10', 'should be able to render a `prefix` attribute');
-
-  out = layout({suffix: ')'}, [foo], [1]);
-  t.is(out, '10)', 'should be able to render a `suffix` attribute');
-
-  out = layout({prefix: '(', suffix: ')'}, [foo], [1]);
-  t.is(out, '(10)', 'should be able to render both `prefix` and `suffix` attributes');
+  t.is(layout({}, [x], [1]), '10', 'default affixes should be empty strings');
+  t.is(layout({prefix: '(', suffix: ')'}, [x], [1]), '(10)', 'should be able to render both `prefix` and `suffix` attributes');
 
   t.end();
 });
 
 tap.test('layout(children, opts)(refs): should support a delimiter attribute', t => {
-  var out;
-  var foo = td.function();
-  var bar = td.function();
-  var layout = layoutFn({}, {});
+  const x = td.function();
+  const y = td.function();
+  const layout = compose(toString, sut(/*locales*/[], /*macros*/{}));
 
-  td.when(foo(1)).thenReturn('10');
-  td.when(bar(1)).thenReturn('11');
+  td.when(x(1)).thenReturn(o('10'));
+  td.when(y(1)).thenReturn(o('11'));
 
-  out = layout({}, [foo, bar], [1, 1]);
-  t.is(out, '10111011', 'default delimiter should be an empty string');
-
-  out = layout({delimiter: '/'}, [foo, bar], [1, 1]);
-  t.is(out, '1011/1011', 'should be able to render a delimiter attribute');
+  t.is(layout({}, [x, y], [1, 1]), '10111011', 'default delimiter should be an empty string');
+  t.is(layout({delimiter: '/'}, [x, y], [1, 1]), '1011/1011', 'should be able to render a delimiter attribute');
 
   t.end();
 });

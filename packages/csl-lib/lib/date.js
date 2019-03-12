@@ -28,19 +28,21 @@ const {
   curry,
   findIndex,
   flip,
+  head,
   includes,
   into,
   lensIndex,
   map,
   mergeLeft,
   over,
-  path,
   pipe,
   propEq,
   propSatisfies,
   reduce,
   unary
 } = require('ramda');
+
+const output = require('./output');
 
 const delimiter = require('./attributes/delimiter');
 const display = require('./attributes/display');
@@ -112,13 +114,13 @@ const dateParts = (locales, macros, attrs, children) =>
  * Executes
  * @param {function[]} dateparts
  * @param {object} ref
- * @return {string[]}
+ * @return {Output[]}
  */
 const processChildren = (dateparts, ref) =>
   into([],
     compose(
       map(applyTo(ref)),
-      map(path(['format', 0]))),
+      map(map(head))),
     dateparts);
 
 /**
@@ -135,5 +137,5 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
   const parts = isLocalisedFormat(attrs) ?
     dateParts(locales, macros, attrs, mergeDateParts(findDateFormat(attrs.form, locales), children)) :
     dateParts(locales, macros, attrs, children);
-  return attributes(processChildren(parts, ref));
+  return attributes(output({}, 'date', processChildren(parts, ref)));
 });

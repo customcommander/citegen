@@ -95,8 +95,11 @@
     module.exports = {
       citation: function (refs, langCode) {
         var locales = getLocales((langCode || '<xsl:value-of select="@default-locale"/>' || 'en-US'), styleLocales);
-        return lib.citation(locales, macros, {},
+        var citation = lib.citation(locales, macros, {},
           <xsl:apply-templates select="csl:citation" mode="param-children"/>, refs);
+        // Internally functions in the `csl-lib` package consume and produce objects.
+        // The object returned by `lib.citation` has a toString() implementation that produces the final citation.
+        return citation.toString();
       }
     };
   </xsl:template>
