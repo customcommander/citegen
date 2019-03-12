@@ -1,49 +1,51 @@
-const R = require('ramda');
 const tap = require('tap');
+const {compose, toString, merge} = require('ramda');
 const {gen, check, property} = require('testcheck');
 const td = require('testdouble');
+const output = require('./output');
 const genDisplayAttr = require('../generators/attr-display');
 const displayAttr = require('./attributes/display');
-const textFn = require('./text'); // Subject Under Test
+const sut = require('./text'); // Subject Under Test
+
+const textFn = compose(toString, sut);
 
 tap.test('should support a "value" attribute', t => {
-  var text = textFn(/* locales */[{}], {});
-  t.is(text({value: 'hello'}, [], {}), 'hello');
+  t.is(textFn([{}], {}, {value: 'hello'}, [], {}), 'hello');
   t.end();
 });
 
 tap.test('should support a "variable" attribute', t => {
-  var text = textFn(/* locales */[{}], {});
-  t.is(text({variable: 'message'}, [], {message: 'hello'}), 'hello');
+  t.is(textFn([{}], {}, {variable: 'message'}, [], {message: 'hello'}), 'hello');
   t.end();
 });
 
 tap.test('should support a "macros" attribute', t => {
-  var person = {name: 'John Doe'};
+  const person = {name: 'John Doe'};
+  const sayHello = td.function();
 
-  var sayHello = td.function();
   td.when(sayHello(person)).thenReturn(`Hello ${person.name}!`);
 
-  var text = textFn(/* locales */[{}], /* macros */{greetings: sayHello});
-  t.is(text({macro: 'greetings'}, [], person), 'Hello John Doe!');
+  t.is(textFn([{}], {greetings: sayHello}, {macro: 'greetings'}, [], person), 'Hello John Doe!');
   t.end();
 });
 
 tap.test('should support a "term" attribute', t => {
-  var text = textFn(/* locales */[{
+  const locales = [{
     terms: [
       { name: 'greetings',
         form: 'long',
         value: ['Hello World!'] }
     ]
-  }], /* macros */{});
-  t.is(text({term: 'greetings'}, [], {}), 'Hello World!');
+  }];
+
+  t.is(textFn(locales, {}, {term: 'greetings'}, [], {}), 'Hello World!');
   t.end();
 });
 
 const supportDisplayAttr =
   property(genDisplayAttr, gen.asciiString.notEmpty(),
-    (attr, str) => textFn(/* locales */[{}], {}, R.merge(attr, {value: 'foo'}), [], {}) === displayAttr(attr, 'foo'));
+    (attr, str) => textFn([{}], {}, merge(attr, {value: 'foo'}), [], {})
+      === toString(displayAttr(attr, output({}, 'a-node', 'foo'))));
 
 tap.is(check(supportDisplayAttr).result, true,
   'supports "display" attribute.');

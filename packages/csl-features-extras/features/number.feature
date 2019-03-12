@@ -33,5 +33,5 @@ Scenario: Render numbers "as is" if they do not contain numeric content
     """
   Then the following result is expected
     """
-    (<div class="csl-display-line"><span style="text-decoration:underline">SECOND EDITION</span></div>) | 1a, II & III | 1ᵉʳ-17ᵉ | premier & deuxième
+    (<div class="csl-display-line"><span style="text-decoration:underline;">SECOND EDITION</span></div>) | 1a, II & III | 1ᵉʳ-17ᵉ | premier & deuxième
     """

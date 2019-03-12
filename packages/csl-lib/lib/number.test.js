@@ -1,8 +1,9 @@
-const {always} = require('ramda');
+const {always, compose, toString} = require('ramda');
 const test = require('tap');
 const {check, property} = require('testcheck');
 const romanNumberGenerator = require('../generators/roman-number');
-const nodeNumber = require('./number'); // SUT
+const sut = require('./number'); // Subject Under Test
+const nodeNumber = compose(toString, sut);
 
 const locales = always([
   {terms: [

@@ -25,5 +25,5 @@ Scenario: Basic Layout Test
     """
   Then the following result is expected
     """
-    (<span style="text-decoration:underline">hello, world</span>)
+    (<span style="text-decoration:underline;">hello, world</span>)
     """

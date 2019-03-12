@@ -31,6 +31,7 @@ const {
 } = require('ramda');
 
 const findTermGender = require('./l10n/find-term-gender');
+const output = require('./output');
 const affixes = require('./attributes/affixes');
 const display = require('./attributes/display');
 const formatting = require('./attributes/formatting');
@@ -49,7 +50,7 @@ const {
  *
  * @function
  * @param {object} attrs
- * @return {function}
+ * @return {function(Output): Output}
  */
 const attributes = converge(
   pipe, [
@@ -65,7 +66,7 @@ const attributes = converge(
  * @param {object} attrs
  * @param {function[]} children
  * @param {object} ref
- * @return {string}
+ * @return {Output}
  */
 module.exports = curry((locales, macros, attrs, children, ref) => {
   const form = propOr('numeric', 'form', attrs);
@@ -76,5 +77,5 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
     (form === 'roman' && formatRoman) ||
     (form === 'ordinal' && formatOrdinal(locales, gender())) ||
     (form === 'long-ordinal' && formatLongOrdinal(locales, gender()));
-  return attributes(attrs)(format(number));
+  return attributes(attrs)(output({}, 'number', format(number)));
 });

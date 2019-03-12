@@ -22,51 +22,59 @@
  */
 
 const {
-  concat,
-  converge,
-  flip,
+  append,
+  compose,
+  curry,
   identity,
   isEmpty,
-  pipe,
-  propOr,
-  unary,
-  unless,
-  useWith,
+  map,
+  prepend
 } = require('ramda');
 
+const output = require('../output');
+
 /**
- * Prepend `attrs.prefix` to `str`
  * @function
- * @param {object} attrs
- * @param {string} str
- * @return {string}
+ * @param {string} prefix
+ * @return {Output}
  */
-const prefix = useWith(concat, [propOr('', 'prefix'), identity]);
+const prefixOutput = output({}, '@prefix');
 
 /**
- * Append `attrs.prefix` to `str`
  * @function
- * @param {object} attrs
- * @param {string} str
- * @return {string}
+ * @param {string} suffix
+ * @return {Output}
  */
-const suffix = useWith(flip(concat), [propOr('', 'suffix'), identity]);
-
+const suffixOutput = output({}, '@suffix');
 
 /**
- * Generates a function that will apply affixes to given `str`.
  * @function
- * @param {object} attrs
- * @param {string} str
- * @return {function}
+ * @param {string} prefix
+ * @return {function(Output): Output}
  */
-const affixes = converge(pipe, [unary(prefix), unary(suffix)]);
+const withPrefix = prefix => prefix ? map(prepend(prefixOutput(prefix))) : identity;
+
+/**
+ * @function
+ * @param {string} suffix
+ * @return {function(Output): Output}
+ */
+const withSuffix = suffix => suffix ? map(append(suffixOutput(suffix))) : identity;
 
 /**
  * @function
  * @param {object} attrs
- * @param {string} str
- * @return {string}
+ * @return {function(Output): Output}
+ */
+const withAffixes = attrs => compose(withPrefix(attrs.prefix), withSuffix(attrs.suffix));
+
+/**
+ * @function
+ * @param {object} attrs
+ * @param {Output} out
+ * @return {Output}
  * @see {@link https://docs.citationstyles.org/en/master/specification.html#affixes}
  */
-module.exports = useWith(unless(isEmpty), [affixes, identity]);
+module.exports = curry((attrs, out) =>
+  (isEmpty(out) ? identity : withAffixes(attrs))
+    (out));

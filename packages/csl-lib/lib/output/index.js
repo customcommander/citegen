@@ -21,15 +21,54 @@
  * SOFTWARE.
  */
 
-const { curry, map, replace } = require('ramda');
+const {
+  compose,
+  curry,
+  has,
+  into,
+  is,
+  map,
+  mergeRight,
+  of,
+  prop,
+  unless,
+  when
+} = require('ramda');
 
 /**
- * Removes periods from the output if the `strip-periods` attribute is set to `"true"`.
- * @function
- * @param {attrs} attrs
- * @param {Output} out
- * @return {Output}
- * @see {@link https://docs.citationstyles.org/en/master/specification.html#strip-periods}
+ * Reduces an array of Output into a string.
+ * @param {Output[]} arr
  */
-module.exports = curry((attrs, out) =>
-  attrs['strip-periods'] === 'true' ? map(replace(/\./g, ''), out) : out);
+const _toStr = arr =>
+  into('',
+    compose(
+      map(when(has('@@citegen/out'), prop('@@citegen/out'))),
+      map(when(is(Array), _toStr))),
+    arr);
+
+const _toString = compose(_toStr, unless(is(Array), of));
+
+/**
+ * @typedef {object} Output
+ * @property {string} `@@citegen/node` node name
+ * @property {string|Array<Output>} `@@citegen/out`
+ */
+
+/**
+ * @function
+ * @param {object} extras
+ * @param {string} nodeName
+ * @param {string|Array<Output>} nodeValue
+ * @return {Output}
+ */
+const output = (extras, nodeName, nodeValue) => mergeRight(extras, {
+  '@@citegen/node': nodeName,
+  '@@citegen/out': nodeValue,
+  'fantasy-land/map': (fn) => output(extras, nodeName, fn(nodeValue)),
+  'fantasy-land/concat': (out) => output(extras, nodeName, _toString(nodeValue) + _toString(out)),
+  'fantasy-land/empty': () => output({}, '', ''),
+  'fantasy-land/equals': (out) => _toString(out) === _toString(nodeValue),
+  toString: () => _toString(nodeValue),
+});
+
+module.exports = curry(output);

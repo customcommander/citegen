@@ -1,48 +1,76 @@
-var R = require('ramda');
+/**
+ * @license
+ * Copyright (c) 2019 Julien Gonzalez
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
-var klassMap = {
-  'block': 'csl-display-line',
-  'left-margin': 'csl-display-col1',
-  'right-inline': 'csl-display-col2',
-  'indent': 'csl-display-indent'
+const {
+  append,
+  curry,
+  is,
+  isEmpty,
+  map,
+  of,
+  pipe,
+  prepend,
+  unless
+} = require('ramda');
+
+const output = require('../output');
+
+const toArr = unless(is(Array), of);
+
+/**
+ * @function
+ * @param {string} className
+ * @return {function(Output): Output}
+ */
+const openDisplay = className =>
+  map(prepend(output({}, '@display', `<div class="${className}">`)));
+
+/**
+ * @function
+ * @return {function(Output): Output}
+ */
+const closeDisplay = () =>
+  map(append(output({}, '@display', '</div>')));
+
+/**
+ * @function
+ * @param {string} displayType
+ * @param {Output} out
+ * @return {Output}
+ */
+const wrapWith = curry((displayType, out) =>
+  pipe(openDisplay(displayType), closeDisplay())
+    (map(toArr, out)));
+
+/**
+ * @type {Object<string, function(Output): Output>}
+ */
+const display = {
+  'block': wrapWith('csl-display-line'),
+  'left-margin': wrapWith('csl-display-col1'),
+  'right-inline': wrapWith('csl-display-col2'),
+  'indent': wrapWith('csl-display-indent')
 };
 
-/**
- * Wrap `str` within a <div>.
- *
- * @example
- * wrap('foo', 'bar'); // '<div class="foo">bar</div>
- *
- * @private
- * @function
- * @param {string} klass - A CSS class name. See `klassMap`.
- * @param {string} str - The string to wrap
- * @return {string}
- */
-var wrap = R.curry(function (klass, str) {
-  return '<div class="' + klass + '">' + str + '</div>';
-});
-
-/**
- * Gets appropriate wrapper for given `display`.
- *
- * @example
- * var wrapper = getWrapper('block');
- * wrapper('foo'); // '<div class="csl-display-line">foo</div>'
- *
- * @private
- * @function
- * @param {string} display - The value of the CSL display attribute.
- * @return {function}
- */
-var getWrapper = R.ifElse(
-  R.has(R.__, klassMap),
-  R.pipe(R.prop(R.__, klassMap), wrap),
-  R.always(R.identity)
-);
-
-module.exports = R.curry(function (attrs, str) {
-  var display = R.propOr('', 'display', attrs);
-  var displayWrapper = getWrapper(display);
-  return displayWrapper(str);
-});
+module.exports = curry((attrs, out) =>
+  attrs.display && !isEmpty(out) ? display[attrs.display](out) : out);

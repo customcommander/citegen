@@ -48,6 +48,7 @@ const {
   values
 } = require('ramda');
 
+const output = require('./output');
 const {isNumeric} = require('./utils/number');
 const {isApproximate} = require('./utils/date');
 
@@ -173,4 +174,6 @@ const evaluate = converge(call, [evaluateFunction, evaluateConstraints]);
  * @param {object}
  */
 module.exports = curry((locales, macros, attrs, children, ref) =>
-  evaluate(attrs, ref) ? join('', map(applyTo(ref), children)) : '');
+  evaluate(attrs, ref) ?
+    output({}, 'if', map(applyTo(ref), children)) :
+    output({}, 'if', ''));

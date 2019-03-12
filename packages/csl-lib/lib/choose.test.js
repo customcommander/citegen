@@ -1,22 +1,22 @@
-var tap = require('tap');
-var td = require('testdouble');
-var chooseFn = require('./choose'); // Subject Under Test
+const tap = require('tap');
+const {compose, toString} = require('ramda');
+const td = require('testdouble');
+const output = require('./output');
+const sut = require('./choose'); // Subject Under Test
 
-var choose = chooseFn({},  // locales
-                      {},  // macros
-                      {}); // attributes
+const out = output({}, 'a-node');
+const choose = compose(toString, sut([{}], {}, {}));
 
 tap.test('should invoke children until one returns a non-empty string', t => {
-  var ref = {};
-  var fn1 = td.function();
-  var fn2 = td.function();
-  var fn3 = td.function();
+  const ref = {};
+  const fn1 = td.function();
+  const fn2 = td.function();
+  const fn3 = td.function();
 
-  td.when(fn1(ref)).thenReturn('');
-  td.when(fn2(ref)).thenReturn('foo');
-  td.when(fn3(ref)).thenReturn('bar');
+  td.when(fn1(ref)).thenReturn(out(''));
+  td.when(fn2(ref)).thenReturn(out('foo'));
+  td.when(fn3(ref)).thenReturn(out('bar'));
 
-  var out = choose([fn1, fn2, fn3], ref);
-  t.is(out, 'foo');
+  t.is(choose([fn1, fn2, fn3], ref), 'foo');
   t.end();
 });

@@ -1,15 +1,15 @@
-const {unapply, map, always, omit} = require('ramda');
 const tap = require('tap');
+const {always, unapply, map, omit, compose, toString} = require('ramda');
+const output = require('./output');
 const numberGenerator = require('../generators/number');
 const {sampleOne} = require('testcheck');
-const ifFn = require('./if'); // Subject Under Test
+const sut = require('./if'); // Subject Under Test
 
-const children = unapply(map(always));
+const ifFn = compose(toString, sut);
+const children = unapply(map(compose(always, output({}, 'a-node'))));
 const generateNumber = () => sampleOne(numberGenerator.any);
 
 tap.test('match any', t => {
-  const sut = ifFn([]/* locales */, {}/* macros */);
-
   const attrs = {
     'type': 'article',
     'is-numeric': 'edition volume',
@@ -17,7 +17,7 @@ tap.test('match any', t => {
   };
 
   t.equals(
-    sut(attrs, children(';', ')'),
+    ifFn([], {}, attrs, children(';', ')'),
       { type: 'unknown-type',
         edition: 'NaN',
         volume: generateNumber() }),
@@ -25,7 +25,7 @@ tap.test('match any', t => {
     'true if at least one value (in any condition) tests true');
 
   t.equals(
-    sut(attrs, children(';', ')'),
+    ifFn([], {}, attrs, children(';', ')'),
       { type: 'unknown-type',
         edition: 'NaN',
         volume: 'NaN' }),
@@ -36,8 +36,6 @@ tap.test('match any', t => {
 });
 
 tap.test('match all', t => {
-  const sut = ifFn([]/* locales */, {}/* macros */);
-
   const attrs = {
     'type': 'article',
     'is-numeric': 'edition volume',
@@ -46,7 +44,7 @@ tap.test('match all', t => {
   };
 
   t.equals(
-    sut(attrs, children('>', ')'),
+    ifFn([], {}, attrs, children('>', ')'),
       { type: 'article',
         edition: generateNumber(),
         volume: generateNumber(),
@@ -55,19 +53,21 @@ tap.test('match all', t => {
     '>)',
     'true when all values (in all conditions) test true');
 
-  t.equals(sut(omit(['match'], attrs), children('>', ')'),
-    { type: 'article',
-      edition: generateNumber(),
-      volume: generateNumber(),
-      issued: {circa: 1},
-      accessed: {circa: 1} }),
+  t.equals(
+    ifFn([], {}, omit(['match'], attrs), children('>', ')'),
+      { type: 'article',
+        edition: generateNumber(),
+        volume: generateNumber(),
+        issued: {circa: 1},
+        accessed: {circa: 1} }),
     '>)',
     'default value for match is "all"');
 
-  t.equals(sut(attrs, children(';', ')'),
-    { type: 'article',
-      edition: generateNumber(),
-      volume: 'NaN' }),
+  t.equals(
+    ifFn([], {}, attrs, children(';', ')'),
+      { type: 'article',
+        edition: generateNumber(),
+        volume: 'NaN' }),
     '',
     'false if any value (in any condition) tests false');
 
@@ -75,8 +75,6 @@ tap.test('match all', t => {
 });
 
 tap.test('match none', t => {
-  const sut = ifFn([]/* locales */, {}/* macros */);
-
   const attrs = {
     'type': 'article',
     'is-numeric': 'edition volume',
@@ -85,7 +83,7 @@ tap.test('match none', t => {
   };
 
   t.equals(
-    sut(attrs, children('<', '3'),
+    ifFn([], {}, attrs, children('<', '3'),
       { type: 'unknown-type',
         edition: 'NaN',
         volume: 'NaN',
@@ -94,10 +92,11 @@ tap.test('match none', t => {
     '<3',
     'true when all values (in all conditions) test false');
 
-  t.equals(sut(attrs, children('<', '3'),
-    { type: 'unknown-type',
-      edition: generateNumber(),
-      volume: 'NaN' }),
+  t.equals(
+    ifFn([], {}, attrs, children('<', '3'),
+      { type: 'unknown-type',
+        edition: generateNumber(),
+        volume: 'NaN' }),
     '',
     'false if any value (in any condition) tests true');
 

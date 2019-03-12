@@ -27,7 +27,6 @@ const {
   either,
   identity,
   isNil,
-  mergeRight,
   prop,
   propEq,
   propOr,
@@ -48,6 +47,8 @@ const {
   getPaddedDay,
   getOrdinalDay
 } = require('./utils/date');
+
+const output = require('./output');
 
 const getDate = useWith(propOr({}), [prop('variable'), identity]);
 const noForm = propSatisfies(isNil, 'form');
@@ -97,7 +98,12 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
     (isShortMonth(attrs) && getShortMonth(locales)) ||
     (isOrdinalDay(attrs) && getOrdinalDay(locales));
 
-  return mergeRight(attrs, {value: value(date), format: format(date)});
+  const outputAttrs = {
+    variable: attrs.variable,
+    raw: value(date)
+  };
+
+  return output(outputAttrs, 'date-part', format(date));
 });
 
 // My four-year old daughter wanted to help me out.
