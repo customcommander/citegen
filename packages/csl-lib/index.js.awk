@@ -17,5 +17,7 @@ BEGIN {
 }
 
 END {
+  print "  // some utilities"
+  print "  output: require('./lib/output')"
   print "};"
 }

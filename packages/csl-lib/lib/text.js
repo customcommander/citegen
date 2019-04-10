@@ -22,17 +22,9 @@
  */
 
 const {
-  always,
-  applyTo,
-  cond,
   converge,
   curry,
-  flip,
-  has,
   pipe,
-  prop,
-  propOr,
-  T,
   unary
 } = require('ramda');
 
@@ -42,19 +34,7 @@ const displayAttr = require('./attributes/display');
 const textCaseAttr = require('./attributes/text-case');
 const stripPeriodsAttr = require('./attributes/strip-periods');
 
-const getEmptyString = always('');
-const getTerm = l10nText;
-const getValue = prop('value');
-
-const getVariable = curry((ref, attrs) => ref[attrs.variable]);
-
-const runMacro = curry(function (macros, ref, attrs) {
-  return pipe(
-    prop('macro'),
-    flip(propOr(getEmptyString))(macros),
-    applyTo(ref)
-  )(attrs);
-});
+const out = output({}, 'text');
 
 const attributes = converge(
   pipe, [
@@ -68,15 +48,10 @@ const attributes = converge(
  * @param {object} attrs
  * @param {function[]} children
  * @param {object} ref
+ * @return {Output}
  */
-module.exports = curry(function (locales, macros, attrs, children, ref) {
-  const content = cond([
-    [has('term'), (attrs) => getTerm('long', false, attrs.term, locales)],
-    [has('variable'), getVariable(ref)],
-    [has('macro'), runMacro(macros, ref)],
-    [has('value'), getValue],
-    [T, getEmptyString]
-  ])(attrs);
-
-  return attributes(attrs)(output({}, 'text', content));
-});
+module.exports = curry((locales, macros, attrs, children, ref) =>
+  attrs.term ? attributes(attrs)(out(l10nText('long', false, attrs.term, locales))) :
+  attrs.variable ? attributes(attrs)(out(ref[attrs.variable])) :
+  attrs.macro ? attributes(attrs)(out([macros[attrs.macro](locales, macros, ref)])) :
+  attributes(attrs)(out(attrs.value)));

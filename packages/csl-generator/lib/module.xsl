@@ -90,7 +90,20 @@
       </xsl:for-each>
     ];
 
-    var macros = {};
+    var macros = {
+      <xsl:for-each select="csl:macro">
+        <xsl:sort select="@name"/>
+        "<xsl:value-of select="@name"/>": function (locales, macros, ref) {
+          return lib.output({name: '<xsl:value-of select="@name"/>'}, 'macro', [
+            <xsl:for-each select=".">
+              <xsl:apply-templates mode="function-call"/>(ref)
+              <xsl:if test="position() != last()">,</xsl:if>
+            </xsl:for-each>
+          ]);
+        }
+        <xsl:if test="position() != last()">,</xsl:if>
+      </xsl:for-each>
+    };
 
     module.exports = {
       citation: function (refs, langCode) {

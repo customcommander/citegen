@@ -19,13 +19,16 @@ tap.test('should support a "variable" attribute', t => {
   t.end();
 });
 
-tap.test('should support a "macros" attribute', t => {
+tap.test('should support a "macro" attribute', t => {
   const person = {name: 'John Doe'};
   const sayHello = td.function();
+  const locales = [{}];
+  const macros = {greetings: sayHello};
 
-  td.when(sayHello(person)).thenReturn(`Hello ${person.name}!`);
+  td.when(sayHello(locales, macros, person))
+    .thenReturn(output({}, 'a-macro', 'Hello!!!'));
 
-  t.is(textFn([{}], {greetings: sayHello}, {macro: 'greetings'}, [], person), 'Hello John Doe!');
+  t.is(textFn(locales, macros, {macro: 'greetings'}, [], person), 'Hello!!!');
   t.end();
 });
 

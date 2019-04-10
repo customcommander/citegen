@@ -11,4 +11,6 @@ module.exports = {
   'layout': require('./lib/layout.js'),
   'number': require('./lib/number.js'),
   'text': require('./lib/text.js'),
+  // some utilities
+  output: require('./lib/output')
 };
