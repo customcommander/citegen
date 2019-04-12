@@ -24,11 +24,12 @@ Scenario: choose with a single if statement
                 <text value="foo"/>
                 <text value="bar"/>
               </else-if>
-            </choose>
-            <choose>
-              <if type="article book" match="none">
+              <else-if type="article book treaty" match="none">
                 <text value="chapter"/>
-              </if>
+              </else-if>
+              <else>
+                <text value="42"/>
+              </else>
             </choose>
         </layout>
       </citation>
@@ -39,10 +40,11 @@ Scenario: choose with a single if statement
     [
       {"type": "article"},
       {"type": "book", "edition": "2nd"},
-      {"type": "chapter"}
+      {"type": "chapter"},
+      {"type": "treaty"}
     ]
     """
   Then the following result is expected
     """
-    article, book, chapter
+    article, book, chapter, 42
     """
