@@ -1,0 +1,326 @@
+<!--<names variable="reviewed-author" prefix="recension d’un ouvrage de "><name form="long" and="text" delimiter-precedes-last="never" sort-separator=" " initialize-with=". "/></names><text variable="event" quotes="true" prefix="actes du colloque "/> : ces variables risqueraient d'être redondantes avec des informations déjà présentes dans le champ Extra-->
+<macro name="conferenceName"><names variable="event" font-style="italic"><name form="long" and="text" delimiter-precedes-last="never" sort-separator=" " font-style="normal"></name></names></macro>
+<macro name="editor"><choose><if type="chapter" match="none"></if></choose><names variable="editor"><name form="long" and="text" delimiter-precedes-last="never" sort-separator=" " font-style="normal"><name-part name="family" font-variant="small-caps"/></name><label form="short" prefix="&#160;(" suffix=".)"/></names></macro>
+<names delimiter=", " prefix="In: " variable="editor">
+<names delimiter=", " variable="container-author">
+<names delimiter=", " variable="editor translator">
+<names delimiter=", " variable="editor" suffix=",">
+<names delimiter=", " variable="editor">
+<names delimiter=", " variable="interviewer">
+<names delimiter=", " variable="recipient">
+<names delimiter=", " variable="reviewed-author">
+<names delimiter=", " variable="translator" suffix=",">
+<names delimiter=". " variable="director">
+<names delimiter=". " variable="editor translator">
+<names font-variant="small-caps" variable="collection-editor">
+<names variable=" " delimiter=" ; ">
+<names variable="author director"/>
+<names variable="author editor">
+<names variable="author interviewer">
+<names variable="author" delimiter=" ">
+<names variable="author" delimiter=" ; ">
+<names variable="author" delimiter=", ">
+<names variable="author" delimiter="," prefix=" / " suffix=",">
+<names variable="author" delimiter=",">
+<names variable="author" delimiter="/">
+<names variable="author" delimiter="; " suffix=" ">
+<names variable="author" delimiter="; ">
+<names variable="author" font-style="italic" delimiter=" ">
+<names variable="author" font-style="italic" delimiter="/">
+<names variable="author" font-style="italic">
+<names variable="author" font-style="normal">
+<names variable="author" font-variant="normal" delimiter=" ; ">
+<names variable="author" font-variant="normal" delimiter=", ">
+<names variable="author" font-variant="normal" delimiter=",">
+<names variable="author" font-variant="normal" delimiter="."/>
+<names variable="author" font-variant="normal" font-weight="normal" vertical-align="baseline">
+<names variable="author" font-variant="normal" font-weight="normal">
+<names variable="author" font-variant="normal" suffix=", ">
+<names variable="author" font-variant="normal" suffix=".">
+<names variable="author" font-variant="normal" vertical-align="baseline" suffix=". ">
+<names variable="author" font-variant="normal" vertical-align="baseline">
+<names variable="author" font-variant="normal">
+<names variable="author" font-variant="small-caps" suffix=".">
+<names variable="author" font-variant="small-caps">
+<names variable="author" font-weight="bold" delimiter=",">
+<names variable="author" font-weight="bold" suffix=". ">
+<names variable="author" font-weight="bold">
+<names variable="author" font-weight="normal">
+<names variable="author" prefix="           |authors=">
+<names variable="author" prefix=" ">
+<names variable="author" prefix="(" suffix=" ">
+<names variable="author" prefix="Directed by " suffix="."/>
+<names variable="author" prefix="Directed by "/>
+<names variable="author" prefix="Directed by ">
+<names variable="author" prefix="Interview with ">
+<names variable="author" prefix="See ">
+<names variable="author" prefix="invs.: "/>
+<names variable="author" suffix=" ">
+<names variable="author" suffix=" :">
+<names variable="author" suffix="">
+<names variable="author" suffix=", "/>
+<names variable="author" suffix=", ">
+<names variable="author" suffix="," font-variant="small-caps">
+<names variable="author" suffix=",">
+<names variable="author" suffix=".  ">
+<names variable="author" suffix=". ">
+<names variable="author" suffix=". - ">
+<names variable="author" suffix=".">
+<names variable="author" suffix="/">
+<names variable="author" suffix=": ">
+<names variable="author" suffix=":">
+<names variable="author" suffix="，">
+<names variable="author" vertical-align="baseline">
+<names variable="author"/>
+<names variable="author">
+<names variable="collection-editor composer container-author director editor editorial-director illustrator reviewed-author original-author translator"/>
+<names variable="collection-editor" delimiter=" ; ">
+<names variable="collection-editor" delimiter=", ">
+<names variable="collection-editor" delimiter="; ">
+<names variable="collection-editor" font-variant="small-caps">
+<names variable="collection-editor" prefix="dirigée par ">
+<names variable="collection-editor" prefix="ed. ser. ">
+<names variable="collection-editor" suffix=" (ed. ser.)">
+<names variable="collection-editor" suffix=" (ed. ser.).">
+<names variable="collection-editor" suffix=". ">
+<names variable="collection-editor" suffix=".">
+<names variable="collection-editor"/>
+<names variable="collection-editor">
+<names variable="composer editor">
+<names variable="composer" delimiter=" ; ">
+<names variable="composer"/>
+<names variable="composer">
+<names variable="container-author editor" delimiter=", ">
+<names variable="container-author editor" font-variant="normal" delimiter=", ">
+<names variable="container-author editor">
+<names variable="container-author reviewed-author">
+<names variable="container-author translator" delimiter="," suffix=",">
+<names variable="container-author" delimiter=" ; ">
+<names variable="container-author" delimiter=", " suffix=", ">
+<names variable="container-author" delimiter=", ">
+<names variable="container-author" font-variant="normal" delimiter=", ">
+<names variable="container-author" prefix=" ">
+<names variable="container-author" prefix="by "/>
+<names variable="container-author" suffix=" ">
+<names variable="container-author" suffix=", ">
+<names variable="container-author" suffix=".">
+<names variable="container-author" suffix=": ">
+<names variable="container-author"/>
+<names variable="container-author">
+<names variable="director" delimiter=", ">
+<names variable="director" delimiter=". ">
+<names variable="director" prefix="R.: ">
+<names variable="director" prefix="R: " suffix=")"/>
+<names variable="director" suffix=", ">
+<names variable="director"/>
+<names variable="director">
+<names variable="editor collection-editor" font-variant="small-caps" suffix="(eds.)"/>
+<names variable="editor collection-editor"/>
+<names variable="editor container-author" delimiter=", " suffix=", ">
+<names variable="editor container-author"/>
+<names variable="editor director" delimiter=". " prefix=", ">
+<names variable="editor translator container-author" delimiter=", " suffix=", ">
+<names variable="editor translator container-author" delimiter=", ">
+<names variable="editor translator container-author" delimiter=". ">
+<names variable="editor translator" delimiter=" ; ">
+<names variable="editor translator" delimiter=", " prefix=" ">
+<names variable="editor translator" delimiter=", " prefix=" (" suffix=")">
+<names variable="editor translator" delimiter=", " prefix=" (" suffix=").">
+<names variable="editor translator" delimiter=", " prefix="(" suffix=")">
+<names variable="editor translator" delimiter=", " prefix=". ">
+<names variable="editor translator" delimiter=", " suffix="  ">
+<names variable="editor translator" delimiter=", " suffix=" ">
+<names variable="editor translator" delimiter=", " suffix=" (dir.)">
+<names variable="editor translator" delimiter=", " suffix=", ">
+<names variable="editor translator" delimiter=", " suffix=",">
+<names variable="editor translator" delimiter=", " suffix=". ">
+<names variable="editor translator" delimiter=", " suffix=".">
+<names variable="editor translator" delimiter=", " suffix=": ">
+<names variable="editor translator" delimiter=", " suffix="; ">
+<names variable="editor translator" delimiter=", ">
+<names variable="editor translator" delimiter="," suffix=" ">
+<names variable="editor translator" delimiter="," suffix=", ">
+<names variable="editor translator" delimiter="," suffix=",">
+<names variable="editor translator" delimiter=",">
+<names variable="editor translator" delimiter=". ">
+<names variable="editor translator" delimiter="/">
+<names variable="editor translator" delimiter="; " prefix="(" suffix=")">
+<names variable="editor translator" delimiter="; " suffix=".">
+<names variable="editor translator" delimiter="; " suffix=": ">
+<names variable="editor translator" delimiter="; ">
+<names variable="editor translator" font-variant="normal" delimiter="; ">
+<names variable="editor translator" font-weight="normal" delimiter=", " prefix=" ">
+<names variable="editor translator" prefix=" " delimiter=", ">
+<names variable="editor translator" prefix=" " suffix="," delimiter=", ">
+<names variable="editor translator" prefix=" ">
+<names variable="editor translator" prefix=" (" delimiter=", " suffix=")">
+<names variable="editor translator" prefix=" (" suffix=")" delimiter=", ">
+<names variable="editor translator" prefix=" (" suffix=")">
+<names variable="editor translator" prefix="(" suffix=")" delimiter=", ">
+<names variable="editor translator" prefix="(" suffix=")">
+<names variable="editor translator" prefix="(" suffix=")." delimiter=", ">
+<names variable="editor translator" prefix="(ed. by " suffix=")" delimiter=", ">
+<names variable="editor translator" suffix=" " delimiter=", ">
+<names variable="editor translator" suffix=", ">
+<names variable="editor translator" suffix=". ">
+<names variable="editor translator"/>
+<names variable="editor translator">
+<names variable="editor" delimiter=" ">
+<names variable="editor" delimiter=" ; ">
+<names variable="editor" delimiter=", " prefix=" " suffix=", ">
+<names variable="editor" delimiter=", " prefix=" " suffix=".">
+<names variable="editor" delimiter=", " prefix=" ">
+<names variable="editor" delimiter=", " prefix=" (" suffix=")">
+<names variable="editor" delimiter=", " prefix=" [" suffix="]">
+<names variable="editor" delimiter=", " prefix="(" suffix=")">
+<names variable="editor" delimiter=", " prefix="(Ed. by " suffix=")">
+<names variable="editor" delimiter=", " prefix="ed. by ">
+<names variable="editor" delimiter=", " suffix=" ">
+<names variable="editor" delimiter=", " suffix=" Eds.; ">
+<names variable="editor" delimiter=", " suffix=", ">
+<names variable="editor" delimiter=", " suffix=",">
+<names variable="editor" delimiter=", " suffix=". " prefix=", in ">
+<names variable="editor" delimiter=", " suffix=".">
+<names variable="editor" delimiter=", " suffix=": ">
+<names variable="editor" delimiter=", " suffix=":">
+<names variable="editor" delimiter=", " suffix="; ">
+<names variable="editor" delimiter=", ">
+<names variable="editor" delimiter=",">
+<names variable="editor" delimiter=". " prefix=", ">
+<names variable="editor" delimiter=". ">
+<names variable="editor" delimiter="." suffix=" ">
+<names variable="editor" delimiter="/" suffix=",">
+<names variable="editor" delimiter="/">
+<names variable="editor" delimiter=": ">
+<names variable="editor" delimiter="; " prefix=" (" suffix=")">
+<names variable="editor" delimiter="; ">
+<names variable="editor" font-style="italic" delimiter=", ">
+<names variable="editor" font-style="italic" delimiter="/">
+<names variable="editor" font-style="italic"/>
+<names variable="editor" font-style="italic">
+<names variable="editor" font-style="normal" font-variant="normal">
+<names variable="editor" font-style="normal" prefix="(" suffix=")">
+<names variable="editor" font-style="normal"/>
+<names variable="editor" font-variant="normal" delimiter=", ">
+<names variable="editor" font-variant="normal" delimiter="/" prefix="in: " suffix=" (Hrsg.): ">
+<names variable="editor" font-variant="normal"/>
+<names variable="editor" font-variant="normal">
+<names variable="editor" font-variant="small-caps"/>
+<names variable="editor" font-weight="bold">
+<names variable="editor" font-weight="normal"/>
+<names variable="editor" prefix="           |editors=">
+<names variable="editor" prefix=" " delimiter=", ">
+<names variable="editor" prefix=" " suffix="," delimiter=", ">
+<names variable="editor" prefix=" " suffix=".">
+<names variable="editor" prefix=" "/>
+<names variable="editor" prefix=" ">
+<names variable="editor" prefix=" (" suffix=")">
+<names variable="editor" prefix=" (" suffix=")," delimiter=", ">
+<names variable="editor" prefix=" In " suffix=": ">
+<names variable="editor" prefix=" In ">
+<names variable="editor" prefix=" In: " suffix=". ">
+<names variable="editor" prefix="(" suffix=") ">
+<names variable="editor" prefix="(" suffix=")" delimiter=", ">
+<names variable="editor" prefix="(" suffix=")"/>
+<names variable="editor" prefix="(" suffix=")">
+<names variable="editor" prefix="(" suffix="),">
+<names variable="editor" prefix="(ed. by " suffix="), ">
+<names variable="editor" prefix=", ">
+<names variable="editor" prefix="/ под ред. " delimiter=", " suffix=".">
+<names variable="editor" prefix="In ">
+<names variable="editor" prefix="In: " suffix=" (eds) ">
+<names variable="editor" prefix="In: " suffix=" (eds), ">
+<names variable="editor" prefix="In: " suffix=", editor. ">
+<names variable="editor" prefix="In: " suffix=". ">
+<names variable="editor" prefix="In: " suffix=".">
+<names variable="editor" prefix="In: ">
+<names variable="editor" prefix="Interview by "/>
+<names variable="editor" prefix="Interview with ">
+<names variable="editor" prefix="edited by "/>
+<names variable="editor" prefix="edited by ">
+<names variable="editor" prefix="interviewed by " suffix="for ">
+<names variable="editor" prefix="interviewed by "/>
+<names variable="editor" suffix=" ">
+<names variable="editor" suffix=" (dir.)">
+<names variable="editor" suffix=" (ed):">
+<names variable="editor" suffix=" (ed.)"/>
+<names variable="editor" suffix=" (ed.),"/>
+<names variable="editor" suffix=" (éd.), ">
+<names variable="editor" suffix=" ed."/>
+<names variable="editor" suffix=" ed.,">
+<names variable="editor" suffix="(ed)"/>
+<names variable="editor" suffix=", ">
+<names variable="editor" suffix=", ed">
+<names variable="editor" suffix=", editor(s). ">
+<names variable="editor" suffix=",">
+<names variable="editor" suffix=".  ">
+<names variable="editor" suffix=". ">
+<names variable="editor" suffix=". ed; ">
+<names variable="editor" suffix=".">
+<names variable="editor" suffix="/">
+<names variable="editor" suffix=": "/>
+<names variable="editor" suffix=":">
+<names variable="editor"/>
+<names variable="editor">
+<names variable="editorial-director"/>
+<names variable="editorial-director">
+<names variable="illustrator">
+<names variable="interviewer editor translator" delimiter=", ">
+<names variable="interviewer illustrator container-author"/>
+<names variable="interviewer" delimiter=", " prefix="interview by ">
+<names variable="interviewer" delimiter=", ">
+<names variable="interviewer" prefix=" " suffix=" ">
+<names variable="interviewer" prefix=" entretien réalisé par ">
+<names variable="interviewer" prefix=" interview with ">
+<names variable="interviewer" prefix="entr. ">
+<names variable="interviewer" suffix=" (interv.)">
+<names variable="interviewer" suffix=" (interv.).">
+<names variable="interviewer"/>
+<names variable="interviewer">
+<names variable="original-author editor collection-editor translator"/>
+<names variable="original-author">
+<names variable="recipient" delimiter=" ; ">
+<names variable="recipient" delimiter=", " prefix="to ">
+<names variable="recipient" delimiter=", ">
+<names variable="recipient" prefix=" with "/>
+<names variable="recipient" prefix="Email sent to " suffix=",">
+<names variable="recipient" prefix="Letter to ">
+<names variable="recipient" prefix="lettre à ">
+<names variable="recipient" prefix="to ">
+<names variable="recipient"/>
+<names variable="recipient">
+<names variable="reviewed-author" delimiter=", ">
+<names variable="reviewed-author" suffix=", ">
+<names variable="reviewed-author">
+<names variable="translator editor container-author" delimiter=", " prefix=" (" suffix=")">
+<names variable="translator editor" delimiter=", " prefix=" ">
+<names variable="translator editor" delimiter=", " prefix=" (" suffix=")">
+<names variable="translator editor" delimiter=", ">
+<names variable="translator editor"/>
+<names variable="translator" delimiter=" ; ">
+<names variable="translator" delimiter=", " prefix=" ">
+<names variable="translator" delimiter=", " prefix=" (" suffix=")">
+<names variable="translator" delimiter=", " prefix="trans. by ">
+<names variable="translator" delimiter=", ">
+<names variable="translator" delimiter="," suffix=",">
+<names variable="translator" delimiter=". " prefix=". ">
+<names variable="translator" delimiter=". ">
+<names variable="translator" delimiter="; ">
+<names variable="translator" font-style="italic"/>
+<names variable="translator" font-style="italic">
+<names variable="translator" font-style="normal"/>
+<names variable="translator" font-variant="normal"/>
+<names variable="translator" font-variant="small-caps"/>
+<names variable="translator" font-weight="bold">
+<names variable="translator" font-weight="normal"/>
+<names variable="translator" font-weight="normal">
+<names variable="translator" prefix=" " suffix="."/>
+<names variable="translator" prefix=" "/>
+<names variable="translator" prefix=" ">
+<names variable="translator" prefix="(" suffix=")">
+<names variable="translator" suffix=" trans.,">
+<names variable="translator" suffix="(tr)"/>
+<names variable="translator" suffix=", ">
+<names variable="translator" suffix=".">
+<names variable="translator"/>
+<names variable="translator">
