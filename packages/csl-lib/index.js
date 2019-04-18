@@ -1,5 +1,3 @@
-// This file has been auto-generated
-// Run `make index.js` to regenerate it
 module.exports = {
   'choose': require('./lib/choose.js'),
   'citation': require('./lib/citation.js'),
