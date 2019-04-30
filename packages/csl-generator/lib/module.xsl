@@ -74,7 +74,7 @@
   </xsl:template>
 
   <xsl:template match="csl:*" mode="function-call">
-    lib['<xsl:value-of select="name()"/>'](locales, macros,
+    lib['<xsl:value-of select="local-name()"/>'](locales, macros,
       <xsl:apply-templates select="self::node()" mode="param-attrs"/>,
       <xsl:apply-templates select="self::node()" mode="param-children"/>)
   </xsl:template>
