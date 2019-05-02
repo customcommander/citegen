@@ -1,6 +1,6 @@
 Feature: Names
 
-Scenario: Renders only one name variable
+Scenario: Can display a simple list of names
   Given the following citation style
     """
     <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
@@ -11,7 +11,7 @@ Scenario: Renders only one name variable
       </info>
       <citation>
         <layout>
-          <names variable="author"/>
+          <names variable="author editor" delimiter="; "/>
         </layout>
       </citation>
     </style>
@@ -35,11 +35,27 @@ Scenario: Renders only one name variable
             "non-dropping-particle": "La",
             "suffix": "II"
           }
+        ],
+        "editor": [
+          {
+            "given": "Jean",
+            "family": "Fontaine",
+            "dropping-particle": "de",
+            "non-dropping-particle": "La",
+            "suffix": "III"
+          },
+          {
+            "given": "Jean",
+            "family": "Fontaine",
+            "dropping-particle": "de",
+            "non-dropping-particle": "La",
+            "suffix": "IV"
+          }
         ]
       }
     ]
     """
   Then the following result is expected
     """
-    Jean de La Fontaine I, Jean de La Fontaine II
+    Jean de La Fontaine I, Jean de La Fontaine II; Jean de La Fontaine III, Jean de La Fontaine IV
     """
