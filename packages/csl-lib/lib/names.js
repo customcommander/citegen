@@ -23,6 +23,7 @@
 
 const {applyTo, curry, map} = require('ramda');
 const output = require('./output');
+const delimAttr = require('./attributes/delimiter');
 
 /**
  * @function
@@ -34,4 +35,4 @@ const output = require('./output');
  * @return {Output}
  */
 module.exports = curry((locales, macros, attrs, children, ref) =>
-  output({}, 'names', map(applyTo(ref), children)));
+  delimAttr(attrs, output({}, 'names', map(applyTo(ref), children))));
