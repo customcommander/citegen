@@ -235,14 +235,8 @@
       <xsl:for-each select="csl:macro">
         <xsl:sort select="@name"/>
         "<xsl:value-of select="@name"/>": function (locales, macros, ref) {
-          return lib.output({name: '<xsl:value-of select="@name"/>'}, 'macro', [
-            <xsl:for-each select=".">
-              <xsl:apply-templates mode="function-call"/>(ref)
-              <xsl:if test="position() != last()">,</xsl:if>
-            </xsl:for-each>
-          ]);
-        }
-        <xsl:if test="position() != last()">,</xsl:if>
+          return (<xsl:apply-templates select="self::node()" mode="function-call"/>(ref));
+        }<xsl:if test="position() != last()">,</xsl:if>
       </xsl:for-each>
     };
 
@@ -251,8 +245,9 @@
         var locales = getLocales((langCode || '<xsl:value-of select="@default-locale"/>' || 'en-US'), styleLocales);
         var citation = lib.citation(locales, macros, {},
           <xsl:apply-templates select="csl:citation" mode="param-children"/>, refs);
-        // Internally functions in the `csl-lib` package consume and produce objects.
-        // The object returned by `lib.citation` has a toString() implementation that produces the final citation.
+        <!--
+        Internally functions in the `csl-lib` package consume and produce objects.
+        The object returned by `lib.citation` has a toString() implementation that produces the final citation. -->
         return citation.toString();
       }
     };

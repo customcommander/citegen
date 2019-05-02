@@ -20,3 +20,9 @@
  * @property {enums.personType} `variable`
  * @property {?string} `delimiter`
  */
+
+/**
+ * Attributes for <macro>
+ * @typedef {object} MacroAttrs
+ * @property {string} name
+ */

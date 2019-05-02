@@ -8,11 +8,10 @@ module.exports = {
   'if': require('./lib/if.js'),
   'label': require('./lib/label.js'),
   'layout': require('./lib/layout.js'),
+  'macro': require('./lib/macro.js'),
   'name-list': require('./lib/name-list'),
   'name': require('./lib/name'),
   'names': require('./lib/names.js'),
   'number': require('./lib/number.js'),
-  'text': require('./lib/text.js'),
-  // some utilities
-  output: require('./lib/output')
+  'text': require('./lib/text.js')
 };
