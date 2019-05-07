@@ -168,7 +168,7 @@ const formatLongOrdinal =
           (stringify(value)));
 
 /**
- * True if given numeric content is made of a single number.
+ * True if given numeric content is made of several numbers.
  *
  * @example
  * isMultiple('1, 4'); //=> true
@@ -179,7 +179,7 @@ const formatLongOrdinal =
  *
  * @function
  * @param {string} value
- * @return {number}
+ * @return {boolean}
  */
 const isMultiple = ifElse(isValid, pipe(splitNumber, length, lt(1)) , F);
 
