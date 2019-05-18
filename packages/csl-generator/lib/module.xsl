@@ -187,6 +187,22 @@
               <xsl:attribute name="{name()}"><xsl:value-of select="."/></xsl:attribute>
             </xsl:for-each>
           </xsl:element>
+          <!--
+          Recreating a <label> element (if any).
+          The CSL spec does not require the "variable" attribute to be set on <label> contained in <names>.
+          As <names> can render multiple name variables, <label> in <names> is supposed to
+          render the label for the name variable that is being processed.
+          However as we now create one <name-list> per name variable, and reinject
+          the original content of <names> in each <name-list>, we can safely add to each <label>
+          the name of the variable that it must find the label for. -->
+          <xsl:if test="$original-node/csl:label">
+            <xsl:element name="csl:label">
+              <xsl:attribute name="variable"><xsl:value-of select="."/></xsl:attribute>
+              <xsl:for-each select="$original-node/csl:label/@*">
+                <xsl:attribute name="{name()}"><xsl:value-of select="."/></xsl:attribute>
+              </xsl:for-each>
+            </xsl:element>
+          </xsl:if>
         </xsl:element>
       </xsl:for-each>
     </xsl:variable>

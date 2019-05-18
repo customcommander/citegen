@@ -41,6 +41,8 @@ const {
   zipWith
 } = require('ramda');
 
+const {Maybe, Some, Nothing} = require('monet');
+
 const table = [
   [1000, 'M'],
   [900, 'CM'],
@@ -81,7 +83,17 @@ const formatSeparator =
     [isAmpersand, always(' & ')],
     [T, identity]]);
 
-const isValid = pipe(splitNumber, ifElse(isEmpty, F, all(isNumeric)));
+/**
+ * Checks if given string is a valid CSL number.
+ * @param {string} str
+ * @return {boolean}
+ */
+const isValid = str =>
+  Maybe
+    .fromUndefined(str)
+    .map(splitNumber)
+    .flatMap(ifElse(isEmpty, Nothing, Some))
+    .fold(false)(all(isNumeric));
 
 const toRoman =
   when(lt(__, 4000),

@@ -19,7 +19,8 @@ const locales = always([
     {name: '🌯', form: 'long', value: ['🌯🌯', '🌯🌯🌯']}]},
   {terms: [
     {name: 'number-of-pages', form: 'long', value: ['page', 'pages']},
-    {name: 'number-of-volumes', form: 'long', value: ['volume', 'volumes']}]}]);
+    {name: 'number-of-volumes', form: 'long', value: ['volume', 'volumes']},
+    {name: 'editor', form: 'long', value: ['editor-singular', 'editor-plural']}]}]);
 
 test.test('select the required form of a term', t => {
   t.equal(nodeLabel(locales(), {}, {variable: '🍣', form: 'verb-short', plural: 'never'}, [], {'🍣': '1'}), '🍣🍣',
@@ -68,6 +69,10 @@ test.test('select the plural or singular form of a term', t => {
     'take the singular form if "number-of-volumes" is 1');
   t.equal(nodeLabel(locales(), {}, {variable: 'number-of-volumes', form: 'long', plural: 'contextual'}, [], {'number-of-volumes': '2'}), 'volumes',
     'take the singular form if "number-of-volumes" is greater than 1');
+  t.equal(nodeLabel(locales(), {}, {variable: 'editor', form: 'long', plural: 'contextual'}, [], {editor: ['john']}), 'editor-singular',
+    'take the singular form if there is only one person');
+  t.equal(nodeLabel(locales(), {}, {variable: 'editor', form: 'long', plural: 'contextual'}, [], {editor: ['john', 'jane']}), 'editor-plural',
+    'take the plural form if there are several persons');
   t.end();
 });
 
@@ -80,5 +85,3 @@ test.test('return an empty string if the numeric variable is empty', t => {
     'does not mistake falsy values with empty values');
   t.end();
 });
-
-

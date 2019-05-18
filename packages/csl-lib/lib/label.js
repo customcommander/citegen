@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright (c) 2018 Julien Gonzalez
+ * Copyright (c) 2019 Julien Gonzalez
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,23 +22,57 @@
  */
 
 const {
+  always,
   curry,
   flip,
   includes,
-  propOr
+  is,
+  length,
+  lt,
+  propOr,
+  unless,
 } = require('ramda');
 
+const {Maybe} = require('monet');
+
 const output = require('./output');
+const affixes = require('./attributes/affixes');
 const findTermText = require('./l10n/find-term-text');
 const {isNumeric, isMultiple, toInt} = require('./utils/number');
 
 const out = output({}, 'label');
 
-const isQuantityVariable = flip(includes)(['number-of-pages', 'number-of-volumes']);
+const isQuantityVariable =
+  flip(includes)([
+    'number-of-pages',
+    'number-of-volumes']);
+
+const isNameVariable =
+  flip(includes)([
+    'author',
+    'collection-editor',
+    'composer',
+    'container-author',
+    'director',
+    'editor',
+    'editorial-director',
+    'illustrator',
+    'interviewer',
+    'original-author',
+    'recipient',
+    'reviewed-author',
+    'translator']);
+
+const isListWithMoreThanOneElement = list =>
+  Maybe
+    .fromNull(unless(is(Array), always(null), list))
+    .map(length)
+    .fold(false)(lt(1));
 
 const isPlural = (varName, varValue) =>
-  (isQuantityVariable(varName) && toInt(varValue) > 1) ||
-  (isNumeric(varValue) && isMultiple(varValue));
+  isQuantityVariable(varName) ? toInt(varValue) > 1 :
+  isNameVariable(varName) ? isListWithMoreThanOneElement(varValue) :
+  isNumeric(varValue) ? isMultiple(varValue) : false;
 
 const usePlural = (plural, varName, varValue) =>
   (plural === 'always') ||
@@ -58,5 +92,5 @@ module.exports = curry((locales, macros, attrs, children, ref) => {
   const varName = attrs.variable;
   const varValue = propOr('', varName, ref);
   const plural = usePlural(attrs.plural || 'contextual', varName, varValue);
-  return varValue === '' ? out('') : out(findTermText(form, plural, varName, locales));
+  return varValue === '' ? out('') : affixes(attrs, out(findTermText(form, plural, varName, locales)));
 });
