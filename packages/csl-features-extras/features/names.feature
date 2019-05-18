@@ -59,3 +59,39 @@ Scenario: Can display a simple list of names
     """
     Jean de La Fontaine I, Jean de La Fontaine II; Jean de La Fontaine III, Jean de La Fontaine IV
     """
+
+Scenario: Labels in names
+  Given the following citation style
+    """
+    <style class="note" version="1.0" xmlns="http://purl.org/net/xbiblio/csl">
+      <info>
+        <id/>
+        <title/>
+        <updated>2008-10-29T21:01:24+00:00</updated>
+      </info>
+      <citation>
+        <layout>
+          <names variable="editor director" delimiter="; ">
+            <label prefix=" (" suffix=")"/>
+          </names>
+        </layout>
+      </citation>
+    </style>
+    """
+  And the following data
+    """
+    [
+      {
+        "editor": [
+          {"family": "Doe"}
+        ],
+        "director": [
+          {"family": "Smith"}
+        ]
+      }
+    ]
+    """
+  Then the following result is expected
+    """
+    Doe (editor); Smith (director)
+    """
