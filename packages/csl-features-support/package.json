@@ -14,12 +14,12 @@
     "postinstall": "mkdir -p tmp"
   },
   "devDependencies": {
-    "tap": "^12.0.1"
+    "tap": "^14.0.0"
   },
   "dependencies": {
     "@customcommander/csl-generator": "^1.0.0",
     "@customcommander/csl-lib": "^1.0.0",
     "@customcommander/csl-locales": "^1.0.0",
-    "uuid": "^3.2.1"
+    "uuid": "^3.3.2"
   }
 }

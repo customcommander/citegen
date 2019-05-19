@@ -18,6 +18,6 @@
   "devDependencies": {
     "@customcommander/csl-lib": "^1.0.0",
     "@customcommander/csl-locales": "^1.0.0",
-    "tap": "^12.0.1"
+    "tap": "^14.0.0"
   }
 }
