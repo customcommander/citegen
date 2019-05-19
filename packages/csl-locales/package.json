@@ -8,10 +8,10 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "ramda": "^0.25.0"
+    "ramda": "^0.26.1"
   },
   "devDependencies": {
     "mustache": "^3.0.1",
-    "tap": "^12.0.1"
+    "tap": "^14.0.0"
   }
 }
